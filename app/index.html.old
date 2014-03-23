@@ -1,0 +1,59 @@
+<!doctype html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
+        <link rel="stylesheet" href="styles/main.css">
+    </head>
+
+    <body ng-app="sorelcomApp">
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Sorelcom</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group has-feedback navbar-right">
+                        <input id="searchbox" type="text" placeholder="Search" class="form-control">
+                        <span id="searchicon" class="fa fa-search form-control-feedback"></span>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav">
+                    <li ng-controller="AuthenticationController">
+                        <a href="" ng-if="!authenticated" ng-click="open()">Log in</a>
+                        <a href="" ng-if="authenticated" ng-click="logout()">Logout</a>
+                    </li>
+                </ul>
+            </div><!--/.navbar-collapse -->
+        </div>                            
+
+        <div id="container" ng-view=""></div>
+
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/leaflet/dist/leaflet.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="/scripts/angular-leaflet-directive.min.js"></script>
+        <script src="/scripts/app.js"></script>
+        <script src="/scripts/controllers/main.js"></script>
+
+    </body>
+</html>
