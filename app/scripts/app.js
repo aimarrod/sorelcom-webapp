@@ -5,16 +5,19 @@ var sorelcomApp = angular.module('sorelcomApp', [
   'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
+  'ui.router',
   'leaflet-directive'
 ]);
 
-sorelcomApp.config(function ($routeProvider) {
+sorelcomApp.config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: 'partials/main.html',
         controller: 'RouteController'
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+    $locationProvider.html5Mode(true); 
+});
+
