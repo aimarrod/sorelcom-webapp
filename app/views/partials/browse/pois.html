@@ -1,0 +1,9 @@
+<div class="col-md-4">
+	<ul class="list-group browse-list">
+        <a href ng-repeat="poi in pois" ui-sref-active="active" class="list-group-item" ui-sref="browse.tracks.detail({id: poi.id})">
+        	{{ poi.name }}
+        </a>
+	</ul>
+</div>
+
+<div ui-view class="col-md-8 slide">

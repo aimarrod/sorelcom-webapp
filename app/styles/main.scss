@@ -2,17 +2,29 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
-body {
-  padding-top: 50px;
-}
 
 html, body, #main-view, .angular-leaflet-map {
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
+.thumb{
+  max-height: 48px;
+  max-width: 48px;
+}
 
+ .angular-leaflet-map {
+ 	overflow:hidden;
+ }
+
+ .home-map{
+  	margin-top: -20px;
+ }
+
+ .minimap{
+    border: 1px solid #555;
+ }
+ 
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -20,78 +32,71 @@ html, body, #main-view, .angular-leaflet-map {
     padding: 0.2em 0;
 }
 
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
+.nav, .pagination, .carousel, a { 
+    cursor: pointer; 
 }
 
-/* Custom page header */
-.header {
-    border-bottom: 1px solid #e5e5e5;
+.appear.ng-enter, 
+.appear.ng-leave,
+.appear.ng-move
+{ 
+    -webkit-transition: 400ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all;
+    -moz-transition: 400ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all;
+    -ms-transition: 400ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all;
+    -o-transition: 400ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all;
+    transition: 400ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all;
+    position: relative;
+} 
+ 
+.appear.ng-leave.ng-leave-active,
+.appear.ng-enter,
+.appear.ng-move
+ {
+    opacity: 0;
+}
+ 
+.appear.ng-enter.ng-enter-active,
+.appear.ng-leave {
+    opacity: 1;
 }
 
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+.slide.ng-leave {
+  position: relative;
 }
-
-/* Custom page footer */
-.footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
+.slide.ng-enter {
+  position: absolute;
 }
-
-.container-narrow > hr {
-    margin: 30px 0;
+.slide.ng-enter, .slide.ng-leave {
+  -webkit-transition: -webkit-transform 0.3s ease-in, opacity 0.3s ease-in;
+     -moz-transition: -moz-transform 0.3s ease-in, opacity 0.3s ease-in;
+       -o-transition: -o-transform 0.3s ease-in, opacity 0.3s ease-in;
+          transition: transform 0.3s ease-in, opacity 0.3s ease-in;
 }
-
-/* Main marketing message and sign up button */
-.jumbotron {
-    text-align: center;
-    border-bottom: 1px solid #e5e5e5;
+.slide.ng-enter, .slide.ng-leave.ng-leave-active {
+  -webkit-transform: scaleX(0.0001);
+       -o-transform: scaleX(0.0001);
+          transform: scaleX(0.0001);
+  opacity: 0;
 }
-
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+.slide, .slide.ng-enter.ng-enter-active {
+  -webkit-transform: scaleX(1);
+       -o-transform: scaleX(1);
+          transform: scaleX(1);
+  opacity: 1;
 }
+ 
+.voffset  { margin-top: 2px; }
+.voffset1 { margin-top: 5px; }
+.voffset2 { margin-top: 10px; }
+.voffset3 { margin-top: 15px; }
+.voffset4 { margin-top: 30px; }
+.voffset5 { margin-top: 40px; }
+.voffset6 { margin-top: 60px; }
+.voffset7 { margin-top: 80px; }
+.voffset8 { margin-top: 100px; }
+.voffset9 { margin-top: 150px; }
 
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
-}
-
-.marketing p + h4 {
-    margin-top: 28px;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
-
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
-    }
+.browse-list{
+  max-height:720px;
+  overflow-y: scroll;
 }

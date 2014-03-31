@@ -66,12 +66,7 @@ var ModalInstanceCtrl = function ($scope, $modalInstance) {
   }
 
   $scope.login = function () {
-
-    $scope.error.hidden = false;
-    $scope.error.text = "REEEEEKT";
-    console.log($scope.credentials);
-    //if success
-
+    $modalInstance.close();
   };
 
   $scope.cancel = function () {

@@ -1,0 +1,27 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": ".",
+			"folder_exclude_patterns": [
+				".sass-cache",
+				".tmp",
+				"node_modules", 
+				"bower_components"
+			],
+			"file_exclude_patterns": [
+				".git*", 
+				".js*", 
+				".buildignore",
+				"karma*",
+				"editor*",
+				".bowerrc"
+			]
+
+		}
+	],
+	"settings":
+	{
+	}
+}

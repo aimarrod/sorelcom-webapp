@@ -1,0 +1,1121 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"li",
+				"li	Tag"
+			],
+			[
+				"id",
+				"id"
+			],
+			[
+				"Users",
+				"users"
+			],
+			[
+				"$sta",
+				"$stateParams"
+			],
+			[
+				"user",
+				"user"
+			],
+			[
+				"fea",
+				"feature"
+			],
+			[
+				"bin",
+				"bindings"
+			],
+			[
+				"geom",
+				"geometry"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"s",
+				"s"
+			],
+			[
+				"an",
+				"angular"
+			],
+			[
+				"p",
+				"p	Tag"
+			],
+			[
+				"con",
+				"controller	AngularJS"
+			],
+			[
+				"angular",
+				"angular-leaflet-directive"
+			],
+			[
+				"ang",
+				"angular-resource"
+			],
+			[
+				"bower",
+				"bower_components"
+			],
+			[
+				"a",
+				"a	Tag"
+			],
+			[
+				"Sta",
+				"statusCode"
+			],
+			[
+				"form",
+				"formgrp2"
+			],
+			[
+				"formg",
+				"formgrp1"
+			],
+			[
+				"crea",
+				"createPOIForm"
+			],
+			[
+				"fe",
+				"features"
+			],
+			[
+				"cont",
+				"container"
+			],
+			[
+				"remove",
+				"removeClass"
+			],
+			[
+				"POI",
+				"POIModal"
+			],
+			[
+				"edito",
+				"editorControl"
+			],
+			[
+				"edit",
+				"edit"
+			],
+			[
+				"new",
+				"newTriples"
+			],
+			[
+				"old",
+				"oldTriples"
+			],
+			[
+				"prop",
+				"properties"
+			],
+			[
+				"req",
+				"require"
+			],
+			[
+				"start",
+				"startMarker"
+			],
+			[
+				"star",
+				"startMarker"
+			],
+			[
+				"coor",
+				"coordinates"
+			],
+			[
+				"geo",
+				"geojson"
+			],
+			[
+				"wkt",
+				"wkt"
+			],
+			[
+				"reque",
+				"require"
+			],
+			[
+				"data",
+				"dataype"
+			],
+			[
+				"Fea",
+				"featureCollection"
+			],
+			[
+				"parse",
+				"parseQueryResultsJSON"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"par",
+				"parliament"
+			],
+			[
+				"requ",
+				"request"
+			],
+			[
+				"sho",
+				"showRoute"
+			],
+			[
+				"st",
+				"statusCode"
+			],
+			[
+				"re",
+				"require"
+			],
+			[
+				"inse",
+				"insertString"
+			],
+			[
+				"ins",
+				"insertString"
+			],
+			[
+				"ise",
+				"insertString"
+			],
+			[
+				"pars",
+				"parseFeature"
+			],
+			[
+				"pro",
+				"properties"
+			],
+			[
+				"Geo",
+				"GeoJSONReader"
+			],
+			[
+				"inser",
+				"insertQuery"
+			],
+			[
+				"upload",
+				"upload-error"
+			],
+			[
+				"kml",
+				"kml"
+			],
+			[
+				"js",
+				"js"
+			],
+			[
+				"end",
+				"end"
+			],
+			[
+				"lin",
+				"line_distances"
+			],
+			[
+				"Geos",
+				"GEOSGeometry"
+			],
+			[
+				"jqeur",
+				"jquery"
+			],
+			[
+				"http",
+				"HttpResponse"
+			],
+			[
+				"r",
+				"request"
+			],
+			[
+				"max_",
+				"max_lat"
+			],
+			[
+				"loadRo",
+				"loadRoute"
+			],
+			[
+				"places",
+				"placesOfWorship"
+			],
+			[
+				"place",
+				"placesOfInterest"
+			],
+			[
+				"hos",
+				"hospitals"
+			],
+			[
+				"placesO",
+				"placesOfWorship"
+			],
+			[
+				"rout",
+				"route_layers"
+			],
+			[
+				"to",
+				"toggleClickMode"
+			],
+			[
+				"add",
+				"addLayer"
+			],
+			[
+				"Rou",
+				"Route"
+			],
+			[
+				"name",
+				"name"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"Route",
+				"RouteSearchForm"
+			],
+			[
+				"route",
+				"routeList"
+			],
+			[
+				"lo",
+				"login"
+			],
+			[
+				"bike",
+				"bikingPlaces"
+			],
+			[
+				"sea",
+				"search_route_basic"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"jsoni",
+				"jsonify_poi_around"
+			],
+			[
+				"json",
+				"jsonifyRoute"
+			],
+			[
+				"slope",
+				"slope_proportions_ascent"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "lib/routes.js",
+			"settings":
+			{
+				"buffer_size": 1099,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/controllers/index.js",
+			"settings":
+			{
+				"buffer_size": 560,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/app.js",
+			"settings":
+			{
+				"buffer_size": 3971,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/controllers/browse.js",
+			"settings":
+			{
+				"buffer_size": 1388,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/partials/browse/browse.html",
+			"settings":
+			{
+				"buffer_size": 306,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/controllers/upload.js",
+			"settings":
+			{
+				"buffer_size": 2203,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/controllers/tracks.js",
+			"settings":
+			{
+				"buffer_size": 1199,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/partials/browse/tracks.html",
+			"settings":
+			{
+				"buffer_size": 289,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/connectors/parliament.js",
+			"settings":
+			{
+				"buffer_size": 8814,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/opt/ParliamentKB/ParliamentConfig.txt",
+			"settings":
+			{
+				"buffer_size": 2966,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/partials/browse/pois.html",
+			"settings":
+			{
+				"buffer_size": 282,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/styles/main.scss",
+			"settings":
+			{
+				"buffer_size": 2316,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/obssidian/Development/sorelcom-webapp/lib/models/track.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/session.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/models/user.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/users.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/users.html",
+		"/home/obssidian/Development/sorelcom-webapp/lib/connectors/parliament.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/users_detail.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks_detail.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/browse.html",
+		"/home/obssidian/Development/sorelcom-webapp/package.json",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/browse.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/styles/main.scss",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/index.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/tracks.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/tracks.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/navbar.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/user.list.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/directives/textReader.js",
+		"/home/obssidian/Development/sorelcom-webapp/bower.json",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/files.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/routes.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/profile.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/profile.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/auth.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/signup.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/app.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/navbar.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/signup.html",
+		"/home/obssidian/Development/sorelcom-webapp/README.md",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/login.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/home.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/upload.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/upload.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/config/express.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/utils/geo.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/tracks.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/track.js",
+		"/home/obssidian/Development/sorelcom-webapp/sorelcom.sublime-project",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/main.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/home.html",
+		"/opt/sublime_text/Packages/Default.sublime-package",
+		"/home/obssidian/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/obssidian/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/obssidian/Development/sorelcom-webapp/app/styles/main.css",
+		"/home/obssidian/Development/sorelcom/public/js/main.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/user.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/directives/fileReader.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/login.html",
+		"/home/obssidian/Development/sorelcom-webapp/lib/config/dummydata.js",
+		"/home/obssidian/Development/sorelcom/controllers/query.js",
+		"/home/obssidian/Development/sorelcom/controllers/parliament.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/api.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/login.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/settings.html",
+		"/home/obssidian/Development/prueba/app/views/partials/signup.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/main.js",
+		"/home/obssidian/Development/prueba/app/scripts/app.js",
+		"/home/obssidian/Development/prueba/app/scripts/controllers/login.js",
+		"/home/obssidian/Development/sorelcom/public/js/initialize_map.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/modal.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/session.js",
+		"/home/obssidian/Development/sorelcom/public/js/editor.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/directives/mongooseError.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/index.html",
+		"/home/obssidian/Downloads/bootleaf/index.html",
+		"/home/obssidian/Development/sorelcom/views/index.jade",
+		"/home/obssidian/Development/webapp/app/scripts/angular-leaflet-directive.min.js",
+		"/home/obssidian/Development/sorelcom/app.js",
+		"/home/obssidian/Development/helloworld/package.json",
+		"/home/obssidian/Development/angular/app/views/prueba.html",
+		"/home/obssidian/Development/angular/app/index.html",
+		"/home/obssidian/Development/angular/app/scripts/main.js",
+		"/home/obssidian/Development/angular/bower.json",
+		"/home/obssidian/Development/angular/Gruntfile.js",
+		"/home/obssidian/Development/sorelcom/views/editor.jade",
+		"/home/obssidian/Development/sorelcom/public/js/leaflet.draw.js",
+		"/home/obssidian/Development/sorelcom/public/js/leaflet.editor.js",
+		"/home/obssidian/Development/backbone/npm-debug.log",
+		"/home/obssidian/Development/sorelcom/views/modals.jade",
+		"/home/obssidian/Development/sorelcom/public/css/style.css",
+		"/home/obssidian/Development/sorelcom/public/css/leaflet.draw.css",
+		"/home/obssidian/Development/sorelcom/public/js/leaflet.fullscreen.js",
+		"/home/obssidian/Development/sorelcom/controllers/user.js",
+		"/home/obssidian/Development/sorelcom/public/css/leaflet.fullscreen.css",
+		"/home/obssidian/Development/sorelcom/controllers/connectors.js",
+		"/home/obssidian/Development/sorelcom/public/css/main.css",
+		"/home/obssidian/Development/sorelcom/controllers/index.js",
+		"/home/obssidian/Development/sorelcom/controllers/pass.js",
+		"/home/obssidian/Development/sorelcom/package.json",
+		"/home/obssidian/Development/sorelcom/controllers/geojsonUtils.js",
+		"/home/obssidian/Development/sorelcom/query.js",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/forms.py",
+		"/home/obssidian/Development/sorelcom/README.md",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/home.html",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/modal_templates/modal_upload.html",
+		"/home/obssidian/Development/sorelcom/views/uth.btn",
+		"/home/obssidian/Development/sorelcom/wat/myapp/app.js",
+		"/home/obssidian/Development/sorelcom_web/API/routes.py",
+		"/home/obssidian/Downloads/ParliamentQuickStart-v2.7.4-ubuntu-gcc-64/ParliamentConfig.txt",
+		"/usr/local/ParliamentKB/ParliamentConfig.txt",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/static/js/plugins/GPX/self_gpx.js",
+		"/home/obssidian/Development/sorelcom_web/API/urls.py",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/static/js/plugins/GPX/gpx.js",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/views.py",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/editor.html",
+		"/home/obssidian/Development/sorelcom_web/analysis/analysis.py",
+		"/home/obssidian/Development/sorelcom_web/analysis/errors.py",
+		"/home/obssidian/Development/sorelcom_web/API/accounts.py",
+		"/home/obssidian/Development/sorelcom_web/analysis/utils.py",
+		"/home/obssidian/Development/sorelcom_web/analysis/parsers.py",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/index.html",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/static/js/main.js",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/models.py",
+		"/home/obssidian/Development/sorelcom_web/API/utils.py",
+		"/home/obssidian/Development/sorelcom_web/connectors/overpass.py",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/static/css/bootstrap-responsive.css",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/urls.py",
+		"/home/obssidian/Development/sorelcom_web/analysis/search.py",
+		"/home/obssidian/Development/sorelcom_web/web/home/__init__.py",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/route_list.html",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/settings.py",
+		"/home/obssidian/Development/sorelcom_web/web/routes/views.py",
+		"/home/obssidian/Development/sorelcom_web/web/home/views.py",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/modal_templates/modal_login.html",
+		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/modal_templates/modal_register.html",
+		"/home/obssidian/Development/sorelcom_web/web/home/urls.py"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"find",
+			"get",
+			"track",
+			"User",
+			"serve",
+			"());\n",
+			"build",
+			"serve",
+			"|",
+			"_toolbars",
+			"this._toolbars",
+			"L.draw.",
+			"featureToTriples",
+			"geometryToTriples",
+			"error",
+			" '",
+			"_onFullScreenChange",
+			"$.ajax",
+			"$.post",
+			"parse",
+			"this",
+			"exists",
+			"routeList",
+			"res.json",
+			"selectQuery",
+			"selectQue",
+			"logo",
+			"console.log",
+			"password",
+			"ll",
+			"loadRoute",
+			"route =",
+			"route",
+			"loadRoute",
+			"for",
+			"log",
+			"lat",
+			"login",
+			"geojson",
+			"script",
+			" <",
+			"print"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 9,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "lib/routes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1099,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								651,
+								651
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 39.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "lib/controllers/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 560,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								175,
+								175
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/scripts/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3971,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2489,
+								2489
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2376.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/scripts/controllers/browse.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1388,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1354,
+								1354
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 660.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/views/partials/browse/browse.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 306,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								213,
+								213
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/scripts/controllers/upload.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2203,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								528,
+								528
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "lib/controllers/tracks.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1199,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								155,
+								155
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/views/partials/browse/tracks.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 289,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "lib/connectors/parliament.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8814,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4913,
+								4913
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2508.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/opt/ParliamentKB/ParliamentConfig.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2966,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								258,
+								258
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "app/views/partials/browse/pois.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 282,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								215,
+								215
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "app/styles/main.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2316,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2289,
+								2289
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1892.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "sorelcom.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 210.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

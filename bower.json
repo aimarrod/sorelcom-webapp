@@ -12,8 +12,13 @@
     "angular-cookies": "1.2.11",
     "angular-sanitize": "1.2.11",
     "angular-route": "1.2.11",
+    "angular-animate": "1.2.11",
     "angular-ui-router": "*",
-    "leaflet": "*"
+    "angular-bootstrap": "*",
+    "angular-leaflet-directive": "*",
+    "angular-ui-utils":"*",
+    "ng-file-upload":"*",
+    "components-font-awesome":"*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.11",

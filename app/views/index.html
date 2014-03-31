@@ -14,10 +14,11 @@
     <!-- build:css(app) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/leaflet-dist/leaflet.css" />
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -27,7 +28,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div id="main-view" ng-view=""></div>
+    <div ui-view="header"></div>
+    <div id="main-view" class="appear" ui-view="main"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -45,8 +47,8 @@
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
+
     <!-- build:js(app) scripts/vendor.js -->
-        <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -55,26 +57,37 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-
+    <script src="bower_components/leaflet-dist/leaflet.js"></script>
+    <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+    <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload-shim.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
     <!-- endbower -->
-        <script src="/scripts/angular-leaflet-directive.min.js"></script>
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <!--
         <script src="scripts/controllers/navbar.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/signup.js"></script>
-        <script src="scripts/controllers/settings.js"></script>
+        <script src="scripts/controllers/upload.js"></script>
+        <script src="scripts/controllers/profile.js"></script>
+        <script src="scripts/controllers/browse.js"></script>
         <script src="scripts/services/auth.js"></script>
         <script src="scripts/services/session.js"></script>
         <script src="scripts/services/user.js"></script>
+        <script src="scripts/services/track.js"></script>
         <script src="scripts/directives/mongooseError.js"></script>
+        <script src="scripts/directives/textReader.js"></script>
+        <script src="scripts/utils/togeojson.js"></script>
+
+
+        <!--
+        <script src="scripts/controllers/settings.js"></script>
         -->
         <!-- endbuild -->
 </body>

@@ -1,9 +1,13 @@
 'use strict';
 
-angular.module('pruebaApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location) {
+angular.module('sorelcomApp')
+  .controller('SignupCtrl', function ($scope, $upload, Auth, $location) {
     $scope.user = {};
     $scope.errors = {};
+
+    $scope.upload = function($files){
+      $scope.user.avatar = $files[0];
+    }
 
     $scope.register = function(form) {
       $scope.submitted = true;
@@ -12,7 +16,8 @@ angular.module('pruebaApp')
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
+          avatar: $scope.user.avatar
         })
         .then( function() {
           // Account created, redirect to home

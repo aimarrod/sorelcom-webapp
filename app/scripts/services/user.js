@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pruebaApp')
+angular.module('sorelcomApp')
   .factory('User', function ($resource) {
     return $resource('/api/users/:id', {
       id: '@id'

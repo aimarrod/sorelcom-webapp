@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pruebaApp')
+angular.module('sorelcomApp')
 
   /**
    * Removes server error when user updates input

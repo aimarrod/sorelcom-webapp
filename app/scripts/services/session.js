@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pruebaApp')
+angular.module('sorelcomApp')
   .factory('Session', function ($resource) {
     return $resource('/api/session/');
   });
