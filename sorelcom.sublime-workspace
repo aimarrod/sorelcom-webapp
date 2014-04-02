@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"posts",
+				"posts"
+			],
+			[
+				"geoPostIts",
+				"geoPostIts"
+			],
+			[
+				"track",
+				"trackTriples"
+			],
+			[
+				"hasPOIs",
+				"hasPOIs"
+			],
+			[
+				"user",
+				"user"
+			],
+			[
+				"User",
+				"UserSchema"
+			],
+			[
+				"bindings",
+				"bindings"
+			],
+			[
 				"li",
 				"li	Tag"
 			],
@@ -18,10 +46,6 @@
 			[
 				"$sta",
 				"$stateParams"
-			],
-			[
-				"user",
-				"user"
 			],
 			[
 				"fea",
@@ -356,66 +380,34 @@
 	"buffers":
 	[
 		{
-			"file": "lib/routes.js",
+			"file": "lib/models/track.js",
 			"settings":
 			{
-				"buffer_size": 1099,
+				"buffer_size": 1768,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "lib/controllers/index.js",
+			"file": "app/views/partials/browse/users.html",
 			"settings":
 			{
-				"buffer_size": 560,
+				"buffer_size": 881,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/scripts/app.js",
+			"file": "lib/models/user.js",
 			"settings":
 			{
-				"buffer_size": 3971,
+				"buffer_size": 7472,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/scripts/controllers/browse.js",
+			"file": "lib/controllers/users.js",
 			"settings":
 			{
-				"buffer_size": 1388,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/partials/browse/browse.html",
-			"settings":
-			{
-				"buffer_size": 306,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/controllers/upload.js",
-			"settings":
-			{
-				"buffer_size": 2203,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/controllers/tracks.js",
-			"settings":
-			{
-				"buffer_size": 1199,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/partials/browse/tracks.html",
-			"settings":
-			{
-				"buffer_size": 289,
+				"buffer_size": 2228,
 				"line_ending": "Unix"
 			}
 		},
@@ -423,31 +415,7 @@
 			"file": "lib/connectors/parliament.js",
 			"settings":
 			{
-				"buffer_size": 8814,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/opt/ParliamentKB/ParliamentConfig.txt",
-			"settings":
-			{
-				"buffer_size": 2966,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/partials/browse/pois.html",
-			"settings":
-			{
-				"buffer_size": 282,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/styles/main.scss",
-			"settings":
-			{
-				"buffer_size": 2316,
+				"buffer_size": 9844,
 				"line_ending": "Unix"
 			}
 		}
@@ -479,19 +447,26 @@
 	},
 	"file_history":
 	[
+		"/home/obssidian/Development/sorelcom-webapp/app/styles/main.scss",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/pois.html",
+		"/home/obssidian/Development/sorelcom-webapp/lib/connectors/parliament.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks.html",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/tracks.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/upload.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/browse.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/browse.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/app.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/index.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/routes.js",
+		"/opt/ParliamentKB/ParliamentConfig.txt",
 		"/home/obssidian/Development/sorelcom-webapp/lib/models/track.js",
 		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/session.js",
 		"/home/obssidian/Development/sorelcom-webapp/lib/models/user.js",
 		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/users.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/users.html",
-		"/home/obssidian/Development/sorelcom-webapp/lib/connectors/parliament.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/users_detail.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks_detail.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/browse.html",
 		"/home/obssidian/Development/sorelcom-webapp/package.json",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/browse.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/styles/main.scss",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/index.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/tracks.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/tracks.html",
@@ -501,22 +476,18 @@
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/directives/textReader.js",
 		"/home/obssidian/Development/sorelcom-webapp/bower.json",
 		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/files.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/routes.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/profile.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/profile.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/auth.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/signup.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/app.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/navbar.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/signup.html",
 		"/home/obssidian/Development/sorelcom-webapp/README.md",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/login.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/home.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/upload.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/upload.js",
 		"/home/obssidian/Development/sorelcom-webapp/lib/config/express.js",
 		"/home/obssidian/Development/sorelcom-webapp/lib/utils/geo.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/tracks.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/track.js",
 		"/home/obssidian/Development/sorelcom-webapp/sorelcom.sublime-project",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/main.html",
@@ -603,10 +574,7 @@
 		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/route_list.html",
 		"/home/obssidian/Development/sorelcom_web/sorelcom/settings.py",
 		"/home/obssidian/Development/sorelcom_web/web/routes/views.py",
-		"/home/obssidian/Development/sorelcom_web/web/home/views.py",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/modal_templates/modal_login.html",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/modal_templates/modal_register.html",
-		"/home/obssidian/Development/sorelcom_web/web/home/urls.py"
+		"/home/obssidian/Development/sorelcom_web/web/home/views.py"
 	],
 	"find":
 	{
@@ -683,178 +651,60 @@
 	"groups":
 	[
 		{
-			"selected": 9,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "lib/routes.js",
+					"file": "lib/models/track.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1099,
+						"buffer_size": 1768,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								651,
-								651
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 39.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "lib/controllers/index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 560,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								175,
-								175
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/scripts/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3971,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2489,
-								2489
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2376.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/scripts/controllers/browse.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1388,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1354,
-								1354
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 660.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/views/partials/browse/browse.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 306,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								213,
-								213
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/scripts/controllers/upload.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2203,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								528,
-								528
+								1614,
+								1614
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 396.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views/partials/browse/users.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 881,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								512,
+								512
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -865,20 +715,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "lib/controllers/tracks.js",
+					"buffer": 2,
+					"file": "lib/models/user.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1199,
+						"buffer_size": 7472,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								155,
-								155
+								6845,
+								6845
 							]
 						],
 						"settings":
@@ -888,55 +738,57 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4554.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "lib/controllers/users.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2228,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1387,
+								1387
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1320.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "app/views/partials/browse/tracks.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 289,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
+					"buffer": 4,
 					"file": "lib/connectors/parliament.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8814,
+						"buffer_size": 9844,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4913,
-								4913
+								2735,
+								2735
 							]
 						],
 						"settings":
@@ -946,96 +798,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2508.0,
+						"translation.y": 1386.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "/opt/ParliamentKB/ParliamentConfig.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2966,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								258,
-								258
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "app/views/partials/browse/pois.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 282,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								215,
-								215
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "app/styles/main.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2316,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2289,
-								2289
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1892.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]

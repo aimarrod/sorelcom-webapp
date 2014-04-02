@@ -1,16 +1,14 @@
-<div class="navbar navbar-inverse" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
+      <span ng-repeat="item in menu" class="icon-bar"></span>
     </button>
     <a class="navbar-brand" href="#">Sorelcom</a>
   </div>
   <div class="navbar-collapse collapse">  
     <ul class="nav navbar-nav pull-left">
-      <li ng-repeat="item in menu" ng-class="{active: state.includes(item.link)}">
-        <a ng-if="item.link" ui-sref="{{item.link}}">{{item.title}}</a>
+      <li ng-repeat="item in menu" ng-class="{active: state.includes(item.state)}">
+        <a ui-sref="{{item.state}}">{{item.title}}</a>
       </li>
      </ul>
      <ul class="nav navbar-nav pull-right">

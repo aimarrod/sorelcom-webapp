@@ -8,6 +8,18 @@ html, body, #main-view, .angular-leaflet-map {
   width: 100%;
 }
 
+body {
+  padding-top: 50px;
+}
+
+.container {
+  padding-top: 20px;
+}
+
+.leaflet-sidebar {
+  z-index:1020;
+}
+
 .thumb{
   max-height: 48px;
   max-width: 48px;
@@ -15,10 +27,6 @@ html, body, #main-view, .angular-leaflet-map {
 
  .angular-leaflet-map {
  	overflow:hidden;
- }
-
- .home-map{
-  	margin-top: -20px;
  }
 
  .minimap{

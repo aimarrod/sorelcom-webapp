@@ -15,7 +15,7 @@
 				".js*", 
 				".buildignore",
 				"karma*",
-				"editor*",
+				".editorconfig",
 				".bowerrc"
 			]
 

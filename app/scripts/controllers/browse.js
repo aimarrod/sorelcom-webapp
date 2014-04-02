@@ -23,12 +23,13 @@ angular.module('sorelcomApp')
 
 angular.module('sorelcomApp')
   .controller('TrackDetailCtrl', function ($scope, $stateParams, Track, leafletData) {
-  	Track.get({id: $stateParams.id}).$promise
+  	Track.get({id: $stateParams.id})
+      .$promise
   		.then(
   			function success(data){
   				$scope.track = data;
   				$scope.geojson = { data: data.geometry };
-          leafletData.getMap().then(function(map){
+          leafletData.getMap().then(function (map){
             map.fitBounds(L.geoJson(data.geometry).getBounds());
           });
   			}

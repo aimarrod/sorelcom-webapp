@@ -1,1 +1,14 @@
 <leaflet class="home-map" layers="layers" geojson="geojson"></leaflet>
+
+<div id="sidebar">
+	<ul class="nav nav-tabs">
+	    <li ng-repeat="item in menu" ng-class="{active: isActive(item)}">
+        	<a ng-click="load($index)"> <i class="icon fa fa-{{item.icon}}"></i> {{item.title}}</a>
+      	</li>
+    </ul>
+    <ul class="list-group">
+        <a href ng-repeat="item in list" class="list-group-item" ng-click="loadResource(item.id)">
+        	{{item.name}}
+        </a>
+	</ul>
+</div>

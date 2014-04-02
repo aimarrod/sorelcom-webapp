@@ -22,7 +22,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         },
         'main': {
           templateUrl: 'partials/home.html',
-          controller: 'RouteController'
+          controller: 'MapController'
         }
       }
     })
@@ -37,6 +37,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         'main': {
           templateUrl: 'partials/settings.html',
           controller: 'RouteController'
+        }
+      }
+    })
+
+    .state('editor', {
+      url: '/editor',
+      views: {
+        'header': { 
+          templateUrl: 'partials/navbar.html',
+          controller: 'NavbarCtrl'
+        },
+        'main': {
+          templateUrl: 'partials/editor.html',
+          controller: 'EditorCtrl'
         }
       }
     })
