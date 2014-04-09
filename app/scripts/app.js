@@ -132,6 +132,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'POIListCtrl'
     })
 
+    .state('browse.pois.detail', {
+      url: '/{id}',
+      templateUrl: 'partials/browse/pois_detail.html',
+      controller: 'POIDetailCtrl'
+    })
+
     .state('browse.users', {
       url: '/users',
       templateUrl: 'partials/browse/users.html',
@@ -162,7 +168,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 app.run( function ($rootScope, $location, $modal, $state, Auth) {
 
-    var loginRequired = ['settings', 'upload'];
+    var loginRequired = ['settings', 'upload', 'editor'];
 
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
         if(loginRequired.indexOf(next.name) > -1 && !Auth.isLoggedIn()){ 

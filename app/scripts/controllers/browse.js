@@ -47,6 +47,21 @@ angular.module('sorelcomApp')
   });
 
 angular.module('sorelcomApp')
-  .controller('POIListCtrl', function ($scope, $stateParams, User) {
-    $scope.user = User.get({id: $stateParams.id});
+  .controller('POIListCtrl', function ($scope, $stateParams, POI) {
+    $scope.pois = POI.query();
+  });
+
+angular.module('sorelcomApp')
+  .controller('POIDetailCtrl', function ($scope, $stateParams, leafletData, POI) {
+    POI.get({id: $stateParams.id})
+      .$promise
+      .then(
+        function success(data){
+          $scope.track = data;
+          $scope.geojson = { data: data.geometry };
+          leafletData.getMap().then(function (map){
+            map.fitBounds(L.geoJson(data.geometry).getBounds());
+          });
+        }
+      );  
   });

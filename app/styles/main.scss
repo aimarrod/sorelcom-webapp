@@ -20,6 +20,31 @@ body {
   z-index:1020;
 }
 
+.leaflet-control-panel{
+  float:right;
+  padding: 10px;
+  margin-right: 15px;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  display: block;
+  color: black;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+  border-radius: 4px;
+  width: 250px;
+  height: 200px;
+  overflow-x: auto;
+}
+
+.leaflet-control-panel small{
+  width: 200px;
+  position: absolute;
+  bottom: 5px;
+}
+
+.leaflet-inline{
+  display:inline;
+}
+
 .thumb{
   max-height: 48px;
   max-width: 48px;

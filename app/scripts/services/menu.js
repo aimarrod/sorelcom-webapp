@@ -18,7 +18,7 @@ angular.module('sorelcomApp')
 
     return {
     	activate: function(index){
-    		if(index < menu.length && index > 0)
+    		if(index < menu.length && index >= 0)
 	    		active = menu[index]
     	},
     	list: function(){

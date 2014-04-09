@@ -4,6 +4,114 @@
 		"selected_items":
 		[
 			[
+				"cons",
+				"console"
+			],
+			[
+				"isP",
+				"isPolygon"
+			],
+			[
+				"is",
+				"isPolyline"
+			],
+			[
+				"Pol",
+				"Polygon"
+			],
+			[
+				"remo",
+				"removeFrom"
+			],
+			[
+				"_panel",
+				"_panelContent"
+			],
+			[
+				"do",
+				"DomUtil"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"contro",
+				"Control"
+			],
+			[
+				"contr",
+				"Control"
+			],
+			[
+				"remove",
+				"removeEditable"
+			],
+			[
+				"i",
+				"icon"
+			],
+			[
+				"newPoi",
+				"newpointmarker"
+			],
+			[
+				"new",
+				"newLayers"
+			],
+			[
+				"icon",
+				"icon"
+			],
+			[
+				"geojson",
+				"geojson"
+			],
+			[
+				"$modal",
+				"$modalInstance"
+			],
+			[
+				"load",
+				"loadLayer"
+			],
+			[
+				"re",
+				"resource"
+			],
+			[
+				"Note",
+				"Note"
+			],
+			[
+				"la",
+				"layerGroup"
+			],
+			[
+				"post",
+				"post"
+			],
+			[
+				"note",
+				"note"
+			],
+			[
+				"poi",
+				"poi"
+			],
+			[
+				"POI",
+				"poi"
+			],
+			[
+				"id",
+				"id"
+			],
+			[
+				"bin",
+				"binding"
+			],
+			[
 				"posts",
 				"posts"
 			],
@@ -36,10 +144,6 @@
 				"li	Tag"
 			],
 			[
-				"id",
-				"id"
-			],
-			[
 				"Users",
 				"users"
 			],
@@ -50,10 +154,6 @@
 			[
 				"fea",
 				"feature"
-			],
-			[
-				"bin",
-				"bindings"
 			],
 			[
 				"geom",
@@ -120,24 +220,12 @@
 				"container"
 			],
 			[
-				"remove",
-				"removeClass"
-			],
-			[
-				"POI",
-				"POIModal"
-			],
-			[
 				"edito",
 				"editorControl"
 			],
 			[
 				"edit",
 				"edit"
-			],
-			[
-				"new",
-				"newTriples"
 			],
 			[
 				"old",
@@ -210,10 +298,6 @@
 			[
 				"st",
 				"statusCode"
-			],
-			[
-				"re",
-				"require"
 			],
 			[
 				"inse",
@@ -380,34 +464,98 @@
 	"buffers":
 	[
 		{
+			"file": "app/views/index.html",
+			"settings":
+			{
+				"buffer_size": 5452,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/styles/main.scss",
+			"settings":
+			{
+				"buffer_size": 2799,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/controllers/editor.js",
+			"settings":
+			{
+				"buffer_size": 8225,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/app.js",
+			"settings":
+			{
+				"buffer_size": 4431,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/services/model.js",
+			"settings":
+			{
+				"buffer_size": 730,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/routes.js",
+			"settings":
+			{
+				"buffer_size": 1493,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/controllers/browse.js",
+			"settings":
+			{
+				"buffer_size": 1826,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/partials/browse/pois_detail.html",
+			"settings":
+			{
+				"buffer_size": 157,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/partials/browse/pois.html",
+			"settings":
+			{
+				"buffer_size": 280,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/controllers/pois.js",
+			"settings":
+			{
+				"buffer_size": 880,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/controllers/tracks.js",
+			"settings":
+			{
+				"buffer_size": 986,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "lib/models/track.js",
 			"settings":
 			{
-				"buffer_size": 1768,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/partials/browse/users.html",
-			"settings":
-			{
-				"buffer_size": 881,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/models/user.js",
-			"settings":
-			{
-				"buffer_size": 7472,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/controllers/users.js",
-			"settings":
-			{
-				"buffer_size": 2228,
+				"buffer_size": 2526,
 				"line_ending": "Unix"
 			}
 		},
@@ -415,7 +563,7 @@
 			"file": "lib/connectors/parliament.js",
 			"settings":
 			{
-				"buffer_size": 9844,
+				"buffer_size": 9922,
 				"line_ending": "Unix"
 			}
 		}
@@ -447,56 +595,84 @@
 	},
 	"file_history":
 	[
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks_details.html",
+		"/home/obssidian/Development/sorelcom-webapp/lib/models/poi.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/pois.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/plugins/editor/leaflet.editor.panel.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/bower_components/leaflet.draw/dist/leaflet.draw-src.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/plugins/leaflet.draw/leaflet.draw-src.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/bower_components/leaflet.draw/dist/leaflet.draw.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/plugins/leaflet-editable-polyline/leaflet-editable-polyline.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/editor.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/styles/main.scss",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/pois.html",
+		"/home/obssidian/Development/sorelcom-webapp/bower.json",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/home.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/menumodal.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/main.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/plugins/leaflet.draw/leaflet.draw.button.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/plugins/leaflet.draw/leaflet.draw.load.js",
 		"/home/obssidian/Development/sorelcom-webapp/lib/connectors/parliament.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks.html",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/tracks.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/upload.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/browse.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/menu.js",
+		"/home/obssidian/Development/sorelcom-webapp/sorelcom.sublime-project",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/browse.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/model.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/navbar.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/app.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/index.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/editor.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/navbar.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/plugins/spin/leaflet.spin.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/browse.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/plugins/leaflet-sidebar/L.Control.Sidebar.Button.js",
+		"/home/obssidian/Development/sorelcom/views/index.jade",
+		"/home/obssidian/Development/sorelcom/public/js/initialize_map.js",
+		"/home/obssidian/Development/sorelcom/public/js/main.js",
+		"/home/obssidian/Development/sorelcom-webapp/dist/server.js",
 		"/home/obssidian/Development/sorelcom-webapp/lib/routes.js",
-		"/opt/ParliamentKB/ParliamentConfig.txt",
-		"/home/obssidian/Development/sorelcom-webapp/lib/models/track.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/session.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/models/user.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/models/post.js",
 		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/users.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/tracks.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/models/note.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/notes.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/models/track.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/utils/geo.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/models/user.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/users.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/users_detail.html",
+		"/home/obssidian/Development/bilbaopic.github.io/index.html",
+		"/home/obssidian/Development/bilbaopic.github.io/js/main.js",
+		"/home/obssidian/Development/bilbaopic.github.io/css/main.css",
+		"/home/obssidian/Development/bilbaopic.github.io/main.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/pois.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/upload.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/index.js",
+		"/opt/ParliamentKB/ParliamentConfig.txt",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/session.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks_detail.html",
 		"/home/obssidian/Development/sorelcom-webapp/package.json",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/index.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/tracks.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/tracks.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/navbar.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/user.list.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/directives/textReader.js",
-		"/home/obssidian/Development/sorelcom-webapp/bower.json",
 		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/files.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/profile.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/profile.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/auth.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/signup.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/navbar.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/signup.html",
 		"/home/obssidian/Development/sorelcom-webapp/README.md",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/login.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/home.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/upload.html",
 		"/home/obssidian/Development/sorelcom-webapp/lib/config/express.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/utils/geo.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/track.js",
-		"/home/obssidian/Development/sorelcom-webapp/sorelcom.sublime-project",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/main.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/home.html",
 		"/opt/sublime_text/Packages/Default.sublime-package",
 		"/home/obssidian/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/obssidian/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/obssidian/Development/sorelcom-webapp/app/styles/main.css",
-		"/home/obssidian/Development/sorelcom/public/js/main.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/user.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/directives/fileReader.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/login.html",
@@ -507,17 +683,14 @@
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/login.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/settings.html",
 		"/home/obssidian/Development/prueba/app/views/partials/signup.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/main.js",
 		"/home/obssidian/Development/prueba/app/scripts/app.js",
 		"/home/obssidian/Development/prueba/app/scripts/controllers/login.js",
-		"/home/obssidian/Development/sorelcom/public/js/initialize_map.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/modal.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/session.js",
 		"/home/obssidian/Development/sorelcom/public/js/editor.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/directives/mongooseError.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/index.html",
 		"/home/obssidian/Downloads/bootleaf/index.html",
-		"/home/obssidian/Development/sorelcom/views/index.jade",
 		"/home/obssidian/Development/webapp/app/scripts/angular-leaflet-directive.min.js",
 		"/home/obssidian/Development/sorelcom/app.js",
 		"/home/obssidian/Development/helloworld/package.json",
@@ -549,32 +722,7 @@
 		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/modal_templates/modal_upload.html",
 		"/home/obssidian/Development/sorelcom/views/uth.btn",
 		"/home/obssidian/Development/sorelcom/wat/myapp/app.js",
-		"/home/obssidian/Development/sorelcom_web/API/routes.py",
-		"/home/obssidian/Downloads/ParliamentQuickStart-v2.7.4-ubuntu-gcc-64/ParliamentConfig.txt",
-		"/usr/local/ParliamentKB/ParliamentConfig.txt",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/static/js/plugins/GPX/self_gpx.js",
-		"/home/obssidian/Development/sorelcom_web/API/urls.py",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/static/js/plugins/GPX/gpx.js",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/views.py",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/editor.html",
-		"/home/obssidian/Development/sorelcom_web/analysis/analysis.py",
-		"/home/obssidian/Development/sorelcom_web/analysis/errors.py",
-		"/home/obssidian/Development/sorelcom_web/API/accounts.py",
-		"/home/obssidian/Development/sorelcom_web/analysis/utils.py",
-		"/home/obssidian/Development/sorelcom_web/analysis/parsers.py",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/index.html",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/static/js/main.js",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/models.py",
-		"/home/obssidian/Development/sorelcom_web/API/utils.py",
-		"/home/obssidian/Development/sorelcom_web/connectors/overpass.py",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/static/css/bootstrap-responsive.css",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/urls.py",
-		"/home/obssidian/Development/sorelcom_web/analysis/search.py",
-		"/home/obssidian/Development/sorelcom_web/web/home/__init__.py",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/templates/route_list.html",
-		"/home/obssidian/Development/sorelcom_web/sorelcom/settings.py",
-		"/home/obssidian/Development/sorelcom_web/web/routes/views.py",
-		"/home/obssidian/Development/sorelcom_web/web/home/views.py"
+		"/home/obssidian/Development/sorelcom_web/API/routes.py"
 	],
 	"find":
 	{
@@ -592,6 +740,46 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"instanceof",
+			"//",
+			"poly",
+			"console",
+			"remove",
+			"\n  ",
+			"this._map",
+			"epolylines",
+			"map.on",
+			"newPoint",
+			"that",
+			"_markers",
+			"return",
+			"removeLayer",
+			"remove",
+			"createButton",
+			"title",
+			"buttons.",
+			"isMarker",
+			"currentLatLng",
+			"L.draw.polyline",
+			"L.drawToolbar",
+			"L.toolbar.",
+			"draw.toolbar.",
+			"L.draw.toolbar.",
+			"toolbar.",
+			"toolbar",
+			"addTool",
+			"_initModeHandler",
+			"L.PolyLine",
+			"L.polyline",
+			"L.Draw.Polyline",
+			"_initModeHandler",
+			"getModeHandlers",
+			"L.Draw.Polyline",
+			"Polyline",
+			"iconUrl",
+			"sidebar",
+			"trackId",
+			"User",
 			"find",
 			"get",
 			"track",
@@ -651,46 +839,162 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 6,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "lib/models/track.js",
+					"file": "app/views/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1768,
+						"buffer_size": 5452,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1614,
-								1614
+								3972,
+								3972
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1628.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/styles/main.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2799,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								726,
+								726
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 198.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/scripts/controllers/editor.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8225,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4688,
+								4688
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 577.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/scripts/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2981,
+								2981
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 396.0,
+						"translation.y": 2816.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "app/views/partials/browse/users.html",
+					"buffer": 4,
+					"file": "app/scripts/services/model.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 881,
+						"buffer_size": 730,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13,
+								13
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lib/routes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1493,
 						"regions":
 						{
 						},
@@ -703,32 +1007,32 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 132.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "lib/models/user.js",
+					"buffer": 6,
+					"file": "app/scripts/controllers/browse.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7472,
+						"buffer_size": 1826,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6845,
-								6845
+								1720,
+								1720
 							]
 						],
 						"settings":
@@ -738,27 +1042,83 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4554.0,
+						"translation.y": 1056.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "lib/controllers/users.js",
+					"buffer": 7,
+					"file": "app/views/partials/browse/pois_detail.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2228,
+						"buffer_size": 157,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1387,
-								1387
+								26,
+								26
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app/views/partials/browse/pois.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 280,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								167,
+								167
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "lib/controllers/pois.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 880,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								847,
+								847
 							]
 						],
 						"settings":
@@ -767,28 +1127,58 @@
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 1320.0,
+						"translation.x": -0.0,
+						"translation.y": 792.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "lib/connectors/parliament.js",
+					"buffer": 10,
+					"file": "lib/controllers/tracks.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9844,
+						"buffer_size": 986,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2735,
-								2735
+								770,
+								770
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 264.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "lib/models/track.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2526,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2152,
+								2152
 							]
 						],
 						"settings":
@@ -798,10 +1188,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1386.0,
+						"translation.y": 660.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "lib/connectors/parliament.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9922,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								356,
+								356
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1254.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
 					"type": "text"
 				}
 			]
@@ -809,7 +1229,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 38.0
 	},
 	"input":
 	{
