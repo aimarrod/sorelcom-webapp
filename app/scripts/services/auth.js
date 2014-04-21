@@ -57,7 +57,6 @@ angular.module('sorelcomApp')
        */
       createUser: function(user, callback) {
         var cb = callback || angular.noop;
-
         return $upload.upload({
           url: 'api/users/',
           method: 'POST',

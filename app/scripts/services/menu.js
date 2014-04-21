@@ -1,5 +1,5 @@
 angular.module('sorelcomApp')
-  .factory('Menu', function Auth(Track, Note, POI) {
+  .factory('Menu', function Menu(Track, Note, POI) {
   	var menu = 	[{
 		'title':'Tracks',
 		'resource':Track,

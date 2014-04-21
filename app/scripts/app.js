@@ -15,115 +15,62 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     
     $stateProvider.state('home', {
       url: '/',
-      views: {
-        'header': { 
-          templateUrl: 'partials/navbar.html',
-          controller: 'NavbarCtrl'
-        },
-        'main': {
-          templateUrl: 'partials/home.html',
-          controller: 'MapController'
-        }
-      }
+      templateUrl: 'partials/home.html',
+      controller: 'HomeController'
     })
 
     .state('settings', {
       url: '/settings',
-      views: {
-        'header': { 
-          templateUrl: 'partials/navbar.html',
-          controller: 'NavbarCtrl'
-        },
-        'main': {
-          templateUrl: 'partials/settings.html',
-          controller: 'RouteController'
-        }
-      }
+      templateUrl: 'partials/settings.html',
+      controller: 'RouteController'
     })
 
-    .state('editor', {
+    .state('map', {
+      url: '/map',
+      templateUrl: 'partials/map/map.html',
+      controller: 'MapCtrl'
+    })
+
+    .state('map.editor', {
       url: '/editor',
-      views: {
-        'header': { 
-          templateUrl: 'partials/navbar.html',
-          controller: 'NavbarCtrl'
-        },
-        'main': {
-          templateUrl: 'partials/editor.html',
-          controller: 'EditorCtrl'
-        }
-      }
+      templateUrl: 'partials/map/editor.html',
+      controller: 'EditorCtrl'  
+    })
+
+    .state('map.explore', {
+      url: '/explore',
+      templateUrl: 'partials/map/explore.html',
+      controller: 'ExploreCtrl'  
     })
 
     .state('signup', {
       url: '/signup',
-      views: {
-        'header': { 
-          templateUrl: 'partials/navbar.html',
-          controller: 'NavbarCtrl'
-        },
-        'main': {
-          templateUrl: 'partials/signup.html',
-          controller: 'SignupCtrl'
-        }
-      }
+      templateUrl: 'partials/signup.html',
+      controller: 'SignupCtrl'
     })
-
 
     .state('upload', {
       url: '/upload',
-      views: {
-        'header': { 
-          templateUrl: 'partials/navbar.html',
-          controller: 'NavbarCtrl',
-        },
-        'main': {
-          templateUrl: 'partials/upload.html',
-          controller: 'UploadCtrl'
-        }
-      }
+      templateUrl: 'partials/upload.html',
+      controller: 'UploadCtrl'
     })
 
     .state('users', {
       url: '/users',
-      views: {
-        'header': { 
-          templateUrl: 'partials/navbar.html',
-          controller: 'NavbarCtrl'
-        },
-        'main': {
-          templateUrl: 'partials/users.html',
-          controller: 'UserCtrl'
-        }
-      }
+      templateUrl: 'partials/users.html',
+      controller: 'UserCtrl'
     })
 
     .state('profile', {
       url: '/profile',
-      views: {
-        'header': { 
-          templateUrl: 'partials/navbar.html',
-          controller: 'NavbarCtrl'
-        },
-        'main': {
-          templateUrl: 'partials/profile.html',
-          controller: 'ProfileCtrl'
-        }
-      }
+      templateUrl: 'partials/profile.html',
+      controller: 'ProfileCtrl'
     })
 
     .state('browse', {
       url: '/browse',
-      views: {
-        'header': { 
-          templateUrl: 'partials/navbar.html',
-          controller: 'NavbarCtrl'
-        },
-        'main': {
-          templateUrl: 'partials/browse/browse.html',
-          controller: 'BrowseCtrl'
-        }
-      }
+      templateUrl: 'partials/browse/browse.html',
+      controller: 'BrowseCtrl'
     })
 
     .state('browse.pois', {
@@ -168,7 +115,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 app.run( function ($rootScope, $location, $modal, $state, Auth) {
 
-    var loginRequired = ['settings', 'upload', 'editor'];
+    var loginRequired = ['settings', 'upload'];
 
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
         if(loginRequired.indexOf(next.name) > -1 && !Auth.isLoggedIn()){ 

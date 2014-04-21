@@ -8,11 +8,8 @@ angular.module('sorelcomApp')
                 'title': 'Home',
                 'state': 'home'
               }, {
-                'title': 'Editor',
-                'state': 'editor'
-              }, {
-                'title': 'Upload',
-                'state': 'upload'
+                'title': 'Map',
+                'state': 'map.explore'
               }, {
                 'title': 'Browse',
                 'state': 'browse'

@@ -1,0 +1,35 @@
+<div id="wrapper" ng-class="{active: sidebar}">
+  
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+
+  <!-- Header: title and close button -->
+  	<div class="header">
+    	<button type='button' class='close' ng-click="sidebar=false" aria-hidden="true">&times;</button>
+  	</div>
+
+  	<button id="back" type="button" class="btn btn-primary" ui-sref="home"> 
+  		<span class="fa fa-home"></span> 
+  	</button>
+  	
+  	<div id="content" ui-view></div>
+
+  	<!-- Footer, for possible changing -->
+		<div class="footer">
+			<div class="btn-group btn-group-justified">
+				<a class="btn btn-primary" role="button" ui-sref="map.explore">
+					<i class="icon fa fa-search"></i>
+				</a>		
+				<a class="btn btn-primary" role="button" ui-sref="map.editor">
+					<i class="icon fa fa-tags"></i>
+				</a>	
+				<a class="btn btn-primary" role="button" ui-sref="map.editor">
+					<i class="icon fa fa-edit"></i>
+				</a>			
+				</div>
+		</div>
+  </div>
+
+  <!-- Map -->
+  <div id="map-wrapper"></div>
+</div>

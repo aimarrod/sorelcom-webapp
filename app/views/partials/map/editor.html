@@ -1,0 +1,47 @@
+
+<div id="editor-buttons">
+	<button class="btn btn-primary btn-block" ng-click="addLayer()">
+		<i class="icon fa fa-plus"></i>	Add 
+	</button>
+	<button class="btn btn-primary btn-block" ng-click="loadLayer()">
+		<i class="icon fa fa-edit"></i> Edit 
+	</button>
+	<button ng-class="{disabled: !editing}" class="btn btn-primary btn-block">
+		<i class="icon fa fa-save"></i> Save 
+	</button>
+	<button ng-class="{disabled: !editing}" ng-click="clearLayers()" class="btn btn-danger btn-block">
+		 <i class="icon fa fa-trash-o"></i> Clear
+	</button>
+</div>
+
+
+<div ng-show="SharedMap.layerData" class="voffset3">
+	<hr>
+	<h2 class="text-center">
+		<button type="button" class="btn btn-warning btn-sm pull-left" ng-click="edit()">
+			<span class="icon fa fa-edit"></span>
+		</button>
+		{{ SharedMap.layerData.name }} 
+	</h2>
+	<p> {{ SharedMap.layerData.content }} </p>
+	<p><a><span class="icon fa fa-user"></span> {{ SharedMap.layerData.author }}</a></p>
+</div>
+
+<hr>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<strong><span class="icon fa fa-info-circle"></span> Editing instructions </strong>
+	</div>
+	<ul class="list-group">
+		<li class="list-group-item">
+			Add a new track from a GPX file with <span class="icon fa fa-plus">
+		</li>
+		<li class="list-group-item">
+			Modify a existing track with <span class="icon fa fa-edit"> 
+		</li>
+		<li class="list-group-item">You can edit a new track before saving it </li>
+		<li class="list-group-item">To edit a track drag the points on the map </li>
+		<li class="list-group-item">Once edited, click <span class="icon fa fa-save"></span> to save </li>
+		<li class="list-group-item">Clear current track with <span class="icon fa fa-trash-o"></span></li>
+	</ul>
+</div>
