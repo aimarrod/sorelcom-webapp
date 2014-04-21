@@ -19,6 +19,7 @@
     <!-- endbower -->
     <link rel="stylesheet" href="plugins/leaflet-sidebar/L.Control.Sidebar.css"></script>
     <link rel="stylesheet" href="plugins/leaflet.draw/leaflet.draw.css"></script>
+    <link href='http://fonts.googleapis.com/css?family=Concert+One' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
@@ -30,8 +31,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ui-view="header"></div>
-    <div id="main-view" class="appear" ui-view="main"></div>
+    <div id="main-view" class="appear" ui-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -66,6 +66,7 @@
     <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
     <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
     <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+    <script src="bower_components/leaflet-providers/leaflet-providers.js"></script>
     <!-- endbower -->
     <script src="plugins/leaflet-sidebar/L.Control.Sidebar.js"></script>
     <script src="plugins/leaflet-sidebar/L.Control.Sidebar.Button.js"></script>
@@ -86,20 +87,17 @@
         <script src="scripts/controllers/upload.js"></script>
         <script src="scripts/controllers/profile.js"></script>
         <script src="scripts/controllers/browse.js"></script>
-        <script src="scripts/controllers/editor.js"></script>
+        <script src="scripts/controllers/map.js"></script>
         <script src="scripts/services/auth.js"></script>
         <script src="scripts/services/session.js"></script>
         <script src="scripts/services/user.js"></script>
         <script src="scripts/services/model.js"></script>
         <script src="scripts/services/menu.js"></script>
+        <script src="scripts/services/geo.js"></script>
         <script src="scripts/directives/mongooseError.js"></script>
         <script src="scripts/directives/textReader.js"></script>
+        <script src="scripts/directives/onFinishRender.js"></script>
         <script src="scripts/utils/togeojson.js"></script>
-
-
-        <!--
-        <script src="scripts/controllers/settings.js"></script>
-        -->
         <!-- endbuild -->
 </body>
 </html>

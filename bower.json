@@ -18,7 +18,8 @@
     "angular-leaflet-directive": "*",
     "angular-ui-utils":"*",
     "ng-file-upload":"*",
-    "components-font-awesome":"*"
+    "components-font-awesome":"*",
+    "leaflet-providers": "1.0.3"
   },
   "devDependencies": {
     "angular-mocks": "1.2.11",

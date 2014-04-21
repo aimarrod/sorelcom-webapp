@@ -124,8 +124,8 @@ L.Polyline.polylineEditor = L.Polyline.extend({
          * Check if is busy adding/moving new nodes. Note, there may be 
          * *other* editable epolylines on the same map which *are* busy.
          */
-        this.removeEditable = function(layer, map){
-            layer.removeLayer(this);
+        this.removeFrom = function(map){
+            map.removeLayer(this)
             for(var i = 0, len = this._markers.length; i < len; i++){
                 map.removeLayer(this._markers[i]);
                 map.removeLayer(this._markers[i].newPointMarker);

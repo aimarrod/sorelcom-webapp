@@ -1,14 +1,21 @@
-<leaflet class="home-map" layers="layers" geojson="geojson"></leaflet>
+<div ng-include src="'partials/navbar.html'"></div>
 
-<div id="sidebar">
-	<ul class="nav nav-tabs">
-	    <li ng-repeat="item in menu" ng-class="{active: isActive(item)}">
-        	<a ng-click="load($index)"> <i class="icon fa fa-{{item.icon}}"></i> {{item.title}}</a>
-      	</li>
+<div id="menu">
+    <ul class="nav nav-tabs">
+        <li ng-repeat="item in menu" ng-class="{active: isActive(item)}">
+            <a ng-click="load($index)"> <i class="icon fa fa-{{item.icon}}"></i> {{item.title}}</a>
+        </li>
     </ul>
     <ul class="list-group">
         <a href ng-repeat="item in list" class="list-group-item" ng-click="loadResource(item.id)">
-        	{{item.name}}
+            {{item.name}}
         </a>
-	</ul>
+    </ul>
+</div>
+
+<div ng-show="layerProperties" class="voffset3">
+    <hr>
+    <h2 class="text-center"> {{ layerProperties.name }} </h2>
+    <p> {{ layerProperties.content }} </p>
+    <p><a><span class="icon fa fa-user"></span> {{layerProperties.author}} </a></p>
 </div>
