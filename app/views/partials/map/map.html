@@ -4,13 +4,14 @@
   <div id="sidebar-wrapper">
 
   <!-- Header: title and close button -->
-  	<div class="header">
-    	<button type='button' class='close' ng-click="sidebar=false" aria-hidden="true">&times;</button>
-  	</div>
+  	<div id="header" class="green">
+  	  <button id="back" type="button" class="btn" ui-sref="home"> 
+        <span class="fa fa-home fa-2x"></span> 
+      </button>
+      <h3>Header</h3>
+    </div>
 
-  	<button id="back" type="button" class="btn btn-primary" ui-sref="home"> 
-  		<span class="fa fa-home"></span> 
-  	</button>
+
   	
   	<div id="content" ui-view></div>
 
