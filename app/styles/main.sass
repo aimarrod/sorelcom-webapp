@@ -56,19 +56,14 @@ html, body, #main-view
   position: absolute
   width: 100%
   transition: all 0.4s ease 0s
-
-
-#wrapper.active #sidebar-wrapper 
-  right: 0px
-  width: 400px
+  &.active #sidebar-wrapper 
+    right: 0px
+    width: 400px
 
 
 #sidebar-wrapper 
   right: -400px
   width: 0px
-
-
-#sidebar-wrapper 
   position: relative
   float: right
   height: 100%
@@ -78,65 +73,58 @@ html, body, #main-view
   z-index: 1000
 
 
-#sidebar-wrapper #content 
-  padding: 0px 0px 40px 0px
+  #content 
+    padding: 0px 0px 40px 0px
+
+  #header 
+    width: 100%
+    * 
+      display: inline-block
+    > a
+      border: none
+      height: 42px
+    h3
+      text-align: center
+      width: 100%
+      margin: 8px 0px 8px 0px
+    .btn 
+      position: absolute
 
 
-#sidebar-wrapper #header 
-
-#sidebar-wrapper #header > * 
-  display: inline-block
-
-#sidebar-wrapper #header > a
-  border: none
-  height: 42px
-
-#sidebar-wrapper #header 
-  width: 100%
+  .btn-wide 
+    width: 100%
+    border-top: 1px solid black
 
 
-#sidebar-wrapper #header h3
-  text-align: center
-  width: 100%
-  margin: 8px 0px 8px 0px
+  .btn 
+    border-radius: 0
 
+  .btn:hover 
+    border-radius: 0
 
+  .title 
+    padding: 10px
 
-#sidebar-wrapper #header .btn 
-  position: absolute
+  .footer 
+    position: fixed
+    bottom: 0px
+    width: inherit
+    a
+      width: 32.5%
 
-#sidebar-wrapper #header .btn:hover 
-
-#sidebar-wrapper .btn-wide 
-  width: 100%
-  border-top: 1px solid black
-
-
-#sidebar-wrapper .btn 
-  border-radius: 0
-
-#sidebar-wrapper .btn:hover 
-  border-radius: 0
-
-#sidebar-wrapper .title 
-  padding: 10px
-
-
-#sidebar-wrapper .footer 
-  position: fixed
-  bottom: 0px
-  width: inherit
-
-
-.header * 
-  display: inline
-
-
-#sidebar-wrapper ul 
-  list-style-type: none
+  ul 
+    list-style-type: none
 
 
 /* Editor */
+
+#editor-buttons
+  margin-top: 10px
+  button
+    display: inline-block
+    width: 20%
+    &:not(:first-child)
+      margin-left: -4px
 
 #sidebar-wrapper #menu 
   max-height: 300px

@@ -1,16 +1,19 @@
 
-<div id="editor-buttons">
-	<button class="btn btn-wide" ng-click="addLayer()">
-		<i class="icon fa fa-plus"></i>	Add 
+<div id="editor-buttons" class="green">
+	<button class="btn" title="Add new track" ng-click="addLayer()">
+		<i class="icon fa fa-plus"></i> 
 	</button>
-	<button class="btn btn-wide" ng-click="loadLayer()">
-		<i class="icon fa fa-edit"></i> Edit 
+	<button class="btn" title="Edit existing tracks" ng-click="loadLayer()">
+		<i class="icon fa fa-edit"></i> 
 	</button>
-	<button ng-class="{disabled: !editing}" class="btn btn-wide">
-		<i class="icon fa fa-save"></i> Save 
+	<button ng-disabled="!editing" class="btn" title="Save changes tracks">
+		<i class="icon fa fa-save"></i> 
 	</button>
-	<button ng-class="{disabled: !editing}" ng-click="clearLayers()" class="btn btn-wide">
-		 <i class="icon fa fa-trash-o"></i> Clear
+	<button ng-disabled="!editing" class="btn" title="Clear tracks" ng-click="clearLayers()">
+		 <i class="icon fa fa-trash-o"></i>
+	</button>
+	<button class="btn" title="Information" ng-click="openInfo()">
+		 <i class="icon fa fa-question"></i>
 	</button>
 </div>
 
