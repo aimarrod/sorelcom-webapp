@@ -2,21 +2,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 @import bootstrap-sass-official/vendor/assets/stylesheets/bootstrap
 
-
-
-$green: rgba(46, 204, 113,1.0)
-$blue: rgba(52, 152, 219,1.0)
-$red: rgba(231, 76, 60,1.0)
-$yellow: rgba(241, 196, 15,1.0)
-$light: rgba(236, 240, 241,1.0)
-$dark: rgba(52, 73, 94,1.0)
-
-.green
-  background: $green
-  a, button
-    @extend .green
-    &:hover
-      background: lighten( $green, 10% )
+@import colors
 
 html, body, #main-view 
   height: 100%
@@ -98,9 +84,12 @@ html, body, #main-view
 
 #sidebar-wrapper #header 
 
-#sidebar-wrapper #header * 
+#sidebar-wrapper #header > * 
   display: inline-block
 
+#sidebar-wrapper #header > a
+  border: none
+  height: 42px
 
 #sidebar-wrapper #header 
   width: 100%
