@@ -1,29 +1,39 @@
-<div class="navbar navbar-default" role="navigation" ng-controller="NavbarCtrl">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-      <span ng-repeat="item in menu" class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="#">Sorelcom</a>
+<div class="navbar-wrapper">
+  <div class="container">  
+    <div  class="navbar navbar-default navbar-static-top darker" 
+        role="navigation" 
+        ng-controller="NavbarCtrl">
+
+    <div class="brand">
+      <h1 class="title"> SORELCOM </h1>
+      <p class="subtitle">Social Routes Empowered by Linked Contents and Context Mining</p>
+    </div>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span ng-repeat="item in menu" class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">  
+      <ul class="nav navbar-nav pull-left">
+        <li ng-repeat="item in menu" ng-class="{active: state.includes(item.state)}">
+          <a ui-sref="{{item.state}}">{{item.title}}</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li ng-hide="currentUser" ng-class="{active: isActive('/login')}">
+          <a ng-click="login()">Login</a>
+        </li>
+        <li ng-hide="currentUser" ng-class="{active: isActive('/signup')}">
+          <a ui-sref="web.signup">Sign up</a>
+        </li>
+        <li ng-show="currentUser" ng-class="{active: isActive('/logout')}">
+          <a ng-click="logout()">Logout</a>
+        </li>
+        <li ng-show="currentUser" ng-class="{active: isActive('/profile')}">
+          <a ui-sref="web.profile">Profile</a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="navbar-collapse collapse">  
-    <ul class="nav navbar-nav pull-left">
-      <li ng-repeat="item in menu" ng-class="{active: state.includes(item.state)}">
-        <a ui-sref="{{item.state}}">{{item.title}}</a>
-      </li>
-     </ul>
-     <ul class="nav navbar-nav pull-right">
-      <li ng-hide="currentUser" ng-class="{active: isActive('/login')}">
-        <a ng-click="login()">Login</a>
-      </li>
-      <li ng-hide="currentUser" ng-class="{active: isActive('/signup')}">
-        <a ui-sref="signup">Sign up</a>
-      </li>
-      <li ng-show="currentUser" ng-class="{active: isActive('/logout')}">
-        <a ng-click="logout()">Logout</a>
-      </li>
-      <li ng-show="currentUser" ng-class="{active: isActive('/profile')}">
-        <a ui-sref="profile">Profile</a>
-      </li>
-    </ul>
-  </div>
+</div>
 </div>

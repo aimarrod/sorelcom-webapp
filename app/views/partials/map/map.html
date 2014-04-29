@@ -1,30 +1,28 @@
 <div id="wrapper" ng-class="{active: sidebar}">
   
+  <button id="sidebar-open" class="amethyst btn" ng-click="openSidebar()">
+    <span class="icon fa fa-bars fa-2x"></span>
+  </button>
+
+
   <!-- Sidebar -->
   <div id="sidebar-wrapper">
 
   <!-- Header: title and close button -->
-  	<div id="header" class="green">
-      <a id="back" type="button" class="btn" ui-sref="home"> 
-        <span class="fa fa-home fa-2x"></span> 
-      </a>
-      <h3> Header </h3>
-    </div>
-
-
-  	
-  	<div id="content" ui-view></div>
-
+  	<div id="sidebar" ui-view></div>
   	<!-- Footer, for possible changing -->
-		<div class="footer green">
+		<div class="footer amethyst">
 				<a class="btn" role="button" ui-sref="map.explore">
-					<i class="icon fa fa-search"></i>
+					<span class="icon fa fa-search"></span>
 				</a>		
 				<a class="btn" role="button" ui-sref="map.editor">
-					<i class="icon fa fa-tags"></i>
+					<span class="icon fa fa-tags"></span>
 				</a>	
 				<a class="btn" role="button" ui-sref="map.editor">
-					<i class="icon fa fa-edit"></i>
+					<span class="icon fa fa-edit"></span>
+				</a>
+				<a class="btn" role="button" ui-sref="map.settings">
+					<span class="icon fa fa-gear"></span>
 				</a>			
 		</div>
   </div>

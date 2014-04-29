@@ -1,117 +1,33 @@
-angular.module('sorelcomApp').service('SharedMap', function SharedMap(Track, Note, POI){
-    this.initMap = function initMap(id){
-
-        var baseLayers = {
-            'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-                noWrap: true
-            }),
-            'OpenCycleMap': L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-                noWrap: true
-            })
-        };
-
-        this.map = L.map(id, {
-            layers: [baseLayers.OpenStreetMap],
-            minZoom: 3,
-            zoomControl: false,
-            worldCopyJump: true
-        });
-
-        L.control.layers(baseLayers).addTo(this.map);
-
-        this.map.locate({ setView: true, maxZoom: 15 });
-    };
-    this.setLayer = function(layer, geojson){
-        this.cleanMap();
-        this.layerData = this._getLayerData(geojson, false);
-        this.layer = layer;
-        this.map.addLayer(layer);
-        //Center map view
-        if(layer instanceof L.Marker) this.map.setView(layer.getLatLng(), 13); 
-        else this.map.fitBounds(layer.getBounds()); 
-    }
-
-    this.addOverlays = function(layer, geojson){
-        if(this.overlays){
-            this.map.removeLayer(this.overlays);
-            this.overlays = null;
-        }
-
-        this.overlaysData = this._getLayerData(geojson, true);
-        this.overlays = layer;
-        this.map.addLayer(this.overlays);
-    }
-
-    this.transitionEditor = function(){
-        
-    }
-
-    this.transitionExplore = function(){
-
-    }
-
-    /** Helper to remove overlays from the map */
-    this.cleanOverlays = function(){
-        if(this.overlays){
-            this.map.removeLayer(this.overlays);
-            this.overlays = null;
-        }
-        this.overlaysData = null;
-    }
-
-    /** Helper to remove the current layer from the map */
-    this.cleanLayer = function(){
-        if(this.layer){
-            if(this.layer instanceof L.Polyline && this.layer._markers)
-                this.layer.removeFrom(this.map);
-            else
-                this.map.removeLayer(this.layer);
-        
-            this.layer = null;
-        }
-        this.layerData = null;
-    }
-
-    this.cleanMap = function(){
-        this.cleanLayer();
-        this.cleanOverlays();     
-    }
-
-    this._getLayerData = function(geojson, array){
-        if(geojson.type === "FeatureCollection"){
-            var layerData = [];
-            for(var i = 0, len = geojson.features.length; i < len; i++)
-                layerData.push(geojson.features[i].properties);
-            return layerData;
-        } else {
-            if(array)
-                return [geojson.properties];
-            else
-                return geojson.properties;
-        }
-    }
-
-});
-
-angular.module('sorelcomApp').controller('MapCtrl', function ($scope, leafletData, SharedMap){
+angular.module('sorelcomApp').controller('MapCtrl', function ($scope, $stateParams, leafletData, SharedMap){
     SharedMap.initMap('map-wrapper');
-    $scope.sidebar = true;
+    $scope.sidebar = false;
+
+    $scope.$on('CloseSidebar', function(){
+        $scope.sidebar = false;
+    });
+
+    $scope.openSidebar = function(){
+        $scope.sidebar = true;
+    }
 });
 
 
 /* Editor controller */
 angular.module('sorelcomApp')
-    .controller('EditorCtrl', function ($scope, $modal, SharedMap) {
+    .controller('EditorCtrl', function ($scope, $stateParams, $modal, SharedMap, Auth, Track, POI) {
+        $scope.title = "Editor";
         $scope.sidebar = true;
         $scope.SharedMap = SharedMap;
 
+        $scope.SharedMap.transitionEditor();
 
+        $scope.close = function(){
+            $scope.$emit('CloseSidebar');
+        }
 
         $scope.edit = function(){
             $modal.open({
-                templateUrl: 'partials/map/editmodal.html',
+                templateUrl: 'partials/modals/edit.html',
                 controller: 'EditModalCtrl',
                 resolve: { track: function () { return angular.copy(SharedMap.layerData); } } 
             })
@@ -122,71 +38,112 @@ angular.module('sorelcomApp')
 
         $scope.loadLayer = function(){
         	$modal.open({
-           		templateUrl: 'partials/menumodal.html',
+           		templateUrl: 'partials/modals/menu.html',
            		controller: 'MenuModalCtrl',
          	})
             .result.then(function (geojson) {
-                var layer = geoJsonToLayer(geojson);
-                SharedMap.setLayer(layer, geojson);
+                SharedMap.setLayer(geoJsonToLayer(geojson), geojson);
           	});
-        };
+        }
 
         $scope.addLayer = function(){
             $modal.open({
                 templateUrl: 'partials/modals/load.html',
                 controller: 'LoadModalCtrl',
             })
-            .result.then(function (layer, data) {
-                SharedMap.setLayer(layer, data);
+            .result.then(function (geojson) {
+                SharedMap.setLayer(geoJsonToLayer(geojson), geojson);
             });
         }
 
         $scope.clearLayers = function(){
             SharedMap.cleanMap();
-
         }
 
         	/** Save layers */
-        $scope.saveLayers = function(){
-            saveLayer($scope.editing)
+        $scope.saveLayer = function(){
+            requireLogin(function(){
+                var resource, geojson;
+                var layer = $scope.SharedMap.layer;
+
+                if((layer instanceof L.Polyline) && !(layer instanceof L.Polygon) && !(layer instanceof L.Rectangle)) resource = Track;
+                else resource = POI;
+                
+                geojson = layer.toGeoJSON();
+                geojson.properties = $scope.SharedMap.layerData;
+
+                if(geojson.properties.id){
+                    resource.update(geojson);
+                } else {
+                    resource.save(geojson);
+                }
+            });
         };
 
-        	function saveLayer(layer){
-        		var resource, geojson;
+        function requireLogin(callback){
+            if(!Auth.isLoggedIn()){
+                var modalInstance = $modal.open({
+                templateUrl: 'partials/login.html',
+                controller: 'LoginCtrl',
+                }).result.then(
+                    function success() {
+                        callback()  
+                    }, function cancel() {
+                //Wat to do
+                    }
+                );
+            } else { 
+                callback();
+            }
+        }
 
-        		if((layer.data instanceof L.Polyline) && !(layer.data instanceof L.Polygon) && !(layer.data instanceof L.Rectangle)) resource = Track;
-        		else if(layer.isNote) resource = Note;
-        		else resource = POI;
-        		
-        		geojson = layer.data.toGeoJSON();
-        		geojson.properties = layer.properties;
-        		if(layer.isNew){
-        			resource.save(geojson);
-        		} else {
-        			resource.update(geojson);
-        		}
-
-        		return true;
-        	}
+        if($stateParams.upload)
+            $scope.addLayer();
     });
 
 angular.module('sorelcomApp')
-    .controller('ExploreCtrl', function ($scope, SharedMap, Menu, Geo) {
+    .controller('ExploreCtrl', function ($scope, $stateParams, SharedMap, Geo, Track, POI, Note) {
+        console.log($stateParams);
+        $scope.title = "Explore";
         $scope.SharedMap = SharedMap;
-        $scope.menu = Menu.menu();
-        $scope.isActive = Menu.isActive;
+        $scope.tabs = ['Tracks', 'Points of Interest', 'Notes']
+        $scope.resources = [Track, POI, Note];
+        $scope.tab = 0;
 
-        $scope.load = function(position){
-            Menu.activate(position);
-            $scope.list = Menu.list();
+        $scope.showing = $scope.SharedMap.transitionExplore();
+
+        $scope.close = function(){
+            $scope.emit('CloseSidebar');
         }
 
-        $scope.loadResource = function(id){
+        $scope.next = function(){
+            $scope.tab = ($scope.tab + 1) % 3;
+            load();
+        }
+
+        $scope.prev = function(){
+            $scope.tab--;
+            if($scope.tab < 0)
+                $scope.tab = $scope.tabs.length-1;
+            load()
+        }
+
+        function load(){
+            $scope.list = $scope.resources[$scope.tab].query();
+        }
+
+        $scope.back = function(){
+            $scope.SharedMap.cleanMap();
+            $scope.showing = false;
+        }
+
+        $scope.show = function(id){
             SharedMap.map.spin(true);
-            Menu.getResource().get({id: id}).$promise.then(
+            $scope.resources[$scope.tab].get({id: id}).$promise.then(
                 function success(data){
                     SharedMap.map.spin(false);
                     SharedMap.setLayer(L.geoJson(data), data);
+                    $scope.showing = true;
                 },
                 function error(err){
                     SharedMap.map.spin(false);
@@ -203,8 +160,7 @@ angular.module('sorelcomApp')
                 SharedMap.addOverlays(layer, geojson);
             });
         };
-
-        $scope.load(0);
+        load();
     });
 
 
@@ -231,21 +187,7 @@ function geoJsonToLayer(geojson){
 
 	/** If linestring, need to use special editable polyline */
 	if(geom.type==='LineString'){
- 		var poly = L.Polyline.PolylineEditor(L.GeoJSON.coordsToLatLngs(geojson.geometry.coordinates), 
- 			{
- 				maxMarkers: 100, 
- 				pointIcon: L.icon(
- 					{ 
- 						iconUrl: '/images/editmarker.png', 
- 						iconAnchor: L.point(5,5) 
- 					}), 
- 				newPointIcon: L.icon(
- 					{ 
- 						iconUrl: '/images/newpointmarker.png', 
- 						iconAnchor: L.point(5,5)
- 					}) 
- 			});
- 		return poly;	
+ 		return makePolylineEditor(L.GeoJSON.coordsToLatLngs(geojson.geometry.coordinates));	
  	} else {
  		return L.GeoJSON.geometryToLayer(geom);
  	}
@@ -253,9 +195,27 @@ function geoJsonToLayer(geojson){
  	return null;	
 }
 
+function makePolylineEditor(coords){
+        return L.Polyline.PolylineEditor(coords, 
+            {
+                maxMarkers: 100, 
+                pointIcon: L.icon(
+                    { 
+                        iconUrl: '/images/editmarker.png', 
+                        iconAnchor: L.point(5,5) 
+                    }), 
+                newPointIcon: L.icon(
+                    { 
+                        iconUrl: '/images/newpointmarker.png', 
+                        iconAnchor: L.point(5,5)
+                    }) 
+            });
+
+}
+
 angular.module('sorelcomApp')
     .controller('MenuModalCtrl', function ($scope,  $modalInstance, Menu) {
-    	$scope.menu = Menu.menu();
+    	$scope.menu = Menu;
 
     	$scope.isActive = Menu.isActive;
 
@@ -334,8 +294,8 @@ angular.module('sorelcomApp')
             $scope.geojson = [feature];
         }
 
-        $scope.submit = function(feature){
-            $modalInstance.close(feature, $scope.name);
+        $scope.submit = function(){
+            $modalInstance.close($scope.selected);
         }
     });
 
@@ -364,5 +324,4 @@ function extractLayers(text, format) {
             } else {
                 return [geojson];
             }
-
     }

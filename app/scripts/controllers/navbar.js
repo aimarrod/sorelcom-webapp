@@ -6,13 +6,13 @@ angular.module('sorelcomApp')
   .controller('NavbarCtrl', function ($scope, $location, $modal, $state, Auth) {
     $scope.menu = [{
                 'title': 'Home',
-                'state': 'home'
+                'state': 'web.home'
               }, {
                 'title': 'Map',
                 'state': 'map.explore'
               }, {
                 'title': 'Browse',
-                'state': 'browse'
+                'state': 'web.search.tracks'
               }];
     $scope.state = $state;
 

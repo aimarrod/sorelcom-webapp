@@ -19,7 +19,11 @@
     "angular-ui-utils":"*",
     "ng-file-upload":"*",
     "components-font-awesome":"*",
-    "leaflet-providers": "1.0.3"
+    "leaflet-providers": "1.0.3",
+    "leaflet-plugins": "*",
+    "ihover": "*",
+    "flow.js": "2.4.x",
+    "ng-flow": "2.3.x"
   },
   "devDependencies": {
     "angular-mocks": "1.2.11",

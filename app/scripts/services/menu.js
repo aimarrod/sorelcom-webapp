@@ -1,10 +1,11 @@
 angular.module('sorelcomApp')
-  .factory('Menu', function Menu(Track, Note, POI) {
-  	var menu = 	[{
-		'title':'Tracks',
-		'resource':Track,
-      	'icon':'user'
-	}, {
+  .service('Menu', function Menu(Track, Note, POI) {
+  	
+    this.menu = [{
+		  'title':'Tracks',
+		  'resource':Track,
+      'icon':'user'
+	  }, {
       	'title':'Points of interest',
       	'resource':POI,
       	'icon':'map-marker'
@@ -14,24 +15,27 @@ angular.module('sorelcomApp')
       	'icon':'tags'
     }];
 
-    var active = menu[0];
+    this.active = this.menu[0];
 
-    return {
-    	activate: function(index){
-    		if(index < menu.length && index >= 0)
-	    		active = menu[index]
-    	},
-    	list: function(){
-    		return active.resource.query();
-    	},
-    	menu: function(){
-    		return menu;
-    	},
-    	isActive: function(entry){
-    		return entry===active;
-    	},
-    	getResource: function(){
-    		return active.resource;
-    	}
+    this.activate = function(index){
+    		if(index < this.menu.length && index >= 0)
+	    		active = this.menu[index]
+    }
+
+    this.list = function(){
+    		return this.active.resource.query();
+    }
+    
+    this.next = function(){
+      var index = this.menu.indexOf(this.active);
+      this.active = this.menu[(index + 1) % menu.length];
+    }
+    	
+    this.isActive = function(entry){
+    	return entry === this.active;
+  	}
+    	
+    this.getResource = function(){
+    	return this.active.resource;
     }
   });

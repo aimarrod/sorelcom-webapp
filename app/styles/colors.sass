@@ -3,10 +3,13 @@ $blue: rgb(52, 152, 219)
 $red: rgb(231, 76, 60)
 $yellow: rgb(241, 196, 15)
 $light: rgb(236, 240, 241)
+$amethyst: rgb(155, 89, 182)
 $dark: rgb(52, 73, 94)
+$darker: rgb(54, 54, 54)
 $black: rgb(0, 0, 0)
 $white: rgb(255, 255, 255)
 $grey: rgb(90, 90, 90)
+
 
 =iglow($color)
 	display: inline-block
@@ -30,95 +33,181 @@ $grey: rgb(90, 90, 90)
 	transform: translateZ(0)
 	box-shadow: 0 0 1px rgba($color, 0)
 	&:hover, &:focus, &:active 
-		box-shadow: 0 0 8px rgba($color, 0.6)  	
-  
-.green
-	color: $black
-	background: $green
-	a, button
-		+glow($dark)
-		@extend .green
-		&:hover
-			color: lighten( $dark, 10% )
-			background: lighten( $green, 10% )
-		&:active
-			color: lighten( $dark, 7% )
-			background: lighten( $green, 7% )
-		&:disabled
-			color: lighten( $grey, 7% )
-			background: lighten(desaturate($green, 45%), 10%)
+		box-shadow: 0 0 8px rgba($color, 0.6)  
 
+=button($color, $text)
+	text-decoration: none
+	&:hover, &:focus
+		text-decoration: none
+		color: lighten( $text, 10% ) !important
+		background: lighten( $color, 10% ) !important
+	&:active, &.active, &.active *
+		text-decoration: none
+		color: lighten( $text, 7% ) !important
+		background: lighten( $color, 7% ) !important
+	&:disabled
+		text-decoration: none
+		color: lighten( $grey, 7% ) !important
+		background: lighten(desaturate($color, 45%), 10%) !important
+
+=color($text, $color)
+	color: $text !important
+	background: $color !important
+
+//Amethist
+
+.amethyst
+	+color($white, $amethyst)
+	a, button, li, div, p
+		@extend .amethyst
+	p, h1, h2, h3, h4, h5, h6
+		color: $white
+	a, button, li
+		+button($amethyst, $light)
+
+a.amethyst, button.amethyst
+	@extend .amethyst
+	+button($amethyst, $light)	
+
+.amethyst-text
+	color: $amethyst
+	a, button, li
+		+button($amethyst, $light)	
+
+// Green  
+
+.green
+	+color($white, $green)
+	a, button, li, div, p
+		@extend .green
+	p, h1, h2, h3, h4, h5, h6
+		color: $white
+	a, button, li
+		+button($green, $dark)
+
+a.green, button.green
+	@extend .green
+	+button($green, $dark)
+
+.green-text
+	color: $green
+	a, button, li
+		+button($green, $light)	
+
+// Blue
 
 .blue
-	color: $black
-	background: $blue
-	a, button
-		+glow($dark)
+	+color($white, $blue)
+	a, button, li, div, p
 		@extend .blue
-		&:hover
-			color: lighten( $dark, 10% )
-			background: lighten( $blue, 10% )
-		&:active
-			color: lighten( $dark, 7% )
-			background: lighten( $blue, 7% )
-		&:disabled
-			color: lighten( $grey, 7% )
-			background: lighten(desaturate($blue, 45%), 10%)
+	p, h1, h2, h3, h4, h5, h6
+		color: $white
+	a, button, li 
+		+button($blue, $dark)
+
+a.blue, button.blue
+	@extend .blue
+	+button($blue, $dark)
 
 
-.red
-	color: $black
-	background: $red
-	a, button
-		+glow($dark)
-		@extend .red
-		&:hover
-			color: lighten( $dark, 10% )
-			background: lighten( $red, 10% )
-		&:active
-			color: lighten( $dark, 7% )
-			background: lighten( $red, 7% )
-		&:disabled
-			color: lighten( $grey, 7% )
-			background: lighten(desaturate($red, 45%), 10%)
+.blue-text
+	color: $blue
+	a, button, li
+		+button($blue, $light)	
+
+// Yellow
 
 .yellow
-	color: $black
-	background: $yellow
-	a, button
-		+glow($dark)
+	+color($white, $yellow)
+	a, button, li, div, p
 		@extend .yellow
-		&:hover
-			color: lighten( $dark, 10% )
-			background: lighten( $yellow, 10% )
-		&:active
-			color: lighten( $dark, 7% )
-			background: lighten( $yellow, 7% )
-		&:disabled
-			color: lighten( $grey, 7% )
-			background: lighten(desaturate($yellow, 45%), 10%)
+	p, h1, h2, h3, h4, h5, h6
+		color: $white
+	a, button, li
+		+button($yellow, $dark)
 
-.light
-	color: $black
-	background: $light
-	a, button
-		+glow($dark)
+a.yellow, button.yellow
+	@extend .yellow
+	+button($yellow, $dark)
+
+.yellow-text
+	color: $yellow
+	a, button, li
+		+button($yellow, $dark)	
+
+
+//Red
+
+.red
+	+color($white, $red)
+	a, button, li, div
+		@extend .red
+	p, h1, h2, h3, h4, h5, h6
+		color: $white
+	a, button, li
+		+button($red, $dark)
+
+a.red, button.red
+	@extend .red
+	+button($red, $dark)
+
+.red-text
+	color: $red
+	a, button, li
+		+button($red, $dark)	
+
+
+.light	
+	+color($dark, $light)
+	a, button, li, div
 		@extend .light
-		&:hover
-			color: lighten( $dark, 10% )
-		&:active
-			color: lighten( $dark, 7% )
-			background: lighten( $light, 7% )
+	p, h1, h2, h3, h4, h5, h6
+		color: $dark
+	a, button, li
+		+button($light, $dark)
 
-.dark
+a.light, button.light
+	@extend .light
+	+button($light, $dark)
+
+.light-text
 	color: $light
-	background: $dark
-	a, button
-		+glow($light)
+	a, button, li
+		+button($dark, $light)	
+
+.dark	
+	+color($white, $dark)
+	a, button, li, div
 		@extend .dark
-		&:hover
-			color: lighten( $light, 15% )
-			background: lighten( $dark, 15% )
-		&:active
-			color: lighten( $light, 12% )
-			background: lighten( $dark, 12% )
+	p, h1, h2, h3, h4, h5, h6
+		color: $white
+	a, button, li
+		+button($dark, $light)
+
+a.dark, button.dark
+	@extend .dark
+	+button($dark, $light)
+
+.dark-text
+	color: $dark
+	a, button, li
+		+button($dark, $light)	
+
+.darker
+	+color($white, $darker)
+	a, button, li, div
+		@extend .darker
+	p, h1, h2, h3, h4, h5, h6
+		color: $white
+	a, button, li
+		+button($darker, $light)
+
+a.darker, button.darker
+	@extend .darker
+	+button($darker, $light)
+
+.darker-text	
+	color: $darker
+	a, button, li
+		color: $darker
+		+button($darker, $light)	

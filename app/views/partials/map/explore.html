@@ -1,42 +1,34 @@
-<div id="menu">	
-	<ul class="nav nav-tabs">
-    <li ng-repeat="item in menu" ng-class="{active: isActive(item)}">
-        <a ng-click="load($index)"> <i class="icon fa fa-{{item.icon}}"></i> {{item.title}}</a>
-    </li>
-	</ul>
-	<ul class="list-group">
-    <a href ng-repeat="item in list" class="list-group-item" ng-click="loadResource(item.id)">
-      {{item.name}}
-  	</a>
-	</ul>
+<div ng-include src="'partials/map/header.html'"></div>
+
+<div ng-hide="showing">
+
+<div id="navigation" class="amethyst">
+  <button type="button" class="btn" ng-click="prev()"> 
+    <span class="fa fa-home fa-chevron-left"></span> 
+  </button>
+  <h4> {{ tabs[tab] }} </h4>
+  <button type="button" class="btn pull-right" ng-click="next()"> 
+    <span class="fa fa-home fa-chevron-right"></span> 
+  </button>
 </div>
 
-<hr>
-<div ng-show="SharedMap.layerData" class="voffset3 panel panel-primary">
-	<div class="panel-heading"> {{ SharedMap.layerData.name }}</div>
-	<div class="panel-body">
+<div class="searchbox">
+	<div class="input-group">
+    <input type="text" class="form-control">
+    <span class="input-group-btn">
+      <button class="btn amethyst" type="button">Search</button>
+    </span>
+  </div><!-- /input-group -->
+</div>
+<ul class="select-list amethyst-text">
+	<li ng-repeat="element in list" ng-click="show(element.id)">
+		{{ element.name }} 
+	</li>
+</ul>
+</div>
 
-		<p> {{ SharedMap.layerData.content }} </p>
+<!-- Resource data -->
 
-		<div class="panel panel-default">
-			<div class="panel-heading"> 
-				Nearby points of interest 
-			</div>
-			
-			<ul class="list-group" ng-show="SharedMap.overlaysData">	
-				<li ng-repeat="item in SharedMap.overlaysData" class="list-group-item" ng-click="loadResource(item.id)">
-    			{{ item.name }}
-				</li>
-			</ul>
+<div ng-show="showing">
 
-			<div ng-hide="SharedMap.overlaysData">
-				<span class="fa fa-spinner fa-spin"></span>
-			</div>
-			
-		</div>
-
-	</div>
-	<div class="panel-footer">
-		<a><span class="icon fa fa-user"></span> {{ SharedMap.layerData.author }}</a>
-	</div>	
 </div>

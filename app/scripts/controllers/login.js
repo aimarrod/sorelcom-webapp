@@ -21,7 +21,8 @@ angular.module('sorelcomApp')
       }
     };
 
-    $scope.cancel =  function(){
+    $scope.cancel =  function(event){
+      event.preventDefault();
       $modalInstance.dismiss('cancel');  
     };
   });

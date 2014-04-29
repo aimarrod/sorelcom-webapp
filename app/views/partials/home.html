@@ -1,21 +1,68 @@
-<div ng-include src="'partials/navbar.html'"></div>
 
-<div id="menu">
-    <ul class="nav nav-tabs">
-        <li ng-repeat="item in menu" ng-class="{active: isActive(item)}">
-            <a ng-click="load($index)"> <i class="icon fa fa-{{item.icon}}"></i> {{item.title}}</a>
-        </li>
-    </ul>
-    <ul class="list-group">
-        <a href ng-repeat="item in list" class="list-group-item" ng-click="loadResource(item.id)">
-            {{item.name}}
-        </a>
-    </ul>
+<carousel id="carousel" interval="-1" set-ng-animate="false" class="fading">
+    <slide ng-repeat="slide in slides" active="slide.active">
+        <leaflet height="500px" 
+                 id="slideMap{{$index}}"
+                 layers="slide.layers"
+                 defaults="defaults"
+                 class="map-image">
+        </leaflet>            
+        <div class="carousel-caption">
+            <h4>Slide {{$index}}</h4>
+            <p>{{slide.text}}</p>
+        </div>
+    </slide>
+</carousel>
+
+<div class="container">
+    <div class="row center">
+        <h2 class="darker-text text-center">
+            SORELCOM
+        </h2>
+        <p class="text-center">
+            Find tracks and points of interest near your location. 
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="ih-item square effect13 from_left_and_right center">
+                <a ui-sref="map.explore">
+                    <div class="img"><img src="images/map.png" alt="img"></div>
+                    <div class="info">
+                        <div class="info-back">
+                            <h3 class="light-text">World map</h3>    
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="ih-item square effect13 from_left_and_right center">
+                <a ui-sref="map.editor">
+                    <div class="img"><img src="images/map.png" alt="img"></div>
+                    <div class="info">
+                        <div class="info-back">
+                            <h3>Open editor</h3>
+                            <p>Modify and correct tracks on the editor</p>
+                        </div>
+                    </div>
+                </a>
+            </div>        
+        </div>
+        <div class=" col-md-4">
+            <div class="ih-item square effect13 from_left_and_right">
+                <a ui-sref="map.editor({upload: true})">
+                    <div class="img"><img src="images/map.png" alt="img"></div>
+                    <div class="info">
+                        <div class="info-back">
+                            <h3>Upload your track</h3>
+                            <p>Load a GPX file</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div ng-show="layerProperties" class="voffset3">
-    <hr>
-    <h2 class="text-center"> {{ layerProperties.name }} </h2>
-    <p> {{ layerProperties.content }} </p>
-    <p><a><span class="icon fa fa-user"></span> {{layerProperties.author}} </a></p>
-</div>

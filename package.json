@@ -12,7 +12,8 @@
     "terraformer": "*",
     "terraformer-wkt-parser": "*",
     "request":"*",
-    "gm": "*"
+    "gm": "*",
+    "dateutil": "0.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

@@ -8,6 +8,10 @@ angular.module('sorelcomApp')
       update: {
         method: 'PUT',
         params: {}
+      },
+      pages: {
+        method: 'GET',
+        params: {id: 'pages'}
       }
   	});
   });
@@ -20,6 +24,10 @@ angular.module('sorelcomApp')
       update: {
         method: 'PUT',
         params: {}
+      },
+      pages: {
+        method: 'GET',
+        params: {id: 'pages'}
       }
   	});
   });
@@ -32,6 +40,10 @@ angular.module('sorelcomApp')
       update: {
         method: 'PUT',
         params: {}
+      },
+      pages: {
+        method: 'GET',
+        params: {id: 'pages'}
       }
   	});
   });
