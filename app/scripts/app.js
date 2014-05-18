@@ -4,20 +4,21 @@ var app = angular.module('sorelcomApp', [
   'ngResource',
   'ngSanitize',
   'ngAnimate',
-  'angularFileUpload',
   'ui.bootstrap',
   'ui.validate',
   'ui.router',
   'ui.router.util',
   'leaflet-directive',
-  'flow'
+  'flow',
+  'restangular',
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
 
     $stateProvider.state('web', {
-      url: '/',
-      templateUrl: 'partials/layout.html',
+      abstract: true,
+      url: '',
+      templateUrl: 'partials/layout.html'
     })
 
     .state('map', {
@@ -38,67 +39,65 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       controller: 'ExploreCtrl'  
     })
 
+    $stateProvider.state('web.home', {
+      url: '/',
+      templateUrl: 'partials/home.html',
+      controller: 'HomeCtrl',
+      resolve: {
+        info: function($http) {
+          return $http.get('/api/info')
+            .then(function(data) { return data.data; });
+        },
+        slides: function($http) {
+          return $http.get('/api/latest')
+            .then(function(data) { return data.data; });
+        }
+      }
+    })
+
     .state('web.signup', {
       url: '/signup',
       templateUrl: 'partials/signup.html',
       controller: 'SignupCtrl'
     })
 
-    .state('web.home', {
-      url: 'home',
-      templateUrl: 'partials/home.html', 
-      controller: 'HomeController'
-    })
-
     .state('web.profile', {
-      url: 'profile',
+      url: '/profile',
       templateUrl: 'partials/profile.html',
       controller: 'ProfileCtrl'
     })
 
     .state('web.poi', {
-      url: 'poi/{id}',
+      url: '/poi/{id}',
       templateUrl: 'partials/poi.html',
       controller: 'POICtrl'
     })
 
     .state('web.user', {
-      url: 'user/{id}',
+      url: '/user/{id}',
       templateUrl: 'partials/user.html',
       controller: 'UserCtrl'
     })
 
     .state('web.track', {
-      url: '/{id}',
+      url: '/track/{id}',
       templateUrl: 'partials/track.html',
       controller: 'TrackCtrl'
     })
 
     .state('web.search', {
-      url: 'search',
-      templateUrl: 'partials/search/search.html',
-      controller: 'BrowseCtrl'
-    })
-
-    .state('web.search.pois', {
-      url: '/poi/list/{page}',
-      templateUrl: 'partials/search/pois.html',
-      controller: 'POIListCtrl'
-    })
-
-    .state('web.search.users', {
-      url: '/user/list/{page}',
-      templateUrl: 'partials/search/users.html',
-      controller: 'UserListCtrl'
-    })
-
-    .state('web.search.tracks', {
-      url: '/track/list{page}/',
-      templateUrl: 'partials/search/tracks.html',
-      controller: 'TrackListCtrl'
+      url: '/search',
+      templateUrl: 'partials/search.html',
+      controller: 'SearchCtrl',
+      resolve: {
+        initData: function($http) {
+          return $http.get('/api/search')
+            .then(function(data) { return data.data; });
+        }
+      }
     });
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
 });
 
 

@@ -1,0 +1,72 @@
+$dark: rgb(50,50,50)
+
+=glow($color)
+  -webkit-transition-duration: 0.3s
+  transition-duration: 0.3s
+  -webkit-transition-property: box-shadow
+  transition-property: box-shadow
+  -webkit-transform: translateZ(0)
+  transform: translateZ(0)
+  box-shadow: 0 0 1px rgba($color, 0)
+  &:hover, &:focus, &:active 
+    box-shadow: 0 0 8px rgba($color, 0.6)  
+
+#searchpage
+  width: 800px
+    
+  main
+    margin: 20px 0px 0px 0px
+    ul 
+      margin: 0px 20px 0px 20px
+      padding: 0px 0px 0px 0px
+      li
+        padding: 5px 0px 5px 0px
+        list-style: none
+        +glow($dark)
+
+        &:not(:last-child)
+          border-bottom: 1px solid #BFBFBF
+        a
+          text-decoration: none
+  article
+    .icon
+      padding: 0px
+      img
+        width: 64px
+        height: 64px
+        margin: 10px 0px 0px 0px
+    .info
+      margin-top: 5px
+      color: rgb(79, 79, 79)
+    .details
+      margin-top: 15px
+
+  article.user
+    img
+      border-radius: 50%
+
+/** Mobile */
+@media (max-width: 992px)
+  #searchpage
+    width: 85%
+    padding-left: 0px
+    padding-right: 0px
+    form
+      padding-left: 15px
+      padding-right: 15px
+
+    main
+      ul
+        margin: 0px
+
+    article
+      .icon
+        img
+          width: 48px
+          height: 48px
+          margin: 0px
+      .info
+        margin: 5px 0px 5px 0px
+      .details
+        display: none
+        margin: 0px

@@ -2,7 +2,7 @@
 
 <div ng-hide="showing">
 
-<div id="navigation" class="amethyst">
+<div id="navigation" class="darker">
   <button type="button" class="btn" ng-click="prev()"> 
     <span class="fa fa-home fa-chevron-left"></span> 
   </button>
@@ -16,11 +16,11 @@
 	<div class="input-group">
     <input type="text" class="form-control">
     <span class="input-group-btn">
-      <button class="btn amethyst" type="button">Search</button>
+      <button class="btn darker" type="button">Search</button>
     </span>
   </div><!-- /input-group -->
 </div>
-<ul class="select-list amethyst-text">
+<ul class="select-list darker-text">
 	<li ng-repeat="element in list" ng-click="show(element.id)">
 		{{ element.name }} 
 	</li>

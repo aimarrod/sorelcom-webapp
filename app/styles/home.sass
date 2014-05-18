@@ -1,21 +1,60 @@
+/* The footer */
 .sticky-footer
-	bottom: 0px
-	width: 100%
-	padding: 0px 0px 50px 0px
+  @media (max-width:767px)
+    display: none
 
-	h1, h2, h3, h4, h5, h6
-		transform: scale(1, 1.1) /* W3C */
-		-webkit-transform: scale(1, 1.1) /* Safari and Chrome */
-		-moz-transform: scale(1, 1.1) /* Firefox */
-		-ms-transform: scale(1, 1.1) /* IE 9 */
-		-o-transform: scale(1, 1.1) /* Opera */
+  bottom: 0px
+  width: 100%
+  padding: 0px 0px 50px 0px
 
-	button
+  h1, h2, h3, h4, h5, h6
+    transform: scale(1, 1.1) /* W3C */
+    -webkit-transform: scale(1, 1.1) /* Safari and Chrome */
+    -moz-transform: scale(1, 1.1) /* Firefox */
+    -ms-transform: scale(1, 1.1) /* IE 9 */
+    -o-transform: scale(1, 1.1) /* Opera */
 
 
-	.list-link
-		background: none !important
-		display: block
-		&:hover
-			background: none !important
-			text-decoration: underline
+  .list-link
+    background: none !important
+    display: block
+    &:hover
+      background: none !important
+      text-decoration: underline
+
+/* Carousel styles */
+
+/* For articles on the frontpage */
+#homepage
+  margin-bottom: 40px
+
+  p, figcaption, button, a
+    font-size: 20px
+    text-align: center
+
+  section
+    max-width: 700px
+    margin: auto
+    &.row > section
+      margin-top: 50px
+      .info
+        margin-top: 10px
+
+
+  a.promo
+    text-decoration: none
+    overflow: hidden
+    background: #000
+    img
+      display: block
+      margin: auto
+
+
+@media (max-width: 992px)
+  #homepage
+    .info
+      padding: 10px
+      border: 1px solid #BFBFBF
+      border-radius: 10px
+      &:hover
+        background: #eee

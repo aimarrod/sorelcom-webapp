@@ -1,6 +1,6 @@
 <div id="wrapper" ng-class="{active: sidebar}">
   
-  <button id="sidebar-open" class="amethyst btn" ng-click="openSidebar()">
+  <button id="sidebar-open" class="darker btn" ng-click="openSidebar()">
     <span class="icon fa fa-bars fa-2x"></span>
   </button>
 
@@ -9,9 +9,11 @@
   <div id="sidebar-wrapper">
 
   <!-- Header: title and close button -->
-  	<div id="sidebar" ui-view></div>
+  	<div id="sidebar" ui-view>
+      
+    </div>
   	<!-- Footer, for possible changing -->
-		<div class="footer amethyst">
+		<div class="footer darker">
 				<a class="btn" role="button" ui-sref="map.explore">
 					<span class="icon fa fa-search"></span>
 				</a>		

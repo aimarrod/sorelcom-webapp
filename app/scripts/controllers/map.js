@@ -1,4 +1,4 @@
-angular.module('sorelcomApp').controller('MapCtrl', function ($scope, $stateParams, leafletData, SharedMap){
+angular.module('sorelcomApp').controller('MapCtrl', function ($scope, $stateParams, $timeout, SharedMap){
     SharedMap.initMap('map-wrapper');
     $scope.sidebar = false;
 
@@ -9,6 +9,8 @@ angular.module('sorelcomApp').controller('MapCtrl', function ($scope, $statePara
     $scope.openSidebar = function(){
         $scope.sidebar = true;
     }
+
+    $timeout($scope.openSidebar);
 });
 
 
@@ -27,9 +29,9 @@ angular.module('sorelcomApp')
 
         $scope.edit = function(){
             $modal.open({
-                templateUrl: 'partials/modals/edit.html',
-                controller: 'EditModalCtrl',
-                resolve: { track: function () { return angular.copy(SharedMap.layerData); } } 
+                templateUrl: 'partials/modals/upload.html',
+                controller: 'UploadModalCtrl',
+                resolve: { target: function () { return SharedMap.layerData.id; } } 
             })
             .result.then(function (data) {
                 SharedMap.layerData = data;
@@ -43,6 +45,7 @@ angular.module('sorelcomApp')
          	})
             .result.then(function (geojson) {
                 SharedMap.setLayer(geoJsonToLayer(geojson), geojson);
+                console.log(SharedMap.layerData);
           	});
         }
 
@@ -252,76 +255,3 @@ angular.module('sorelcomApp')
             $modalInstance.dismiss();
         }
     });
-
-angular.module('sorelcomApp')
-    .controller('LoadModalCtrl', function ($scope,  $modalInstance) {
-
-        $scope.defaults = {
-            dragging: false,
-            keyboard: false,
-            touchZoom: false,
-            scrollWheelZoom: false,
-            doubleClickZoom: false,
-            boxZoom: false,
-            tap: false,
-            attributionControl: false,
-            zoomControl: false
-        }
-
-        $scope.load = function ($text, $format) {
-            $scope.error = null;
-            var geojson = extractLayers($text, $format);
-            if(!geojson){
-                $scope.error = "Unable to parse file";
-            } else if(geojson.length === 1){
-                $scope.selected = geojson[0];
-                $scope.geojson = geojson;
-            } else {
-                $scope.geojson = geojson;
-            }
-        };
-
-        $scope.makeMap = function(element, index){
-            var map = L.map(element.get(0), $scope.defaults);
-            var layer = L.geoJson($scope.geojson[index]);
-            map.addLayer(L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));            
-            map.addLayer(layer);
-            map.fitBounds(layer.getBounds());
-        }
-
-        $scope.select = function(feature){
-            $scope.selected = feature;
-            $scope.geojson = [feature];
-        }
-
-        $scope.submit = function(){
-            $modalInstance.close($scope.selected);
-        }
-    });
-
-
-
-function extractLayers(text, format) {
-            var geojson;
-
-            if ($.inArray(format, ['gpx', 'GPX']) > -1)
-                geojson = toGeoJSON.gpx($.parseXML(text));
-
-            else if ($.inArray(format, ['kml', 'KML']) > -1)
-                geojson = toGeoJSON.kml($.parseXML(text));
-
-            else if ($.inArray(format, ['json', 'JSON', 'geojson', 'GEOJSON']) > -1)
-                geojson = JSON.parse(text);
-
-            if(!geojson) return null;
-
-            if(geojson.type === "FeatureCollection"){
-                var json = [];
-                for(var i = 0, len = geojson.features.length; i < len; i++){
-                    json.push(geojson.features[i]);
-                }
-                return json;
-            } else {
-                return [geojson];
-            }
-    }

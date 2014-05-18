@@ -1,5 +1,5 @@
 
-<div class="container page-content">
+<div class="container page-content" id="signupPage">
   <div class="row">
     <div class="col-sm-12">
       <h1>Sign up</h1>
@@ -44,7 +44,7 @@
                  mongoose-error/>
           <p class="help-block"
              ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
-            Password must be at least 3 characters
+            Password must be at least 7 characters
           </p>
           <p class="help-block" ng-show="form.password.$error.mongoose">
             {{ errors.password }}
@@ -52,21 +52,15 @@
         </div>
 
 
-        <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid,
-                                            'has-error': form.confirmPassword.$invalid }">
+        <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && confirmPassword, 'has-error': form.confirmPassword.$invalid && confirmPassword }">
           <label>Confirm password</label>
           
           <input type="password" name="confirmPassword" ng-model="confirmPassword" class="form-control" 
-            ui-validate=" '$value==user.password' "
+            ui-validate=" '$value==user.password && user.password.length >= 7' "
             ui-validate-watch=" 'user.password' ">
-          <p class="help-block" ng-show="form.confirmPassword.$error.validator">
-            Passwords dont match
+          <p class="help-block" ng-show="form.confirmPassword.$error.validator && confirmPassword">
+            Passwords dont match or password is too weak
           </p>
-        </div>
-
-        <div class="form-group">
-          <label>Avatar</label>
-          <input type="file" id="file" name="file" ng-file-select="upload($files)">
         </div>
   
         <button class="btn btn-lg btn-primary" type="submit">Sign up</button>
@@ -77,6 +71,6 @@
   <div class="row">
     <div class="col-sm-12">
       <hr>
-      Have an account? <a href="/login" class="text-center new-account">Log in.</a>
+      Already have an account? <a href="/login" class="text-center new-account">Log in.</a>
     </div>
   </div>

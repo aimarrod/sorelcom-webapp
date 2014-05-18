@@ -1,0 +1,148 @@
+/* Sidebar */
+#wrapper {
+  bottom: 0;
+  top: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  transition: all 0.4s ease 0s; }
+  #wrapper.active #sidebar-wrapper {
+    right: 0px;
+    width: 400px; }
+  #wrapper.active #sidebar-open {
+    right: -32px;
+    width: 0px; }
+
+#sidebar-open {
+  right: 0px;
+  top: 20px;
+  position: absolute;
+  overflow: hidden;
+  transition: all 0.4s ease 0s;
+  z-index: 1200; }
+
+#sidebar-wrapper {
+  right: -400px;
+  width: 0px;
+  position: relative;
+  float: right;
+  height: 100%;
+  overflow-y: auto;
+  transition: all 0.4s ease 0s;
+  background: white;
+  z-index: 1000; }
+  #sidebar-wrapper #sidebar {
+    padding: 0px 0px 40px 0px; }
+  #sidebar-wrapper #content {
+    padding: 0px 25px 0px 25px; }
+  #sidebar-wrapper #header, #sidebar-wrapper .header {
+    width: 100%; }
+    #sidebar-wrapper #header *, #sidebar-wrapper .header * {
+      display: inline-block; }
+    #sidebar-wrapper #header > a, #sidebar-wrapper #header button, #sidebar-wrapper .header > a, #sidebar-wrapper .header button {
+      border: none;
+      position: absolute;
+      height: 42px; }
+    #sidebar-wrapper #header > #back, #sidebar-wrapper .header > #back {
+      left: 50px; }
+    #sidebar-wrapper #header > #close, #sidebar-wrapper .header > #close {
+      right: 0px; }
+    #sidebar-wrapper #header h3, #sidebar-wrapper .header h3 {
+      padding-left: 150px;
+      width: 100%;
+      margin: 8px 0px 8px 0px; }
+  #sidebar-wrapper .btn-wide {
+    width: 100%;
+    border-top: 1px solid black; }
+  #sidebar-wrapper .btn {
+    border-radius: 0; }
+  #sidebar-wrapper .btn:hover {
+    border-radius: 0; }
+  #sidebar-wrapper .title {
+    padding: 10px; }
+  #sidebar-wrapper .footer {
+    position: fixed;
+    bottom: 0px;
+    width: inherit; }
+    #sidebar-wrapper .footer a {
+      width: 24%; }
+  #sidebar-wrapper ul {
+    list-style-type: none; }
+
+/* Editor */
+#editor-buttons button {
+  display: inline-block;
+  width: 20%; }
+  #editor-buttons button:not(:first-child) {
+    margin-left: -4px; }
+
+/* Explorer */
+#navigation {
+  width: 100%;
+  height: 35px; }
+  #navigation * {
+    display: inline-block; }
+  #navigation > button {
+    border: none;
+    width: 10%;
+    height: 100%; }
+  #navigation h4 {
+    text-align: center;
+    height: 100%;
+    width: 70%;
+    margin: 0px 0px 0px 0px; }
+
+.select-list {
+  list-style: none;
+  padding: 0; }
+  .select-list li {
+    margin: 0px 0px 1px 0px;
+    padding: 10px 32px 10px 32px;
+    cursor: pointer; }
+
+.searchbox {
+  padding: 10px; }
+
+.heading {
+  margin: 0;
+  padding: 10px 0px 10px 0px; }
+
+#sidebar-wrapper #menu {
+  max-height: 300px;
+  overflow: auto; }
+
+#map-wrapper, #page-content-wrapper {
+  height: 100%;
+  position: relative;
+  overflow: hidden; }
+
+#menu-toggle {
+  display: none; }
+
+.inset {
+  padding: 20px; }
+
+@media (max-width: 767px) {
+  #wrapper {
+    padding-left: 0; }
+
+  #sidebar-wrapper {
+    right: -100%; }
+
+  #wrapper.active {
+    display: block; }
+
+  #wrapper.active #sidebar-wrapper {
+    right: 0px;
+    width: 100%;
+    transition: all 0.4s ease 0s; }
+
+  #menu-toggle {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000; }
+
+  .inset {
+    padding: 15px; } }

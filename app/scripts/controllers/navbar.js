@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 angular.module('sorelcomApp')
   .controller('NavbarCtrl', function ($scope, $location, $modal, $state, Auth) {
     $scope.menu = [{
@@ -12,7 +10,7 @@ angular.module('sorelcomApp')
                 'state': 'map.explore'
               }, {
                 'title': 'Browse',
-                'state': 'web.search.tracks'
+                'state': 'web.search'
               }];
     $scope.state = $state;
 

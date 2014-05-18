@@ -1,68 +1,60 @@
-
 <carousel id="carousel" interval="-1" set-ng-animate="false" class="fading">
-    <slide ng-repeat="slide in slides" active="slide.active">
-        <leaflet height="500px" 
-                 id="slideMap{{$index}}"
-                 layers="slide.layers"
-                 defaults="defaults"
-                 class="map-image">
-        </leaflet>            
-        <div class="carousel-caption">
-            <h4>Slide {{$index}}</h4>
-            <p>{{slide.text}}</p>
-        </div>
-    </slide>
+  <slide ng-repeat="slide in slides" active="slide.active">
+    <leaflet height="300px" 
+    id="slideMap{{$index}}"
+    layers="slide.layers"
+    defaults="defaults"
+    class="map-image">
+  </leaflet>            
+  <div class="carousel-caption">
+    <h4>{{slide.name}}</h4>
+    <p style="color:white">
+      {{slide.type}} added by 
+      <a ui-sref="web.user({id: slide.author.id})">{{slide.author.name}}</a>
+    </p>
+  </div>
+</slide>
 </carousel>
 
-<div class="container">
-    <div class="row center">
-        <h2 class="darker-text text-center">
-            SORELCOM
-        </h2>
-        <p class="text-center">
-            Find tracks and points of interest near your location. 
-        </p>
-    </div>
+<main class="container" id="homepage">
+  <article>
+    <section id="presentation">
+      <h1 class="text-center blue-text"> SORELCOM </h1>
+      <p class="text-center text-big"> 
+        We are a growing community of <strong class="blue-text">{{info.users||'????'}}</strong> users sharing <strong class="blue-text">{{info.features||'????'}}</strong> features. Here you will find as many as <strong class="blue-text">{{info.tracks||'????'}}</strong> tracks and 
+        <strong class="blue-text">{{info.pois||'????'}} </strong> points of interest. You can also find <strong class="blue-text">{{info.images||'????'}} </strong> images and <strong class="blue-text">{{info.videos||'????'}} </strong> videos.  
+      </p>
+      <p><a class="blue-text" ui-sref="web.signup"> Join us now! </a></p>
+    </section>
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="ih-item square effect13 from_left_and_right center">
-                <a ui-sref="map.explore">
-                    <div class="img"><img src="images/map.png" alt="img"></div>
-                    <div class="info">
-                        <div class="info-back">
-                            <h3 class="light-text">World map</h3>    
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="ih-item square effect13 from_left_and_right center">
-                <a ui-sref="map.editor">
-                    <div class="img"><img src="images/map.png" alt="img"></div>
-                    <div class="info">
-                        <div class="info-back">
-                            <h3>Open editor</h3>
-                            <p>Modify and correct tracks on the editor</p>
-                        </div>
-                    </div>
-                </a>
-            </div>        
-        </div>
-        <div class=" col-md-4">
-            <div class="ih-item square effect13 from_left_and_right">
-                <a ui-sref="map.editor({upload: true})">
-                    <div class="img"><img src="images/map.png" alt="img"></div>
-                    <div class="info">
-                        <div class="info-back">
-                            <h3>Upload your track</h3>
-                            <p>Load a GPX file</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+    <section class="row" id="apps">
+      <section class="col-md-6 col-sm-12 col-xs-12">
+        <a href="https://play.google.com/store" class="promo">
+          <img src="/images/icons/android.png" />
+          <p class="info"> Check out the mobile app </p>
+        </a>
+      </section>
+      <section class="col-md-6 col-sm-12 col-xs-12">
+        <a ui-sref="map.explore" class="promo">
+          <img src="/images/icons/world-map.png" />
+          <p class="info"> View our map </p>
+        </a>        
+      </section>
+    </section>
 
+    <section class="row">
+      <section class="col-md-6 col-sm-12 col-xs-12">
+        <a class="promo" ng-click="upload()">
+          <img src="/images/icons/polyline.png" />
+          <p class="info"> Share your routes. </p>
+        </a>
+      </section>
+      <section  class="col-md-6 col-sm-12 col-xs-12">
+        <a class="promo">
+          <img src="/images/icons/post-it.png" />
+          <p class="info"> Learn about geo post-its </p>
+        </a>        
+      </section>
+    </section>
+  </article>
+</main>

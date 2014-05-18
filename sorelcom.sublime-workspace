@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"hasAve",
+				"hasAverageDescendingSlope"
+			],
+			[
+				"hasAv",
+				"hasAverageAscendingSlope"
+			],
+			[
+				"hasTot",
+				"hasTotalDescendingSlope"
+			],
+			[
+				"hasTotal",
+				"hasTotalAscendingSlope"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
 				"jsonifyBi",
 				"jsonifyBinding"
 			],
@@ -38,10 +62,6 @@
 			[
 				"light",
 				"light"
-			],
-			[
-				"border",
-				"border-radius"
 			],
 			[
 				"tran",
@@ -494,44 +514,59 @@
 			[
 				"parse",
 				"parseQueryResultsJSON"
-			],
-			[
-				"par",
-				"parliament"
-			],
-			[
-				"requ",
-				"request"
-			],
-			[
-				"sho",
-				"showRoute"
-			],
-			[
-				"st",
-				"statusCode"
-			],
-			[
-				"inse",
-				"insertString"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "lib/controllers/models.js",
+			"file": "app/views/partials/track.html",
 			"settings":
 			{
-				"buffer_size": 2487,
+				"buffer_size": 1164,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "lib/controllers/geography.js",
+			"file": "app/scripts/controllers/browse.js",
 			"settings":
 			{
-				"buffer_size": 1563,
+				"buffer_size": 3389,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var geo = require('./../utils/geo'); \nvar util = require('util');\nvar request = require('request');\nvar dateutil = require('dateutil');\nvar step = require('step');\n\n/* Webpage prefixes */\n\n/* Prefixes for the SPARQL queries */\nvar prefixes = 'PREFIX fn: <http://www.w3.org/2005/xpath-functions#>\\n' +\n'PREFIX owl: <http://www.w3.org/2002/07/owl#>\\n' +\n'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\\n' +\n'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\\n' +\n'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\\n' +\n'PREFIX dcterms: <http://purl.org/dc/terms/>\\n' +\n'PREFIX sorelcom: <http://www.morelab.deusto.es/ontologies/sorelcom#>\\n' +\n'PREFIX ogc: <http://www.opengis.net/ont/geosparql#>\\n' +\n'PREFIX ogcf: <http://www.opengis.net/def/function/geosparql/>\\n' +\n'PREFIX foaf: <http://xmlns.com/foaf/0.1/>\\n' +\n'PREFIX sioc: <http://rdfs.org/sioc/ns#>\\n' +\n'PREFIX sf: <http://www.opengis.net/ont/sf#>\\n' +\n'PREFIX units: <http://www.opengis.net/def/uom/OGC/1.0/>\\n';\n\nvar database = 'http://localhost:8080/parliament/sparql';\nvar graph = \"http://morelab.deusto.es/sorelcom\";\n\n/** --------------- Binding transformation function ---------- */\n\nvar pagesize = 20;\n\n/** Transforms a binding to a JSON */\nfunction jsonifyBinding(binding){\n  var json = {};\n  for(var key in binding){\n      var element = binding[key];\n      if(element.type === \"uri\"){\n        json[key] = element.value.split('#').pop();\n      } else if(element.datatype === \"http://www.opengis.net/ont/sf#wktLiteral\" || element.datatype === 'http://www.opengis.net/ont/geosparql#wktLiteral'){\n        json[key] = geo.parse(element.value);\n      } else if(element.dataype === \"http://www.w3.org/2001/XMLSchema#boolean\"){\n        json[key] = Boolean(element.value);\n      } else if(element.dataype === \"http://www.w3.org/2001/XMLSchema#integer\"){\n        json[key] = parseInt(element.value);\n      } else if(!element.dataype) {\n        json[key] = element.value;\n      }\n  }\n  return json;\n}\n\n/** Array of bindings */\nfunction jsonifyBindings(data){\n    var json = [];\n    var bindings = data.results.bindings;\n    for(var i = 0, len = bindings.length; i < len; i++)\n        json.push(jsonifyBinding(bindings[i]));\n    return json;\n}\n\nfunction geojsonify(json, isArray){\n	var geojson;\n	if(json.length  === 1){\n		geojson = { type: 'Feature', geometry: json[0].geometry, properties: json[0] };\n		delete geojson.properties.geometry;\n		return geojson;\n	} else if(json.length > 1){\n		if(isArray){\n			geojson = [];\n			for(var i = 0, n = json.length; i < n; i++){\n					var f = { type: 'Feature', geometry: json[i].geometry, properties: json[i] };\n					delete f.properties.gemetry;\n					geojson.push(f);\n			}\n		} else {\n			geojson = {	type: 'FeatureCollection', features: [] };\n			for(var j = 0, l = json.length; j < l; j++){\n					var feature = { type: 'Feature', geometry: json[j].geometry, properties: json[j] };\n					delete feature.properties.gemetry;\n					geojson.features.push(feature);\n			}\n		}\n		return geojson;\n	}\n	return { type: 'FeatureCollection', features: [] };\n}\n\nfunction select(params, done) {\n	var bindings = params.bindings || '*';\n	var extras = params.extras || '';\n\n	request.post(\n		{\n			uri: database,\n			json: true,\n			form: {\n				query: util.format('%s SELECT %s WHERE { %s } %s', prefixes, bindings, params.triples, extras),\n				output: \"json\"\n			}\n		}, function (err, res, body) {\n			if(err || res.statusCode !== 200)\n				return done(err || \"Database responded with status code \" + res.statusCode);\n      done(null, jsonifyBindings(body));\n    }\n   );\n}\n\nfunction ask (triples, done){\n  request.post(\n    {\n      uri: database,\n      json: true,\n      form: {\n        query: util.format('%s ASK { %s } ', prefixes, triples),\n        output: \"json\"\n      },\n    },\n    function (err, res, body) {\n      if(err || res.statusCode !== 200)\n        return done(err || \"Database responded with status code \" + res.statusCode);\n      done(null, body.boolean);\n    }\n  );\n}\n\nfunction modify(params, done){\n	var old = params.old || '';\n	var triples = params.triples || '';\n	var where = params.where || '';\n	request(\n		{\n			uri: \"http://localhost:8080/parliament/sparql\",\n			method: \"POST\",\n			json: true,\n			form: {\n				update: util.format('%s MODIFY DELETE { %s } INSERT { %s } WHERE { OPTIONAL { %s } }', prefixes, old, triples, where),\n				output: \"json\"\n			},\n		}, function (err, res, body) {\n			if(!err && res.statusCode !== 200)\n				err = \"Database responded with status code \" + res.statusCode;        \n      done(err);\n    }\n  );\n}\n\n\n/** Here the actual functions exported by the model start */\n\nmodule.exports.create = function(args, done){\n	var params = {};\n	var date = new Date();\n\n  /** If there is no URI (ID actually, it is not the complete URI, just relative to the SORELCOM prefix), cannot create */\n	if(!args.id)\n		return done('There is no URI');\n\n  params.triples = util.format('sorelcom:%s rdf:type %s . ', args.id, args.type);\n\n  /** SIOC properties */\n  if(args.name) \n    params.triples += util.format('sorelcom:%s sioc:name \"%s\" . ', args.id, args.name); \n  if(args.content)\n    params.triples += util.format('sorelcom:%s sioc:content \\'\\'\\'%s\\'\\'\\' . ', args.id, args.content);\n  if(args.avatar)\n    params.triples += util.format('sorelcom:%s sioc:avatar \"%s\" .', args.id, args.avatar);\n  if(args.email)\n    params.triples += util.format('sorelcom:%s sioc:email \"%s\" .', args.id, args.email);\n  \n  /** Dublin Core metadata (dates, etc) */\n  if(args.date)\n    params.triples += util.format('sorelcom:%s dcterms:created \"%s\"^^xsd:dateTime .', args.id, util.format('%sT%sZ', dateutil.format(date, 'Y-m-d'), dateutil.format(date, 'h:i:s')));\n  \n  /** SORELCOM properties for tracks */\n  if(args.difficulty)\n    params.triples += util.format('sorelcom:%s sorelcom:hasDifficulty \"%s\"^^xsd:integer .', args.id, args.difficulty);\n  if(args.distance)\n    params.triples += util.format('sorelcom:%s sorelcom:hasDistance \"%s\"^^xsd:long .', args.id, args.distance);\n  if(args.maxAltitude)\n    params.triples += util.format('sorelcom:%s sorelcom:hasMaxAltitude \"%s\"^^xsd:float .', args.id, args.maxAltitude);\n  if(args.minAltitude)\n    params.triples += util.format('sorelcom:%s sorelcom:hasMinAltitude \"%s\"^^xsd:float .', args.id, args.minAltitude);    \n  if(args.averageAscendingSlope)\n    params.triples += util.format('sorelcom:%s sorelcom:hasAverageAscendingSlope \"%s\"^^xsd:float .', args.id, args.averageAscendingSlope);\n  if(args.averageDescendingSlope)\n    params.triples += util.format('sorelcom:%s sorelcom:hasAverageDescendingSlope \"%s\"^^xsd:float .', args.id, args.averageDescendingSlope);\n  if(args.totalAscendingSlope)\n    params.triples += util.format('sorelcom:%s sorelcom:hasTotalAscendingSlope \"%s\"^^xsd:float .', args.id, args.totalAscendingSlope);\n  if(args.totalDescendingSlope)\n    params.triples += util.format('sorelcom:%s sorelcom:hasTotalDescendingSlope \"%s\"^^xsd:float .', args.id, args.totalDescendingSlope);\n  if(args.isCircular)\n    params.triples += util.format('sorelcom:%s sorelcom:isCircular \"%s\"^^xsd:boolean .', args.id, args.isCircular);\n\n  /** Bidirectional properties */\n	if(args.author)\n	  params.triples += util.format('sorelcom:%s sioc:has_creator sorelcom:%s . ', args.id, args.author) +\n      util.format('sorelcom:%s sioc:creator_of sorelcom:%s . ', args.author, args.id); \n  if(args.container)\n    params.triples += util.format('sorelcom:%s sioc:has_container sorelcom:%s . ', args.id, args.container) +\n      util.format('sorelcom:%s sioc:container_of sorelcom:%s . ', args.container, args.id); \n\n  /** OGC GeoSPARQL properties */\n  if(args.geometry)\n		params.triples += util.format('sorelcom:%s ogc:hasGeometry sorelcom:%s/geometry . ', args.id, args.id) + \n      util.format('sorelcom:%sgeom ogc:asWKT \"%s\"^^ogc:wktLiteral . ', args.id, geo.toWKT2D(args.geometry)) + \n      util.format('sorelcom:%sgeom rdf:type ogc:Geometry . ', args.id); \n\n  /** Ask if it exists, before commiting to the database */\n  ask(util.format('sorelcom:%s ?p ?o .', args.id), function(err, exists){\n    if(err) return done(err);\n    if(exists) return done('Resource already exists');\n    modify(params, done);\n  });\n};\n\n//Need to define better what can be modified.\nmodule.exports.modify = function(args, done){\n	if(!args.id) \n		return done('need to specify a URI');\n\n	var params = {\n		old: '',\n		triples: '',\n		where: ''\n	};\n\n	if(args.name){\n		params.old += util.format('sorelcom:%s sioc:name ?name', args.id);\n		params.where += util.format('sorelcom:%s sioc:name ?name', args.id);\n		params.triples += util.format('sorelcom:%s sioc:name \"%s\"', args.id, args.name);\n	}\n	if(args.content){\n		params.old += util.format('sorelcom:%s sioc:content ?content', args.id);\n		params.where += util.format('sorelcom:%s sioc:content ?content', args.id);\n		params.triples += util.format('sorelcom:%s sioc:content \"%s\"', args.id, args.content);\n	}\n	if(args.avatar){\n		params.old += util.format('sorelcom:%s sioc:avatar ?avatar', args.id);\n		params.where += util.format('sorelcom:%s sioc:avatar ?avatar', args.id);\n		params.triples += util.format('sorelcom:%s sioc:avatar \"%s\"', args.id, args.avatar);\n	}\n	if(args.geometry){\n		params.old += util.format('sorelcom:%sgeom ogc:asWKT ?wkt', args.id);\n		params.where += util.format('sorelcom:%sgeom ogc:asWKT ?wkt', args.id);\n		params.triples += util.format('sorelcom:%sgeom ogc:asWKT \"%s\"^^ogc:wktLiteral', args.id, geo.toWKT2D(args.geometry));\n	}\n  if(args.distance){\n    params.old += util.format('sorelcom:%s sioc:distance ?distance', args.id);\n    params.where += util.format('sorelcom:%s sioc:distance ?distance', args.id);\n    params.triples += util.format('sorelcom:%s sioc:distance \"%s\"', args.id, args.distance); \n  }\n\n  ask(util.format('sorelcom:%s ?p ?o .', args.id), function(err, exists){\n    if(err) return done(err);\n    if(!exists) return done('Resource does not exist');\n    modify(params, done);\n  });\n};\n\nmodule.exports.postCount = function(args, done){\n  var params = {};\n  params.bindings = '(COUNT(?post) AS ?posts)';\n  params.triples = '?post rdf:type sioc:Post . ';\n  if(args.model)\n    params.triples += util.format('?post sioc:has_container sorelcom:%s . ', args.model);\n  if(args.author)\n    params.triples += util.format('?post sioc:has_creator sorelcom:%s . ', args.author);\n  \n  select(params, function(err, data){\n    if(err) return done(err);\n    done(null, data.shift());\n  });\n};\n\nmodule.exports.postList = function(args, done){\n  var params = {};\n  params.bindings = '(?content ?author ?authorId ?container ?containerId';\n  params.triples = '?post rdf:type sioc:Post . ';\n  params.triples = '?post sioc:has_container ?containerId . ';\n  params.triples = '?containerId sioc:name ?model . ';\n  params.triples = '?post sioc:has_creator ?containerId . ';\n  params.triples = '?containerId sioc:name ?author . ';\n\n  if(args.model)\n    params.triples += util.format('?post sioc:has_container sorelcom:%s . ', args.model);\n  if(args.author)\n    params.triples += util.format('?post sioc:has_creator sorelcom:%s . ', args.author);\n  \n  select(params, function(err, data){\n    if(err) return done(err);\n    done(null, data);\n  });\n};\n\nmodule.exports.showTrack = function(id, done){\n	var params = {};\n\n	params.bindings = '?id ?name ?content ?geometry ?author';\n\n	params.triples = util.format('BIND(sorelcom:%s AS ?id) .', id) +\n  /** Minimum essential data properties and relations */\n  '?id sioc:name ?name . ' +\n  '?id ogc:hasGeometry ?geom . ' +\n  '?id sioc:has_creator ?authorId . ' +\n  '?geom ogc:asWKT ?geometry .' +\n  '?authorId sioc:name ?author . ' +\n  /** Parameters data properties thay may not exist */\n  'OPTIONAL { ?id sioc:content ?content } . ' +\n  'OPTIONAL { ?id sorelcom:hasDistance ?distance } . ' +\n  'OPTIONAL { ?id sorelcom:hasDifficulty ?difficulty } . ' +\n  'OPTIONAL { ?id sorelcom:isCircular ?circular } . ' +\n  'OPTIONAL { ?id sorelcom:hasMaxAltitude ?maxAltitude } . ' +\n  'OPTIONAL { ?id sorelcom:hasMinAltitude ?minAltitude } . ' +\n  'OPTIONAL { ?id sorelcom:hasTotalAscendingSlope ?totalAscendingSlope } . ' +\n  'OPTIONAL { ?id sorelcom:hasTotalDescendingSlope ?totalDescendingSlope } . ' +\n  'OPTIONAL { ?id sorelcom:hasAverageAscendingSlope ?averageAscendingSlope } . ' +\n  'OPTIONAL { ?id sorelcom:hasAverageDescendingSlope ?averageDescendingSlope } . ';\n\n	select(params, function(err, data){\n		if(err) return done(err);\n		done(null, geojsonify(data));\n	});\n};\n\nmodule.exports.showPOI = function(id, done){\n	var params = {};\n\n	params.bindings = '?name ?content ?geometry ?author';\n\n	params.triples = util.format('BIND(sorelcom:%s AS ?id)', id) +\n  /** Parameters \n  '?id sioc:name ?name . ' +\n  '?id ogc:hasGeometry ?geom . ' +\n  '?id sioc:has_creator ?authorId . ' +\n  '?geom ogc:asWKT ?geometry .' +\n  '?authorId sioc:name ?author . ' +\n    /** Parameters data properties thay may not exist */\n  'OPTIONAL { ?id sioc:content ?content } . ' +\n  'OPTIONAL { ?id sorelcom:hasMaxAltitude ?maxAltitude } . ' +\n;\n\n	select(params, function(err, data){\n		if(err) return done(err);\n		done(null, geojsonify(data));\n	});\n};\n\nmodule.exports.showNote = function(id, done){\n	var params = {};\n\n	params.bindings = '?name ?content ?geometry ?author';\n\n	params.triples = util.format('BIND(sorelcom:%s AS ?id)', id) +\n  '?id sioc:name ?name . ' +\n  '?id sioc:content ?content . ' +\n  '?id ogc:hasGeometry ?geom . ' +\n  '?id sioc:has_creator ?authorId . ' +\n  '?geom ogc:asWKT ?geometry .' +\n  '?authorId sioc:name ?author . ';\n\n	select(params, function(err, data){\n		if(err) return done(err);\n		done(null, geojsonify(data));\n	});\n};\n\nmodule.exports.showUser = function(id, done){\n	var params = {};\n	var listParams = {};\n\n	\n	params.triples = util.format('BIND(sorelcom:%s AS ?id)', id) +\n  '?id sioc:name ?name . ' +\n  '?id sioc:email ?email . ' +\n  '?id sioc:avatar ?avatar . ';\n\n  listParams.triples = util.format('sorelcom:%s sioc:creator_of ?list . ', id) +\n  '?list rdf:rest*/rdf:first ?id . ' +\n  '?id sioc:name ?name .'  +\n  '?id rdf:type ?type .' +\n  'FILTER(?type = sorelcom:Track || ?type = sorelcom:POI || ?type = sorelcom:Note || ?type = sioc:Post)';\n\n  select(params, function(err, user){\n    if(err || !user) return done(err || \"User does not exist\");\n    user = user[0];\n    select(listParams, function(err, list){\n      if(err) user.created = [];\n      else user.created = list;\n      done(null, user);\n    });\n  });\n};\n\nmodule.exports.pages = function(type, done){\n	var params = {};\n\n	params.bindings = '(COUNT(?element) AS ?count)';\n	params.triples = util.format('?element rdf:type %s . ', type);\n\n	select(params, function(err, data){	\n		if(err) return done(err);\n		done(null, { pages: Math.ceil(data[0].count/pagesize) });\n	});\n};\n\nmodule.exports.nearby = function(args, done){\n	var params = {};\n\n	params.bindings = '?id ?name ?content ?geometry';\n	\n  params.triples = '?id sioc:name ?name . ' +\n  '?id sioc:content ?content . ' +\n  '?geom ogc:asWKT ?geometry . '  +\n  util.format('BIND (sorelcom:%s AS ?f) ', args.id) +\n  '?f ogc:hasGeometry ?poigeom . ' +\n  '?poigeom ogc:asWKT ?t .' +\n  util.format('BIND (ogcf:buffer(?t, %s, units:metre) AS ?buff) . ', args.distance) +\n  '?geom ogc:sfWithin [ a ogc:Geometry; ogc:asWKT ?buff ] . ' +\n  '?id ogc:hasGeometry ?geom . ' +\n  '?id a sorelcom:POI . ' +\n  'FILTER (?id != ?f) ';\n\n	select(params, function(err, data){\n		if(err) return done(err);\n		done(null, geojsonify(data));\n	});\n};\n\nmodule.exports.around = function(args, done){\n  var params = {};\n\n  params.bindings = '?id ?name ?content ?geometry';\n  \n  params.triples = '?id sioc:name ?name . ' +\n  '?id sioc:content ?content . ' +\n  '?geom ogc:asWKT ?geometry . '  +\n  util.format('BIND (ogcf:buffer(\"%s\"^^wktLiteral, %s, units:metre) AS ?buff) . ', args.distance) +\n  '?geom ogc:sfWithin [ a ogc:Geometry; ogc:asWKT ?buff ] . ' +\n  '?id ogc:hasGeometry ?geom . ' +\n  '?id a sorelcom:POI . ';\n\n  select(params, function(err, data){\n    if(err) return done(err);\n    done(null, geojsonify(data));\n  });\n};\n\nmodule.exports.buffer = function(args, done){\n	var params = {};\n	params.bindings = '?geometry';\n	params.triples = util.format('sorelcom:%s ogc:hasGeometry ?g .', args.id) +\n  '?g ogc:asWKT ?wkt .'  +\n  util.format('BIND (ogcf:buffer(?wkt, %s, units:metre) AS ?geometry) .', args.distance);\n\n	select(params, function(err, data){\n		if(err) return done(err);\n		done(null, geojsonify(data));\n	});\n};\n\nmodule.exports.latest = function(done){\n	var params = {};\n\n	params.bindings = '?name ?geometry ?author ?authorId ?date ?type';\n\n	params.triples = '?id sioc:name ?name . ' +\n  '?id rdf:type ?type .' +\n  '?id ogc:hasGeometry ?geom . ' +\n  '?id sioc:has_creator ?authorId . ' +\n  '?geom ogc:asWKT ?geometry .' +\n  '?authorId sioc:name ?author . ' +\n  '?id dcterms:created ?date . ' +\n  'FILTER(?type = sorelcom:Track || ?type = sorelcom:POI || ?type = sorelcom:Note || ?type = sioc:Post)';\n\n	params.extras = 'ORDER BY DESC(?date) LIMIT 5';\n\n	select(params, function(err, data){\n		if(err) return done(err);\n		done(null, geojsonify(data, true));\n	});\n};\n\nmodule.exports.media = function(id, done){\n  var params = {};\n  console.log(id);\n\n  params.bindings = '?type ?source';\n\n  params.triples = util.format('sorelcom:%s sorelcom:hasMedia ?list . ?list rdf:rest*/rdf:first ?media . ?media sorelcom:hasSource ?source . ?media sorelcom:hasType ?type', id);\n\n  select(params, function(err, data){\n    if(err) return done(err);\n    done(null, data);\n  });  \n};\n\nmodule.exports.metaInfo = function(done){\n  var params = {};\n  \n  params.bindings = '(COUNT(distinct ?track) AS ?tracks) ' + \n  '(COUNT(distinct ?poi) AS ?pois) ' + \n  '(COUNT(distinct ?feature) AS ?features) ' +\n  '(COUNT(distinct ?user) AS ?users) ' + \n  '(COUNT(distinct ?contributor) AS ?contributors) ' + \n  '(COUNT(distinct ?media) AS ?medias) ' +\n  '(COUNT(distinct ?image) AS ?images) ' +\n  '(COUNT(distinct ?audio) AS ?audios) ' +\n  '(COUNT(distinct ?video) AS ?videos)';\n\n  params.triples =  '?s ?p ?o . ' +\n  'OPTIONAL { ?s rdf:type sorelcom:Track . BIND(?s AS ?track) . } ' +\n  'OPTIONAL { ?s rdf:type sorelcom:POI . BIND(?s AS ?poi) . } ' +\n  'OPTIONAL { ?s rdf:type ogc:Feature . BIND(?s AS ?feature) . } ' +\n  'OPTIONAL { ?s rdf:type sioc:UserAccount . BIND(?s AS ?user) . ' +\n  '  OPTIONAL { ?s sioc:creator_of ?c . FILTER(?c != rdf:nil) . BIND(?s AS ?contributor) .} ' +\n  '} ' +\n  'OPTIONAL { ?s sorelcom:hasType ?type . BIND(?s AS ?media) ' + \n  'OPTIONAL { ?s sorelcom:hasType \"image\" . BIND(?s AS ?image) } ' +\n  'OPTIONAL { ?s sorelcom:hasType \"audio\" . BIND(?s AS ?audio) } ' +\n  'OPTIONAL { ?s sorelcom:hasType \"video\" . BIND(?s AS ?video) } ' +\n  '}'; \n\n  select(params, function(err, data){\n    if(err) return done(err);\n    done(null, data.shift());\n  });\n};\n\nmodule.exports.search = function(string, done){\n  var params = {};\n  \n  params.bindings = 'DISTINCT ?id ?name ?content ?date ?email ?avatar ?creator ?type (COUNT(?track) AS ?tracks) (COUNT(?poi) AS ?pois) (COUNT(?note) AS ?notes) (COUNT(?post) AS ?posts)';\n  params.extras = 'GROUP BY ?id ?name ?content ?date ?email ?avatar ?creator ?type ?match ORDER BY ?match DESC(?date)';\n\n  params.triples = \n  util.format('{ ?id sioc:name ?name . FILTER regex(?name, \"%s\", \"i\") . BIND(1 AS ?match) . }', string) +\n  ' UNION ' +\n  util.format('{ ?id sioc:content ?content . FILTER regex(?content, \"%s\", \"i\") . BIND(2 AS ?match) . } ', string) +\n  'OPTIONAL { ?id sioc:name ?name } ' +\n  'OPTIONAL { ?id sioc:content ?content } ' +\n  'OPTIONAL { ?id dcterms:created ?date } ' +\n  'OPTIONAL { ?id sioc:email ?email } ' +\n  'OPTIONAL { ?id sioc:avatar ?avatar } ' +\n  'OPTIONAL { ?id sioc:has_creator ?creator_id . ?creator_id sioc:name ?creator } ' +\n  'OPTIONAL { ?id rdf:type ?type . FILTER(?type != ogc:Feature) } ' +\n  'OPTIONAL { ' +\n  '  ?id sioc:creator_of ?list . ?list rdf:rest*/rdf:first ?element . ' +\n  '  OPTIONAL { ?element rdf:type sorelcom:Track . BIND(?element AS ?track) }' +\n  '  OPTIONAL { ?element rdf:type sorelcom:POI . BIND(?element AS ?poi) }' +\n  '  OPTIONAL { ?element rdf:type sorelcom:Note . BIND(?element AS ?note) }' +\n  '  OPTIONAL { ?element rdf:type sioc:Post . BIND(?element AS ?post) }' +\n  '}';\n\n  select(params, function(err, data){\n    if(err) return done(err);\n    done(null, data);\n  });\n};\n\n// Need to rethink these\n\nmodule.exports.list = function(type, done){\n  var params = {};\n\n  params.bindings = '?id ?name ?content ?date ?image';\n  params.extras = '?id ?name ?content ?date ?image';\n\n  params.triples = util.format('?id rdf:type sorelcom:%s . ', type) + \n  '?id sioc:name ?name .' + \n  'OPTIONAL { ?id sioc:content ?content . }' + \n  'OPTIONAL { ?id dcterms:created ?date . }';\n\n  select(params, done);\n};\n\nmodule.exports.userList = function(done){\n  var params = {};\n  params.bindings = '?id ?name ?avatar (COUNT(?track) AS ?tracks) (COUNT(distinct ?poi) AS ?pois) (COUNT(distinct ?note) AS ?notes) (COUNT(distinct ?post) AS ?posts)';\n  \n  params.triples = '?id rdf:type sioc:UserAccount . \\n'  +\n  '?id sioc:name ?name . \\n'  +\n  '?id sioc:avatar ?avatar . \\n'  +\n  '?id sioc:creator_of ?list .'    +\n  'OPTIONAL { ?list rdf:rest*/rdf:first ?track . ?track rdf:type sorelcom:Track . } \\n'  +\n  'OPTIONAL { ?list rdf:rest*/rdf:first ?poi . ?poi rdf:type sorelcom:POI . } \\n'  +\n  'OPTIONAL { ?list rdf:rest*/rdf:first ?note . ?note rdf:type sorelcom:Note . } \\n'  +\n  'OPTIONAL { ?list rdf:rest*/rdf:first ?post . ?post rdf:type sioc:Post . }';\n  \n  params.extras = 'group by ?id ?name ?avatar ?list';\n  \n  select(params, done);\n};",
+			"file": "lib/controllers/queries.js",
+			"file_size": 21968,
+			"file_write_time": 130445425443494432,
+			"settings":
+			{
+				"buffer_size": 21424,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 2064,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/utils/geo.js",
+			"settings":
+			{
+				"buffer_size": 877,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/styles/views.sass",
+			"settings":
+			{
+				"buffer_size": 774,
 				"line_ending": "Unix"
 			}
 		}
@@ -572,21 +607,65 @@
 	},
 	"file_history":
 	[
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/models.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/routes.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/app.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/signup.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/styles/main.sass",
+		"/home/obssidian/Development/sorelcom-webapp/app/styles/map.sass",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/queries.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/styles/map.css",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/search.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/browse.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/search/users.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/search/search.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/navbar.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/navbar.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/profile.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/search/tracks.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/poi.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/layout.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/user.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/map.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/track.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/styles/search.sass",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/home.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/styles/home.sass",
+		"/home/obssidian/Development/sorelcom-webapp/app/styles/colors.sass",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/home.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/navbar.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/search/search.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/signup.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/signup.js",
+		"/home/obssidian/Development/sorelcom-webapp/bower.json",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/index.html",
+		"/home/obssidian/Downloads/initializr/index.html",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/index.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/auth.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/files.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/models/user.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/notes.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/connectors/parliament.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/geography.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/modals/load.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/styles/errors.sass",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/search/tracks.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/map.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/modal/upload.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/modals/upload.html",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/tracks.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/helpers/upload.html",
+		"/home/obssidian/.config/sublime-text-3/Packages/User/Distraction Free.sublime-settings",
+		"/home/obssidian/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/obssidian/.config/sublime-text-3/Packages/User/JSON.sublime-settings",
+		"/home/obssidian/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/modal/load.js",
+		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/modals/load.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/track.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/notification.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/layout.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/header.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/navbar.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/main.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/login.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/login.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/user.html",
+		"/home/obssidian/Development/sorelcom-webapp/lib/utils/geo.js",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/editor.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/explore.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/map.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/footer.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/search/users.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/profile.html",
+		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/poi.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/search/layout.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/styles/browse.sass",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/browse.html",
@@ -594,50 +673,27 @@
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/users.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/pois.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks.html",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/queries.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/styles/main.sass",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/profile.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/styles/colors.sass",
-		"/home/obssidian/Development/sorelcom-webapp/app/styles/home.sass",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/helpers/footer.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/user.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/poi.html",
 		"/home/obssidian/Development/sorelcom-webapp/lib/config/dummydata.js",
 		"/home/obssidian/Development/sorelcom-webapp/server.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/user.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/files.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/routes.js",
 		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/session.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/auth.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/models/user.js",
-		"/home/obssidian/Development/sorelcom-webapp/bower.json",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/login.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/login.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/models.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/tracks.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/map.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/model.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/editmodal.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/index.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/modals/load.html",
 		"/home/obssidian/Development/sorelcom-webapp/lib/models/track.js",
 		"/home/obssidian/Development/sorelcom-webapp/package.json",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/notes.js",
 		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/pois.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/connectors/parliament.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/bower_components/ihover/src/ihover.css",
 		"/home/obssidian/Development/sorelcom-webapp/sorelcom.sublime-project",
 		"/home/obssidian/Development/sorelcom-webapp/app/bower_components/angular-ui-router/release/angular-ui-router.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/main.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/directives/setNgAnimate.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/bower_components/bootstrap/js/carousel.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/plugins/leaflet-tiles/google.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/map.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/explore.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/header.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/editor.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/map/footer.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/menu.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/directives/onFinishRender.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/styles/main.scss",
@@ -648,9 +704,7 @@
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/upload.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/main.html",
 		"/home/obssidian/Development/sorelcom-webapp/app/plugins/leaflet-editable-polyline/leaflet-editable-polyline.js",
-		"/home/obssidian/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/obssidian/Development/sorelcom-webapp/app/scripts/services/share.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/scripts/controllers/signup.js",
 		"/home/obssidian/Development/sorelcom-webapp/app/bower_components/ng-file-upload/.bower.json",
 		"/home/obssidian/Development/sorelcom-webapp/app/bower_components/ng-file-upload/bower.json",
 		"/home/obssidian/Development/sorelcom-webapp/app/bower_components/angular-file-upload/bower.json",
@@ -680,30 +734,11 @@
 		"/home/obssidian/Downloads/CT_LIG_25000_ETRS89/cosa.kml",
 		"/home/obssidian/Downloads/CT_LIG_25000_ETRS89/cosa.geojson",
 		"/home/obssidian/.geojson",
-		"/home/obssidian/cosa.geojson",
-		"/home/obssidian/Downloads/CT_LIG_25000_ETRS89/CT_LIG_25000_ETRS89.shx",
-		"/home/obssidian/Downloads/CT_LIG_25000_ETRS89/CT_LIG_25000_ETRS89.shp",
-		"/home/obssidian/Downloads/CT_LIG_25000_ETRS89/CT_LIG_25000_ETRS89.dbf",
-		"/tmp/euskadi.json",
-		"/home/obssidian/Development/sorelcom-webapp/app/favicon.ico",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/geography.js",
-		"/usr/share/applications/eclipse.desktop",
-		"/home/obssidian/Development/sorelcom-webapp/lib/utils/geo.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/models/poi.js",
-		"/opt/ParliamentKB/conf/jetty.xml",
-		"/opt/ParliamentKB/jetty.xm",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/editor.html",
-		"/home/obssidian/Development/sorelcom-webapp/lib/models/resource.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/models/note.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/controllers/index.js",
-		"/home/obssidian/Development/sorelcom-webapp/lib/models/post.js",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/pois_detail.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/views/partials/browse/tracks_details.html",
-		"/home/obssidian/Development/sorelcom-webapp/app/plugins/editor/leaflet.editor.panel.js"
+		"/home/obssidian/cosa.geojson"
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -717,6 +752,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"properties",
+			"search",
+			"shift",
+			"postCount",
+			"modify",
+			"media",
+			"ask",
+			"carousel",
+			"search",
+			"scale",
+			"content",
+			"Track",
+			"Menu",
 			"center",
 			"nam",
 			"dcterms",
@@ -842,24 +890,52 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "lib/controllers/models.js",
+					"file": "app/views/partials/track.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2487,
+						"buffer_size": 1164,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								911,
-								911
+								643,
+								643
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 264.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/scripts/controllers/browse.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3389,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2114,
+								2114
 							]
 						],
 						"settings":
@@ -869,27 +945,87 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 345.0,
+						"translation.y": 986.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "lib/controllers/geography.js",
+					"buffer": 2,
+					"file": "lib/controllers/queries.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1563,
+						"buffer_size": 21424,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								213,
-								213
+								12574,
+								12574
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1391.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2064,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								620,
+								620
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "lib/utils/geo.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 877,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								66,
+								66
 							]
 						],
 						"settings":
@@ -901,7 +1037,35 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/styles/views.sass",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 774,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								575,
+								575
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 286.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -909,7 +1073,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 39.0
+		"height": 30.0
 	},
 	"input":
 	{
@@ -945,7 +1109,7 @@
 	"project": "sorelcom.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -975,11 +1139,11 @@
 	"settings":
 	{
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 210.0,
+	"side_bar_width": 154.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sorelcomApp')
-  .factory('Auth', function Auth($location, $rootScope, $upload , Session, User, $cookieStore) {
+  .factory('Auth', function Auth($location, $rootScope , Session, User, $cookieStore) {
     
     // Get currentUser from cookie
     $rootScope.currentUser = $cookieStore.get('user') || null;
@@ -57,20 +57,7 @@ angular.module('sorelcomApp')
        */
       createUser: function(user, callback) {
         var cb = callback || angular.noop;
-        return $upload.upload({
-          url: 'api/users/',
-          method: 'POST',
-          data: user,
-        }).then(
-          function success(data, status, headers, config) {
-            return cb(data);
-          },
-          function error(err){
-            return cb(err);
-          }
-        );
-
-/*        return User.save(user,
+        return User.save(user,
           function(user) {
             $rootScope.currentUser = user;
             return cb(user);
@@ -78,7 +65,7 @@ angular.module('sorelcomApp')
           function(err) {
             return cb(err);
           }).$promise;
-          */
+          
       },
 
       /**

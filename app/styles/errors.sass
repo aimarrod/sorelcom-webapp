@@ -1,0 +1,60 @@
+.notification-box-wrapper
+	position: absolute
+	width: 250px
+	right: 20px
+	top: 20px
+	z-index: 9999
+	
+	.notification-box
+		border-radius: 25px
+		width: 100%
+		height: 100px
+		background: rgb(0,0,0)
+		background: rgba(0,0,0, 0.5)
+		padding: 10px 10px 10px 10px
+		vertical-align: middle
+		cursor: pointer
+		margin: 0px 0px 20px 0px
+
+    
+		&:hover
+			background: rgb(90,90,90)
+			background: rgba(90,90,90, 0.5)
+		
+		.icon
+			display: inline-block
+			margin: 10px 0px 10px 0px
+			height: 60px
+			width: 60px
+			background-size: 60px 60px
+			vertical-align: middle
+		span.text
+			vertical-align: middle
+			text-align: center
+			display: inline-block
+			color: white
+			width: 160px
+
+		&.error
+			.icon
+				background-image: url('/images/icons/warning.png')
+		&.success
+			.icon
+				background-image: url('/images/icons/check.png')
+		&.info
+			.icon
+
+		&.ng-enter,
+		&.ng-leave,
+		&.ng-move
+			-webkit-transition: 0.5s linear all
+			transition: 0.5s linear all
+
+		&.ng-enter,
+		&.ng-leave.ng-leave-active 
+			opacity: 0
+
+		&.ng-leave
+		&.ng-enter.ng-enter-active 
+			opacity: 1
+		

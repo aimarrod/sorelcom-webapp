@@ -22,7 +22,8 @@ angular.module('sorelcomApp')
     };
 
     $scope.cancel =  function(event){
-      event.preventDefault();
+      if(event)
+        event.preventDefault();
       $modalInstance.dismiss('cancel');  
     };
   });
