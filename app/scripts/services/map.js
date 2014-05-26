@@ -1,11 +1,6 @@
 angular.module('sorelcomApp').service('Map', function SharedMap($rootScope, API){
     var that = this;
 
-    this.drawer = {
-        editing: null,
-        circle: null
-    };
-
     this.initMap = function(id){
 
         var baseLayers = {
@@ -203,7 +198,7 @@ angular.module('sorelcomApp').service('Map', function SharedMap($rootScope, API)
     };
 });
 
-angular.module('sorelcomApp').service('Explorer', function SharedMap($rootScope, $q, API, Map){
+angular.module('sorelcomApp').service('Explorer', function Explorer($rootScope, $q, API, Map){
   var that = this;
 
   this.init = function(){
@@ -290,4 +285,10 @@ angular.module('sorelcomApp').service('Explorer', function SharedMap($rootScope,
     }).addTo(that.explorerData.layer);
   };
 
+});
+
+angular.module('sorelcomApp').service('Editor', function Editor(API, Map){
+  var that = this;
+
+  
 });
