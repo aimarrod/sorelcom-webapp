@@ -1,0 +1,28 @@
+<header class="modal-header">
+  <h2> Creating [2/3] </h2>
+</header>
+<div class="modal-body">
+  <div class="form-group">
+    <label for="name"> Name </label>
+    <input type="text" id="name" name="name" class="form-control" ng-model="geojson.properties.name" />
+  </div>
+  <div class="form-group">
+    <label for="content"> Description </label>
+    <textarea rows="5" id="content" name="content" class="form-control" ng-model="geojson.properties.content" />
+  </div>
+  <div class="form-group" ng-show="isPOI">
+    <label for="amenity"> Type of Point of Interest </label>
+    <select class="form-control" ng-model="geojson.properties.category">
+      <optgroup ng-repeat="group in categoryGroups" label="{{group.name}}">
+        <option ng-repeat="category in group.categories" value="{{category.name}}">{{category.name}}</option>
+      </optgroup>
+    </select>
+  </div>
+</div>
+<div class="modal-footer">
+  <p class="pull-right">
+    <button type="button" ng-click="submit()" class="btn green" ng-disabled="!geojson.properties.name"> 
+      Save 
+    </button>
+  </p>
+</div>

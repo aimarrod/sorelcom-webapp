@@ -1,34 +1,98 @@
 <div id="wrapper" ng-class="{active: sidebar}">
+
+  <div id="map-tooltip" ng-show="SharedMap.tooltip">
+    <p class="text-center" ng-bind-html="SharedMap.tooltip"></p>
+  </div>
+
+  <div id="editor-buttons" ng-show="SharedMap.editing">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <a class="btn green" role="button" ng-click="finishDraw()">
+        <span class="fa fa-check"></span> Submit
+      </a>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <a class="btn red" role="button" ng-click="stopDraw()">
+        <span class="glyphicon glyphicon-remove"></span> Cancel
+      </a>
+    </div>
+  </div>
   
-  <button id="sidebar-open" class="darker btn" ng-click="openSidebar()">
+  <button id="sidebar-open" class="btn" ng-click="openSidebar()">
     <span class="icon fa fa-bars fa-2x"></span>
   </button>
-
 
   <!-- Sidebar -->
   <div id="sidebar-wrapper">
 
   <!-- Header: title and close button -->
-  	<div id="sidebar" ui-view>
-      
+    <div class="container">
+     <button class="close" ng-click="closeSidebar()">
+      <span class="fa fa-times"></span>
+     </button>
+      <header id="sidebar-header">
+        <h2 class="text-center"><a ui-sref="web.home"> SORELCOM </a></h2>
+      </header>
+  	 
+      <nav id="sidebar-nav" class="row">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <a class="btn green" role="button" ui-sref="map.explore">
+            <span class="icon fa fa-search"></span>
+          </a>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <a class="btn blue" role="button" ui-sref="map">
+            <span class="icon fa fa-edit"></span>
+          </a>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <a class="btn red" role="button" ui-sref="map.editor">
+            <span class="icon fa fa-search"></span>
+          </a>
+        </div>
+      </nav>
+
+      <div id="sidebar-body" ui-view> 
+        <section id="editor">
+          <div class="action-buttons">
+            <div class="row">
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="drawTrack()">
+                <img src="/images/icon/action/pencil.png" alt="Pencil icon" />
+                <p>Draw a route</p>
+              </button>
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="drawPOI()">
+                <img src="/images/icon/action/marker.png" alt="Marker icon" />
+                <p>Mark a POI</p>
+              </button>
+            </div>
+            <hr/>
+            <div class="row">
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="drawNote()">
+                <img src="/images/icon/action/note.png" alt="Note icon" />
+                <p>Leave a Note</p>
+              </button>
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="openUpload()">
+                <img src="/images/icon/action/upload.png" alt="Upload icon" />
+                <p>Upload from a GPX</p>
+              </button>
+            </div>
+            <hr/>
+            <div class="row">   
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="startFuse()">
+                <img src="/images/icon/action/wrench.png" alt="Wrench icon" />
+                <p>Fuse two routes</p>
+              </button>
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="startFuse()">
+                <img src="/images/icon/action/edit.png" alt="Edit icon" />
+                <p>Edit a route</p>
+              </button>        
+            </div>
+          </div>
+        </section>
+      </div>
+    
     </div>
-  	<!-- Footer, for possible changing -->
-		<div class="footer darker">
-				<a class="btn" role="button" ui-sref="map.explore">
-					<span class="icon fa fa-search"></span>
-				</a>		
-				<a class="btn" role="button" ui-sref="map.editor">
-					<span class="icon fa fa-tags"></span>
-				</a>	
-				<a class="btn" role="button" ui-sref="map.editor">
-					<span class="icon fa fa-edit"></span>
-				</a>
-				<a class="btn" role="button" ui-sref="map.settings">
-					<span class="icon fa fa-gear"></span>
-				</a>			
-		</div>
   </div>
 
   <!-- Map -->
-  <div id="map-wrapper"></div>
+  <main id="map-wrapper"></main>
 </div>

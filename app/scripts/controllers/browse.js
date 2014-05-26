@@ -48,8 +48,11 @@ angular.module('sorelcomApp')
 
 angular.module('sorelcomApp')
   .controller('TrackCtrl', function ($scope, $stateParams, Restangular, Track, leafletData) {
+    $scope.Math = window.Math;
     var track = Restangular.one('api/tracks', $stateParams.id);
-  
+
+    $scope.resource = track;
+
     $scope.loadPosts = function(){
       track.getList('post').then(
         function success(data){
@@ -77,28 +80,61 @@ angular.module('sorelcomApp')
 
     track.get().then(
       function success(data){
-        $scope.track = data;
+        $scope.feature = data;
         leafletData.getMap('viewMap').then(function (map){
           var layer = L.geoJson(data).addTo(map);
           map.fitBounds(layer.getBounds());
-          //track.customGET('within', {bbox: map.getBounds().toBBoxString()});
         });
       }
     );
+    
+    $scope.loadPosts();
+  });
 
-    track.getList('media').then(
+angular.module('sorelcomApp')
+  .controller('POICtrl', function ($scope, $stateParams, API, leafletData) {
+    $scope.Math = window.Math;
+    var poi = API.one('pois', $stateParams.id);
+
+    $scope.resource = poi;
+
+    $scope.loadPosts = function(){
+      poi.getList('post').then(
+        function success(data){
+          $scope.posts = data;
+        },
+        function error(err){
+          console.log(err);
+        }
+      );
+    };
+
+    $scope.post = function(){
+      if(!$scope.comment)
+        return
+      poi.all('post').post({ content: $scope.comment }).then(
+        function success(data){
+          $scope.loadPosts();
+          $scope.comment = '';
+        },
+        function error(err){
+          console.log(err);
+        }
+      );
+    };
+
+    poi.get().then(
       function success(data){
-        console.log(data);
-        $scope.images = data;
-      },
-      function error(err){
-        console.log("Error retrieving media");
+        $scope.feature = data;
+        leafletData.getMap('viewMap').then(function (map){
+          var layer = L.geoJson(data).addTo(map);
+          map.fitBounds(layer.getBounds());
+        });
       }
     );
 
     $scope.loadPosts();
   });
-
 
 
 
@@ -124,20 +160,4 @@ angular.module('sorelcomApp')
         }
       }
     );
-  });
-
-
-angular.module('sorelcomApp')
-  .controller('POICtrl', function ($scope, $stateParams, leafletData, POI) {
-    POI.get({id: $stateParams.id})
-      .$promise
-      .then(
-        function success(data){
-          $scope.track = data;
-          $scope.geojson = { data: data.geometry };
-          leafletData.getMap().then(function (map){
-            map.fitBounds(L.geoJson(data.geometry).getBounds());
-          });
-        }
-      );  
   });

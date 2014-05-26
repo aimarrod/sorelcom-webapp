@@ -199,9 +199,54 @@ p
   width: 64px
   height: 64px
 
+.slider 
+  height: 256px
+  width: 100%
+
+
+figure.slide 
+  width: 100%
+  position: absolute
+  top: 0
+  left: 0
+  img
+    max-height: 256px
+    margin: auto
+    display: block
+
+.arrow 
+  position: absolute
+  z-index: 1100
+  display: block
+  top: 50%
+  margin-top: -35px
+  width: 36px
+  height: 71px
+  outline: none
+  cursor: pointer
+  background: none
+  border: none
+  opacity: 0.2
+  &:hover
+    opacity: 0.8
+
+.arrow.prev 
+  left: 20px
+  background-size: 100% 100%
+  background-image: url(../images/icon/slider/prev.png)
+  transition: 0.2s linear all
+
+
+.arrow.next
+  right: 20px
+  background-size: 100% 100%
+  background-image: url(../images/icon/slider/next.png)
+  transition: 0.2s linear all
+
 #signupPage
   width: 768px
   @media (max-width: 992px)
     width: 600px
   @media (max-width: 768px)
     width: 80%
+

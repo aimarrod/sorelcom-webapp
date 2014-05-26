@@ -18,19 +18,11 @@
     		</div>
     	</div>
     </div>
-    <div class="form-group" ng-show="selected">
-        <label for="name"> Name </label>
-        <input type="text" id="name" name="name" class="form-control" ng-model="selected.properties.name" />
-    </div>
-    <div class="form-group" ng-show="selected">
-        <label for="content"> Description </label>
-        <textarea rows="5" id="content" name="content" class="form-control" ng-model="selected.properties.content" />
-    </div>
 </div>
 <div class="modal-footer">
     <p class="pull-right">
-        <button type="button" ng-click="save()" class="btn green" ng-disabled="!selected"> 
-            Save 
+        <button type="button" ng-click="continue()" class="btn green" ng-disabled="!selected"> 
+            Continue
         </button>
     </p>
 </div>

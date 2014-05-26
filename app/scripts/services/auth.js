@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sorelcomApp')
-  .factory('Auth', function Auth($location, $rootScope , Session, User, $cookieStore) {
+  .factory('Auth', function Auth($location, $rootScope, $modal, Session, User, $cookieStore) {
     
     // Get currentUser from cookie
     $rootScope.currentUser = $cookieStore.get('user') || null;
@@ -106,6 +106,23 @@ angular.module('sorelcomApp')
       isLoggedIn: function() {
         var user = $rootScope.currentUser;
         return !!user;
+      },
+
+      requireLogin: function (callback){
+        if(!$rootScope.currentUser){
+          var modalInstance = $modal.open({
+            templateUrl: 'partials/login.html',
+            controller: 'LoginCtrl',
+          }).result.then(
+            function success() {
+              callback()  
+            }, function cancel() {
+              //What to do
+            }
+          );
+        } else { 
+          callback();
+        }
       },
     };
   });

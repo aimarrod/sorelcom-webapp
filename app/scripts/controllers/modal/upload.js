@@ -22,23 +22,20 @@ angular.module('sorelcomApp')
         }); 
 
         $scope.$on('flow::fileSuccess', function (even, $flow, file, message){
-            $scope.$emit('onNotification', 'error', 'Could not upload file ' + file.name);
+            $flow.files.splice($flow.files.indexOf(file), 1);
             if($flow.files.length == 0){
                 check();
             }
         }); 
 
         $scope.$on('flow::fileError', function (even, $flow, file, message){
-            $flow.files.splice($flow.files.indexOf(file), 1);
-            if($flow.files.length == 0){
-                check();
-            }
+            $scope.$emit('onNotification', 'error', 'Could not upload file ' + file.name);
         });         
 
         function check(){
             if($scope.errors == 0){
                 $scope.$emit('onNotification', 'success', 'Upload successful');
-            } 
+            }
         }
 
     });

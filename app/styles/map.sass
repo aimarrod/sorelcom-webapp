@@ -1,4 +1,6 @@
-/* Sidebar */
+$breakpoint: 970px
+
+/* Sidebar and container */
 #wrapper 
   bottom: 0
   top: 0
@@ -6,131 +8,70 @@
   position: absolute
   width: 100%
   transition: all 0.4s ease 0s
+
   &.active #sidebar-wrapper 
-    right: 0px
-    width: 400px
+    @media (min-width: $breakpoint)
+      right: 0px
+      width: 400px
+    @media (max-width: $breakpoint) 
+      right: 0px
+      width: 100%
+
+
   &.active #sidebar-open
-    right: -32px
-    width: 0px
+    @media (min-width: $breakpoint)
+      right: -32px
+      width: 0px
+    @media (max-width: $breakpoint) 
+      top: -32px
+      right: -32px
+      width: 0px
+      height: 0px
 
-#sidebar-open
-  right: 0px
-  top: 20px
-  position: absolute
-  overflow: hidden
-  transition: all 0.4s ease 0s
-  z-index: 1200
 
-#sidebar-wrapper 
-  right: -400px
-  width: 0px
+#sidebar-wrapper
   position: relative
   float: right
   height: 100%
   overflow-y: auto
-  transition: all 0.4s ease 0s
   background: white
   z-index: 1000
+  height: 100%
+  transition: all 0.4s ease 0s
 
+  @media (min-width: $breakpoint) 
+    right: -400px
+    width: 0px
+  @media (max-width: $breakpoint)
+    right: -100%
+    width: 0px
+
+  .container
+    width: 100%
 
   #sidebar
-    padding: 0px 0px 40px 0px
+    padding: 15px
 
   #content
     padding: 0px 25px 0px 25px
 
-  #header, .header
-    width: 100%
-    * 
-      display: inline-block
-    > a, button
-      border: none
-      position: absolute
-      height: 42px
-    > #back
-      left: 50px
-    > #close
-      right: 0px
-    h3
-      padding-left: 150px
-      width: 100%
-      margin: 8px 0px 8px 0px
-    
-  .btn-wide 
-    width: 100%
-    border-top: 1px solid black
-
-
-  .btn 
-    border-radius: 0
-
-  .btn:hover 
-    border-radius: 0
-
-  .title 
-    padding: 10px
-
-  .footer 
-    position: fixed
-    bottom: 0px
-    width: inherit
-    a
-      width: 24%
-
-  ul 
-    list-style-type: none
-
-
-/* Editor */
-
-#editor-buttons
-  button
-    display: inline-block
-    width: 20%
-    &:not(:first-child)
-      margin-left: -4px
-
-/* Explorer */
-
-#navigation
-  width: 100%
-  height: 35px
-  * 
-    display: inline-block
-  > button
-    border: none
-    width: 10%
-    height: 100%
-  h4
-    text-align: center
-    height: 100%
-    width: 70%
-    margin: 0px 0px 0px 0px
-
-.select-list
-  list-style: none
-  padding: 0
-  li
-    margin: 0px 0px 1px 0px
-    padding: 10px 32px 10px 32px
-    cursor: pointer
-
-.searchbox
-  padding: 10px
-
-.heading
-  margin: 0
-  padding: 10px 0px 10px 0px
-
-#sidebar-wrapper #menu 
-  max-height: 300px
-  overflow: auto
+#sidebar-open
+  right: 0px
+  height: 100%
+  background: rgb(0,0,0)
+  background: rgba(0,0,0,0.6)
+  color: white
+  position: absolute
+  overflow: hidden
+  transition: all 0.4s ease 0s
+  z-index: 1200
+  @media (max-width: $breakpoint) 
+    height: auto
 
 #map-wrapper, #page-content-wrapper 
   height: 100%
   position: relative
   overflow: hidden
-
 
 #menu-toggle 
   display: none
@@ -139,25 +80,113 @@
 .inset 
   padding: 20px
 
+.close
+  position: absolute
+  right: 10px
+  top: 10px
 
-@media (max-width: 767px) 
+/** Map tooltip */
+#map-tooltip
+  position: absolute
+  left: 0
+  right: 0
+  margin-left: auto
+  margin-right: auto
+  padding: 20px
+  top: 20px
+  z-index: 900
+
+  width: 700px
+
+  background: rgb(0,0,0)
+  background: rgba(0,0,0,0.7)
+  
+  border-radius: 20px
+  p
+    margin: 0px
+    color: rgb(255,255,255)
+
+/** Editor buttons */
+#editor-buttons
+  position: absolute
+  margin: auto
+  bottom: 10px
+  z-index: 900
+  @media (min-width: $breakpoint) 
+    width: 500px
+  @media (max-width: $breakpoint)
+    width: 100%
+  a, button
+    width: 100%
+
+
+/** Sidebar and elements inside the sidebar */
+
+/* Navigation */
+
+header
+  h2
+    margin-top: 0px
+
+nav#sidebar-nav
+  padding: 10px
+  a, button
+    width: 100%
+
+/* Default buttons */
+.action-buttons
+  padding: 20px 
+  button
+    border: none
+
+/* Editor */
+
+
+/* Explorer */
+
+#toggle-legend
+  background: none
+  font-size: 20px
+  margin-right: 10%
+  margin-left: 10%
+  width: 80%
+  &:hover
+    background: #DDD
+
+#map-legend
+  > section
+    margin-top: 20px
+    padding: 0px 20px 0px 20px
+    header
+      margin-bottom: 20px
+  #poi-legend section
+    margin-bottom: 15px
+
+#explore-list
+  list-style: none
+  padding: 0px
+  li
+    border-bottom: 1px solid #BABABA
+    a
+      padding: 10px
+      display: block
+      text-decoration: none
+
+#explore-list, #map-legend
+  .fa.fa-lg
+    line-height: 1
+
+
+
+
+@media (max-width: 992px) 
 
   #wrapper 
     padding-left: 0
 
 
-  #sidebar-wrapper 
-    right: -100%
-
-
   #wrapper.active 
     display: block
-
-
-  #wrapper.active #sidebar-wrapper 
-    right: 0px
-    width: 100%
-    transition: all 0.4s ease 0s
 
 
   #menu-toggle 
@@ -170,3 +199,7 @@
 
   .inset 
     padding: 15px
+
+  #map-tooltip
+    width: 60%
+

@@ -69,7 +69,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
 
     .state('web.poi', {
       url: '/poi/{id}',
-      templateUrl: 'partials/poi.html',
+      templateUrl: 'partials/feature.html',
       controller: 'POICtrl'
     })
 
@@ -81,7 +81,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
 
     .state('web.track', {
       url: '/track/{id}',
-      templateUrl: 'partials/track.html',
+      templateUrl: 'partials/feature.html',
       controller: 'TrackCtrl'
     })
 

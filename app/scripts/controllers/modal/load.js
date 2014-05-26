@@ -1,5 +1,5 @@
 angular.module('sorelcomApp')
-    .controller('LoadModalCtrl', function ($scope,  $modalInstance, $modal, Track) {
+    .controller('LoadModalCtrl', function ($scope, $modal, $modalInstance, $modal, Track) {
         $scope.defaults = {
             dragging: false,
             keyboard: false,
@@ -38,22 +38,13 @@ angular.module('sorelcomApp')
             $scope.geojson = [feature];
         }
 
-        $scope.save = function(){
-            Track.save($scope.selected)
-                .$promise.then(
-                    function success(data){
-                        $scope.$emit('onNotification', 'success', 'Track saved successfully');
-                        $modalInstance.close($scope.selected);
-                        $modal.open({
-                            templateUrl: 'partials/modals/upload.html',
-                            controller: 'UploadModalCtrl',
-                            resolve: { target: function () { return data.id; } } 
-                        });
-                    },
-                    function error(error){
-                        $scope.$emit('onNotification', 'error', error);
-                    }
-                );
+        $scope.continue = function(){
+            $modalInstance.dismiss();
+            $modal.open({
+                templateUrl: 'partials/modals/create.html',
+                controller: 'CreateModalCtrl',
+                resolve: { geojson: function () { return $scope.selected; } } 
+            });
         }
 
         function extractLayers(text, format) {

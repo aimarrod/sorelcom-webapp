@@ -30,7 +30,7 @@
         <a ui-sref="web.user({id: item.id})" class="col-sm-12 col-xs-12" ng-if="item.type==='UserAccount'">
           <article class="user">
             <div class="icon col-md-2 col-sm-2 col-xs-2">
-              <img src="/images/{{item.avatar}}" alt="user avatar">
+              <img ng-src="{{item.avatar}}" alt="user avatar">
             </div>
             <div class="info col-md-9 col-sm-10 col-xs-10">
               <h5>{{item.name}}</h5>

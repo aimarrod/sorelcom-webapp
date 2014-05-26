@@ -21,7 +21,9 @@
     "leaflet-plugins": "latest",
     "flow.js": "2.4.x",
     "ng-flow": "2.3.x",
-    "restangular": "latest"
+    "restangular": "latest",
+    "Leaflet.awesome-markers": "latest",
+    "leaflet.markercluster": "latest"
   },
   "devDependencies": {
     "angular-mocks": "1.2.11",
