@@ -1,73 +1,90 @@
-angular.module('sorelcomApp').controller('MapCtrl', function ($scope, $stateParams, $timeout, $modal, Map, Auth){
+angular.module('sorelcomApp').controller('MapCtrl', function ($scope, $timeout, Modal, Map, Tooltip, Auth, Editor){
     Map.initMap('map-wrapper');
-    $scope.SharedMap = Map;
-    $scope.sidebar = false;
+    $scope.state = Map.state;
+    $scope.Tooltip = Tooltip;
+
+
 
     $scope.closeSidebar = function(){
-        $scope.sidebar = false;
-        $timeout(function(){ SharedMap.map.invalidateSize()}, 400);
+      $scope.state.sidebarOpen = false;
+      $timeout(function(){ Map.map.invalidateSize()}, 400);
     };
 
     $scope.openSidebar = function(){
-        $scope.sidebar = true;
+      $scope.state.sidebarOpen = true;
     };
 
-
-    $scope.drawPOI = function(){
-        Auth.requireLogin(_drawPOI);
+    $scope.finish = function(){
+      var result = Editor.finishTask();
+      if(result)
+        if($scope.editingId)
+          //Wat
+          return;
+        else
+          Modal.create(result.toGeoJSON());
     };
 
-    $scope.drawTrack = function(){
-        Auth.requireLogin(_drawTrack);
-    };
-
-    $scope.finishDraw = function(){
-        var result = Map.finishDraw();
-        if(result)
-        $modal.open({
-            templateUrl: 'partials/modals/create.html',
-            controller: 'CreateModalCtrl',
-            resolve: { geojson: function () { return result.toGeoJSON(); } }
-        });
+    $scope.cancel = function(){
+      Editor.stopTask();
     }
-
-    $scope.stopDraw = function(){
-        SharedMap.stopAction();
-        $scope.openSidebar();
-    };
-
-    function _drawTrack(){
-        $scope.closeSidebar();
-        SharedMap.initDraw();
-    }
-
-    function _drawPOI(){
-        $scope.closeSidebar();
-        SharedMap.markPOI(function (latlng){
-            $scope.$apply(function (){
-                this.tooltip = '';
-                SharedMap.resetEvents();
-                $modal.open({
-                    templateUrl: 'partials/modals/create.html',
-                    controller: 'CreateModalCtrl',
-                    resolve: { geojson: function () { return L.marker(latlng).toGeoJSON(); } }
-                });
-            });
-        });
-    }
-
 
     $timeout($scope.openSidebar);
 });
 
 
 
-angular.module('sorelcomApp').controller('ExploreCtrl', function ($scope, API, Explorer) {
+angular.module('sorelcomApp').controller('ExploreCtrl', function ($scope, $modal, API, Explorer) {
     $scope.Explorer = Explorer;
     Explorer.init();
     $scope.$on('$destroy', Explorer.destroy)
 });
 
+angular.module('sorelcomApp').controller('EditorCtrl', function ($scope, Modal, Editor, Map, Tooltip, API, Auth){
+
+  $scope.markPOI = function(){
+    Auth.requireLogin(Editor.markPOI);
+  };
+
+  $scope.startDraw = function(){
+    Auth.requireLogin(Editor.startDraw);
+  };
+
+  $scope.startEdit = function(){
+    Modal.chooseImportMode().then(
+      function success(geojson){
+        Editor.startEdit(geojson);
+
+        if(geojson.properties && geojson.properties.id) /** Assign ID, to know if the track already existed */
+          $scope.editingId = geojson.properties.id;
+      }
+    );
+  };
+
+  $scope.$on('$destroy', function(){
+    Editor.stopTask();
+  });
+
+});
+
+angular.module('sorelcomApp').controller('ChooseCtrl', function($scope, Modal, $modalInstance){
+
+  $scope.fromServer = function(){
+    Modal.selectTrack().then(
+      function success(geojson){
+        $modalInstance.close(geojson);
+      }
+    );
+  };
+
+  $scope.fromGPX = function(){
+    Modal.importGPX().then(
+      function success(geojson){
+        $modalInstance.close(geojson);
+      }
+    );
+  };
+
+});
 
 
 function isValid(properties){

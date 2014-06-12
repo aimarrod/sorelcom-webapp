@@ -18,7 +18,7 @@ angular.module('sorelcomApp')
     }
 
     $scope.init = function(api){
-      api.getList('media').then(
+      api.getList('images').then(
         function success(data){
           $scope.slides = data;
           $scope.currentIndex = 0;

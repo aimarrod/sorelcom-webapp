@@ -1,22 +1,22 @@
-<div id="wrapper" ng-class="{active: sidebar}">
+<div id="wrapper" ng-class="{active: state.sidebarOpen}">
 
-  <div id="map-tooltip" ng-show="SharedMap.tooltip">
-    <p class="text-center" ng-bind-html="SharedMap.tooltip"></p>
+  <div id="map-tooltip" ng-show="Tooltip.text">
+    <p class="text-center" ng-bind-html="Tooltip.text"></p>
   </div>
 
-  <div id="editor-buttons" ng-show="SharedMap.editing">
+  <div id="editor-buttons" ng-show="state.showButtons">
     <div class="col-md-6 col-sm-6 col-xs-6">
-      <a class="btn green" role="button" ng-click="finishDraw()">
-        <span class="fa fa-check"></span> Submit
+      <a class="btn green" role="button" ng-click="finish()">
+        <span class="fa fa-check"></span>
       </a>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-6">
-      <a class="btn red" role="button" ng-click="stopDraw()">
-        <span class="glyphicon glyphicon-remove"></span> Cancel
+      <a class="btn red" role="button" ng-click="cancel()">
+        <span class="glyphicon glyphicon-remove"></span>
       </a>
     </div>
   </div>
-  
+
   <button id="sidebar-open" class="btn" ng-click="openSidebar()">
     <span class="icon fa fa-bars fa-2x"></span>
   </button>
@@ -32,7 +32,7 @@
       <header id="sidebar-header">
         <h2 class="text-center"><a ui-sref="web.home"> SORELCOM </a></h2>
       </header>
-  	 
+
       <nav id="sidebar-nav" class="row">
         <div class="col-md-4 col-sm-4 col-xs-4">
           <a class="btn green" role="button" ui-sref="map.explore">
@@ -51,22 +51,22 @@
         </div>
       </nav>
 
-      <div id="sidebar-body" ui-view> 
-        <section id="editor">
+      <div id="sidebar-body" ui-view>
+        <section id="editor" ng-controller="EditorCtrl">
           <div class="action-buttons">
             <div class="row">
-              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="drawTrack()">
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="startDraw()">
                 <img src="/images/icon/action/pencil.png" alt="Pencil icon" />
                 <p>Draw a route</p>
               </button>
-              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="drawPOI()">
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="markPOI()">
                 <img src="/images/icon/action/marker.png" alt="Marker icon" />
                 <p>Mark a POI</p>
               </button>
             </div>
             <hr/>
             <div class="row">
-              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="drawNote()">
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="markNote()">
                 <img src="/images/icon/action/note.png" alt="Note icon" />
                 <p>Leave a Note</p>
               </button>
@@ -76,20 +76,20 @@
               </button>
             </div>
             <hr/>
-            <div class="row">   
+            <div class="row">
               <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="startFuse()">
                 <img src="/images/icon/action/wrench.png" alt="Wrench icon" />
                 <p>Fuse two routes</p>
               </button>
-              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="startFuse()">
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="startEdit()">
                 <img src="/images/icon/action/edit.png" alt="Edit icon" />
                 <p>Edit a route</p>
-              </button>        
+              </button>
             </div>
           </div>
         </section>
       </div>
-    
+
     </div>
   </div>
 

@@ -1,47 +1,27 @@
 <div class="container page-content" id="searchpage">
-  
+
   <form class="input-group" ng-submit="search()">
     <input type="text" name="query" class="form-control" ng-model="query">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" ng-click="search()"><span class="fa fa-search"></span></button>
     </span>
   </form>
-  
+
   <main>
     <ul>
       <li ng-repeat="item in searchResults" class="row">
         <!-- Track -->
-        <a ui-sref="web.track({id: item.id})" class="col-sm-12 col-xs-12" ng-if="item.type==='Track'">
-          <article class="track">
+        <a ui-sref="{{makeRef(item)}}" class="col-sm-12 col-xs-12">
+          <article>
             <div class="icon col-md-2 col-sm-2 col-xs-2">
-              <img src="/images/icons/track.png" alt="track icon">
+              <img ng-src="{{makeIconUrl(item)}}" alt="icon">
             </div>
             <div class="info col-md-9 col-sm-10 col-xs-10">
               <h5>{{item.name}}</h5>
               <div class="details">
-                <p>{{item.content | limitTo: 40 }}...</p>
-                <p><span class="fa fa-comment"> {{item.comments || 0}} </span>
-                <p><span class="fa fa-user">&nbsp;</span> {{item.creator}} </p>
-              </div>
-            </div>
-          </article>
-        </a>
-        <!-- User account -->
-        <a ui-sref="web.user({id: item.id})" class="col-sm-12 col-xs-12" ng-if="item.type==='UserAccount'">
-          <article class="user">
-            <div class="icon col-md-2 col-sm-2 col-xs-2">
-              <img ng-src="{{item.avatar}}" alt="user avatar">
-            </div>
-            <div class="info col-md-9 col-sm-10 col-xs-10">
-              <h5>{{item.name}}</h5>
-              <div class="details">
-                <p>
-                  <span class="fa fa-road">&nbsp;</span> {{item.tracks}} 
-                  <span class="fa fa-map-marker">&nbsp;</span> {{item.pois}} 
-                  <span class="fa fa-tag">&nbsp;</span> {{item.notes}}
-                  <span class="fa fa-comment">&nbsp;</span> {{item.posts}} 
-                </p>
-                <p><span class="fa fa-envelope">&nbsp;</span> {{item.email}} </p>
+                <p ng-if="item.content">{{item.content | limitTo: 40 }}...</p>
+                <p ng-if="item.comments"><span class="fa fa-comment"> {{item.comments || 0}} </span>
+                <p ng-if="item.author"><span class="fa fa-user">&nbsp;</span> {{item.author}} </p>
               </div>
             </div>
           </article>

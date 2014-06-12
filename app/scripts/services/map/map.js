@@ -1,6 +1,11 @@
 angular.module('sorelcomApp').service('Map', function Map(API){
     var that = this;
 
+    this.state = {
+      sidebarOpen: false,
+      showButtons: false
+    };
+
     this.initMap = function(id){
 
         var baseLayers = {

@@ -2,7 +2,7 @@
 
 angular.module('sorelcomApp')
   .factory('Auth', function Auth($location, $rootScope, $modal, Session, User, $cookieStore) {
-    
+
     // Get currentUser from cookie
     $rootScope.currentUser = $cookieStore.get('user') || null;
     $cookieStore.remove('user');
@@ -11,10 +11,10 @@ angular.module('sorelcomApp')
 
       /**
        * Authenticate user
-       * 
+       *
        * @param  {Object}   user     - login info
        * @param  {Function} callback - optional
-       * @return {Promise}            
+       * @return {Promise}
        */
       login: function(user, callback) {
         var cb = callback || angular.noop;
@@ -32,9 +32,9 @@ angular.module('sorelcomApp')
 
       /**
        * Unauthenticate user
-       * 
+       *
        * @param  {Function} callback - optional
-       * @return {Promise}           
+       * @return {Promise}
        */
       logout: function(callback) {
         var cb = callback || angular.noop;
@@ -50,10 +50,10 @@ angular.module('sorelcomApp')
 
       /**
        * Create a new user
-       * 
+       *
        * @param  {Object}   user     - user info
        * @param  {Function} callback - optional
-       * @return {Promise}            
+       * @return {Promise}
        */
       createUser: function(user, callback) {
         var cb = callback || angular.noop;
@@ -65,16 +65,16 @@ angular.module('sorelcomApp')
           function(err) {
             return cb(err);
           }).$promise;
-          
+
       },
 
       /**
        * Change password
-       * 
-       * @param  {String}   oldPassword 
-       * @param  {String}   newPassword 
+       *
+       * @param  {String}   oldPassword
+       * @param  {String}   newPassword
        * @param  {Function} callback    - optional
-       * @return {Promise}              
+       * @return {Promise}
        */
       changePassword: function(oldPassword, newPassword, callback) {
         var cb = callback || angular.noop;
@@ -91,7 +91,7 @@ angular.module('sorelcomApp')
 
       /**
        * Gets all available info on authenticated user
-       * 
+       *
        * @return {Object} user
        */
       currentUser: function() {
@@ -100,14 +100,19 @@ angular.module('sorelcomApp')
 
       /**
        * Simple check to see if a user is logged in
-       * 
+       *
        * @return {Boolean}
        */
       isLoggedIn: function() {
         var user = $rootScope.currentUser;
         return !!user;
       },
-
+      isSameUser: function(name){
+        return !!$rootScope.currentUser && $rootScope.currentUser.name === name;
+      },
+      loggedUser: function(){
+        return $rootScope.currentUser;
+      },
       requireLogin: function (callback){
         if(!$rootScope.currentUser){
           var modalInstance = $modal.open({
@@ -115,12 +120,12 @@ angular.module('sorelcomApp')
             controller: 'LoginCtrl',
           }).result.then(
             function success() {
-              callback()  
+              callback()
             }, function cancel() {
               //What to do
             }
           );
-        } else { 
+        } else {
           callback();
         }
       },

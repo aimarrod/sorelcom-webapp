@@ -15,7 +15,8 @@
     "gm": "*",
     "dateutil": "0.1.0",
     "step": "latest",
-    "extend": "latest"
+    "extend": "latest",
+    "xmlbuilder": "latest"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

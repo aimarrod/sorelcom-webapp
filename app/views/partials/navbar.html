@@ -1,19 +1,19 @@
 <div class="navbar-wrapper">
-  <div class="container">  
-    <div  class="navbar navbar-default navbar-static-top darker" 
-        role="navigation" 
+  <div class="container">
+    <div  class="navbar navbar-default navbar-static-top darker"
+        role="navigation"
         ng-controller="NavbarCtrl">
 
     <div class="brand">
       <h1 class="title"> SORELCOM </h1>
-      <p class="subtitle">Social Routes Empowered by Linked Contents and Context Mining</p>
+      <p class="subtitle">Trails and Point of Interest of the World</p>
     </div>
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span ng-repeat="item in menu" class="icon-bar"></span>
       </button>
     </div>
-    <div class="navbar-collapse collapse">  
+    <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav pull-left">
         <li ng-repeat="item in menu" ng-class="{active: state.includes(item.state)}">
           <a ui-sref="{{item.state}}">{{item.title}}</a>

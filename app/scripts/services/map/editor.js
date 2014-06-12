@@ -1,75 +1,76 @@
-angular.module('sorelcomApp').service('Editor', function Editor(API, Map){
+angular.module('sorelcomApp').service('Editor', function Editor($rootScope, API, Map, Tooltip, Modal){
   var that = this;
 
-  this.markPOI = function(callback){
-    this.stopAction();
-    this.map.off('click');
-    this.tooltip = 'Click on the map to choose location';
-    this.map.on('click', L.bind(function(e){
-      this.stopAction();
-      $rootScope.$digest();
-      callback(e.latlng);
-    }, this));
+  that.markPOI = function(){
+    that.stopTask();
+
+    Tooltip.setText('Click on the map to choose location');
+    Map.map.on('click', function(e){
+      that.stopTask();
+      Modal.create(L.marker(e.latlng).toGeoJSON());
+    });
   };
 
-  this.startDraw = function(){
-    this.stopAction();
+  that.startDraw = function(){
+    that.stopTask();
 
-    Map.tooltip = 'Click on the map to start editing';
-    this.editing = L.polyline([]).addTo(this.map);
-    this.circle = null;
-    var latlngs = this.editing.getLatLngs();
-    this.map.on('click', function(e){
+    Tooltip.setText('Click on the map to start editing');
+    Map.state.showButtons = true;
+
+    var editor = L.Polyline.PolylineEditor([[45.2750072361, 13.7187695503],[45.2750072361, 13.7187695503]], {maxMarkers: 100});
+    that.editing = L.polyline([]).addTo(Map.map);
+    var latlngs = that.editing.getLatLngs();
+
+    Map.map.on('click', function(e){
+      //Cannot allow to input too separated points on a route
       if(latlngs.length > 0 && e.latlng.distanceTo(latlngs[latlngs.length-1]) > 500) return;
       that.editing.addLatLng(e.latlng);
       that.editing.redraw();
       if(!that.circle){
-        that.circle = L.circle(latlngs[latlngs.length-1], 500, {weight: 1, color: 'green'}).addTo(that.map);
-        $rootScope.$apply(function(){
-          that.tooltip = '<p>Click inside the <strong class="yellow-text">circle</strong> to add a point.</p> \
-              <p>Press <strong class="green-text">submit</strong> to finish editing</p> \
-              <p>Press <strong class="red-text">Cancel</strong> to cancel the edition</p>';
-        });
+        that.circle = L.circle(latlngs[latlngs.length-1], 500, {weight: 1, color: 'green'}).addTo(Map.map);
+        Tooltip.setText('<p>Click inside the <strong class="yellow-text">circle</strong> to add a point.</p> \
+          <p>Press <strong class="green-text">submit</strong> to finish editing</p> \
+          <p>Press <strong class="red-text">Cancel</strong> to cancel the edition</p>');
       } else {
         that.circle.setLatLng(latlngs[latlngs.length-1])
         that.circle.redraw();
       }
     });
-  }
-
-  this.stopAction = function(){
-    this.tooltip = null;
-    this.map.off('click');
-    if(this.circle){
-      this.map.removeLayer(this.circle);
-      this.circle = null;
-    }
-    if(this.editing){
-      this.map.removeLayer(this.editing);
-      this.editing = null;
-    }
   };
 
-  this.startEdit = function(){
+  this.startEdit = function(geojson) {
+    that.editing = L.Polyline.PolylineEditor(L.GeoJSON.coordsToLatLngs(geojson.geometry.coordinates), {maxMarkers: 500});
+    that.editing.addTo(Map.map);
+    Map.map.fitBounds(that.editing.getBounds());
+    Map.state.showButtons = true;
+  };
 
+  this.stopTask = function(){
+    Tooltip.clear();
+    Map.map.off('click');
+    Map.state.showButtons = false;
+    if(that.circle){
+      Map.map.removeLayer(that.circle);
+      that.circle = null;
+    }
+    if(that.editing){
+      if(that.editing._markers) /** Remove editable polyline */
+        that.editing.removeFrom(Map.map);
+      else /** Remove regular polyline */
+        Map.map.removeLayer(that.editing);
+      that.editing = null;
+    }
   };
 
   this.startJoin = function(){
 
-
   };
 
-
-
-  this.finishDraw = function(){
-    var result = this.editing;
-    this.stopAction();
+  this.finishTask = function(){
+    var result = that.editing;
+    that.stopTask();
     if(result.getLatLngs().length > 1)
       return result;
     return null;
-  };
-
-  this.finishEdit = function(){
-
   };
 });

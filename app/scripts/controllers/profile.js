@@ -1,27 +1,55 @@
 angular.module('sorelcomApp')
-  .controller('ProfileCtrl', function ($scope, $rootScope, $filter, Auth) {
-  	$scope.user = Auth.currentUser();
-  	$scope.flowOptions = {
-  		singleFile: true,
-  		target: '/api/files/User',
-  		testChunks: false
-		};
+  .controller('ProfileCtrl', function ($scope, $rootScope, $filter, API) {
+  	var resource = API.all('users');
 
-		$scope.user.$promise.then(
-			function success(user){
-				$scope.filters = 
-				[ 
-					{	name: 'Track', data: $filter('filter')(user.created, {type: 'Track'}) },
-					{	name: 'Points of Interest',	data: $filter('filter')(user.created, {type: 'POI'}) },
-					{	name: 'Notes', data: $filter('filter')(user.created, {type: 'Note'})	},
-					{ name: 'Posts', data: $filter('filter')(user.created, {type: 'Post'}) }
-				];
-				
-				$scope.currentFilter = $scope.filters[0];
+    resource.one('me').getList().then(
+      function success(data){
+        $scope.user = data[0];
+        $scope.user.route = '';
+        loadTrails();
+        loadPois();
+        loadBuddies();
+        loadFollowers();
+      }
+    );
 
-				$scope.setFilter = function(filter){
-					$scope.currentFilter = filter;
-				}
-			}
-		);
+    $scope.saveChanges = function(){
+      $scope.user.put().then(
+        function success(){
+          console.log("EH");
+        }
+      );
+    };
+
+    function loadTrails() {
+      resource.one($scope.user.name).getList('trails').then(
+        function success(data){
+          $scope.trails = data;
+        }
+      )
+    }
+
+    function loadPois() {
+      resource.one($scope.user.name).getList('pois').then(
+        function success(data){
+          $scope.pois = data;
+        }
+      )
+    }
+
+    function loadFollowers() {
+      resource.one($scope.user.name).getList('followers').then(
+        function success(data){
+          $scope.followers = data;
+        }
+      )
+    }
+
+    function loadBuddies() {
+      resource.one($scope.user.name).getList('buddies').then(
+        function success(data){
+          $scope.buddies = data;
+        }
+      )
+    }
 	});

@@ -1,4 +1,4 @@
-angular.module('sorelcomApp').controller("HomeCtrl", function ($scope, $http, $modal, info, slides, leafletData) {
+angular.module('sorelcomApp').controller("HomeCtrl", function ($scope, $http, Modal, info, slides, leafletData) {
 
 	$scope.defaults = {
 		zoomControl: false,
@@ -13,7 +13,7 @@ angular.module('sorelcomApp').controller("HomeCtrl", function ($scope, $http, $m
 		for(var i = 0, len = data.length; i < len; i++){
 
 			$scope.slides.push({
-				name: data[i].properties.name, 
+				name: data[i].properties.name,
 				author: {
 					id: data[i].properties.authorId,
 					name: data[i].properties.author
@@ -30,7 +30,7 @@ angular.module('sorelcomApp').controller("HomeCtrl", function ($scope, $http, $m
 
 			$scope.$watchCollection('slides['+i+']', function(newVal, oldVal){
 				var index = $scope.slides.indexOf(newVal);
-				var slide = $scope.slides[index]; 
+				var slide = $scope.slides[index];
 				if(slide.active && !slide.shown){
 					slide.shown = true;
 					leafletData.getMap('slideMap'+index).then(function(map){
@@ -48,15 +48,12 @@ angular.module('sorelcomApp').controller("HomeCtrl", function ($scope, $http, $m
 						if(map.tap)
 							map.tap.disable();
 					});
-				}		
+				}
 			});
 		};
 	}
 
 	$scope.upload = function(){
-		$modal.open({          
-			templateUrl: 'partials/modals/load.html',
-      controller: 'LoadModalCtrl',
-    });
+		Modal.loadGPX();
 	}
 });

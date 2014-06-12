@@ -1,8 +1,8 @@
-angular.module('sorelcomApp').service('Explorer', function Explorer($rootScope, $q, API, Map){
+angular.module('sorelcomApp').service('Explorer', function Explorer($rootScope, $q, API, Map, $compile){
   var that = this;
 
   this.init = function(){
-    Map.map.on('moveend', _showView);
+    Map.map.on('moveend', showView);
     API.get('amenities').then(
       function success(data){
         that.categories = data.categoryGroups;
@@ -18,10 +18,10 @@ angular.module('sorelcomApp').service('Explorer', function Explorer($rootScope, 
   };
 
   this.destroy = function(){
-    if(this.canceler)
-      this.canceler.resolve();
-    this.clean();
-    Map.map.off('moveend', visualize);
+    if(that.canceler)
+      that.canceler.resolve();
+    that.clean();
+    Map.map.off('moveend', showView);
   }
 
   this.clean = function(){
@@ -31,25 +31,38 @@ angular.module('sorelcomApp').service('Explorer', function Explorer($rootScope, 
       }
   };
 
-  var _showView = function(geojson){
+  function showView(geojson){
     if(!that.categories)
       return;
     var query = { bbox: Map.map.getBounds().toBBoxString() }
-    if(!_canViewRoutes())
+    if(!canViewRoutes())
       query.type = 'POI';
 
     that.canceler = $q.defer();
 
     API.withHttpConfig({timeout: that.canceler}).get('within', query).then(
-        _loadGeoJSON
+        loadGeoJSON
     );
   };
 
-  var _canViewRoutes = function(){
+  function canViewRoutes(){
     return Map.map.getZoom() > 6;
   };
 
-  var _loadGeoJSON = function(geojson){
+  function makePopup(type, properties){
+    var html = '<div class="popup-box">';
+    if(properties.name)
+      html += '<h3>' + properties.name + '</h3>';
+    if(properties.description)
+      html += '<p>' + properties.description + '</p>';
+    if(properties.difficulty)
+      html += '<p> <strong>Difficulty:</strong> ' + properties.difficulty + '</p>';
+    html += '<button class="btn blue" ui-sref="web.'+((type==='LineString')?'trail':'poi')+'({id: \'' + properties.id + '\'})">Details</button>';
+    html += '<div>';
+    return $compile(angular.element(html))($rootScope.$new());
+  }
+
+  function loadGeoJSON(geojson){
     that.clean();
     that.explorerData = { layer: L.layerGroup(), data: [] };
     that.explorerData.layer.addTo(Map.map);
@@ -60,6 +73,7 @@ angular.module('sorelcomApp').service('Explorer', function Explorer($rootScope, 
           else
             feature.properties.type = 'POI';
           that.explorerData.data.push(feature.properties);
+          layer.bindPopup(makePopup(feature.geometry.type, feature.properties)[0]);
       },
       pointToLayer: function(feature, latlng){
           if(feature.properties.category in that.icons){

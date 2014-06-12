@@ -1,42 +1,41 @@
 angular.module('sorelcomApp')
 	.controller('SearchCtrl', function ($scope, $q, $http, initData) {
-    
+
     $scope.searchResults = initData;
-    console.log(initData);
 
+		$scope.makeRef = function(item){
+			if(item.type === 'Person')
+				return 'web.user({id: item.id})'
+			if(item.type === 'Trail')
+				return 'web.trail({id: item.id})'
+			if(item.type === 'PointOfInterest')
+				return 'web.poi({id: item.id})'
+			return 'web.home';
+		};
 
-    $scope.POIClass = function(amenity){
-      if(amenity === "Cultural")
-        return "green";
-      else if(amenity === "Bike")
-        return "yellow";
-      else if(amenity === "Cafe")
-        return "orange";
-      else
-        return "red";
-    }
-
-    $scope.POIImage = function(amenity){
-      if(amenity === "Cultural")
-        return "cultural.png";
-      else if(amenity === "Bike")
-        return "bike.png";
-      else if(amenity === "Cafe")
-        return "cafe.png"
-      else
-        return "android.png";      
-    }
+		$scope.makeIconUrl = function(item){
+			if(item.type === 'Person')
+				return item.avatar;
+			else if(item.type === 'Trail')
+				return '/images/icons/track.png';
+			else if(item.type === 'PointOfInterest')
+				return '';
+		}
 
     $scope.search = function(){
       if($scope.canceller)
         $scope.canceller.resolve();
-      
+
       $scope.canceller = $q.defer();
 
       $http({method: 'GET', url: '/api/search', params: {query: $scope.query}, timeout: $scope.canceller.promise})
       .success(function(data){
+				console.log(data);
         $scope.canceller = null;
-        $scope.searchResults = data;
+				if(data.length > 1 || data[0].type)
+        	$scope.searchResults = data;
+				else
+					$scope.searchResults = [];
       })
       .error(function(err){
         $scope.canceller = null;
@@ -47,14 +46,14 @@ angular.module('sorelcomApp')
 
 
 angular.module('sorelcomApp')
-  .controller('TrackCtrl', function ($scope, $stateParams, Restangular, Track, leafletData) {
+  .controller('FeatureCtrl', function ($scope, $stateParams, leafletData, API, resource) {
     $scope.Math = window.Math;
-    var track = Restangular.one('api/tracks', $stateParams.id);
+    var feature = API.all(resource).one($stateParams.id);
 
-    $scope.resource = track;
+    $scope.resource = feature;
 
     $scope.loadPosts = function(){
-      track.getList('post').then(
+      feature.getList('post').then(
         function success(data){
           $scope.posts = data;
         },
@@ -67,7 +66,7 @@ angular.module('sorelcomApp')
     $scope.post = function(){
       if(!$scope.comment)
         return
-      track.all('post').post({ content: $scope.comment }).then(
+      feature.all('post').post({ text: $scope.comment }).then(
         function success(data){
           $scope.loadPosts();
           $scope.comment = '';
@@ -78,54 +77,10 @@ angular.module('sorelcomApp')
       );
     };
 
-    track.get().then(
+    feature.get().then(
       function success(data){
         $scope.feature = data;
-        leafletData.getMap('viewMap').then(function (map){
-          var layer = L.geoJson(data).addTo(map);
-          map.fitBounds(layer.getBounds());
-        });
-      }
-    );
-    
-    $scope.loadPosts();
-  });
-
-angular.module('sorelcomApp')
-  .controller('POICtrl', function ($scope, $stateParams, API, leafletData) {
-    $scope.Math = window.Math;
-    var poi = API.one('pois', $stateParams.id);
-
-    $scope.resource = poi;
-
-    $scope.loadPosts = function(){
-      poi.getList('post').then(
-        function success(data){
-          $scope.posts = data;
-        },
-        function error(err){
-          console.log(err);
-        }
-      );
-    };
-
-    $scope.post = function(){
-      if(!$scope.comment)
-        return
-      poi.all('post').post({ content: $scope.comment }).then(
-        function success(data){
-          $scope.loadPosts();
-          $scope.comment = '';
-        },
-        function error(err){
-          console.log(err);
-        }
-      );
-    };
-
-    poi.get().then(
-      function success(data){
-        $scope.feature = data;
+				console.log(data);
         leafletData.getMap('viewMap').then(function (map){
           var layer = L.geoJson(data).addTo(map);
           map.fitBounds(layer.getBounds());
@@ -135,29 +90,112 @@ angular.module('sorelcomApp')
 
     $scope.loadPosts();
   });
+
+
 
 
 
 //Finished (en principio)
 angular.module('sorelcomApp')
-  .controller('UserCtrl', function ($scope, $stateParams, $filter, User) {
-  	$scope.user = User.get({id: $stateParams.id});
+  .controller('UserCtrl', function ($scope, $stateParams, Auth, API) {
+  	var resource = API.all('users').one($stateParams.id);
 
-    $scope.user.$promise.then(
-      function success(user){
-        $scope.filters = 
-        [ 
-          { name: 'Track', data: $filter('filter')(user.created, {type: 'Track'}) },
-          { name: 'Points of Interest', data: $filter('filter')(user.created, {type: 'POI'}) },
-          { name: 'Notes', data: $filter('filter')(user.created, {type: 'Note'})  },
-          { name: 'Posts', data: $filter('filter')(user.created, {type: 'Post'}) }
-        ];
-        
-        $scope.currentFilter = $scope.filters[0];
+		function loadTrails() {
+			resource.getList('trails').then(
+				function success(data){
+					$scope.trails = data;
+				}
+			)
+		}
 
-        $scope.setFilter = function(filter){
-          $scope.currentFilter = filter;
-        }
-      }
-    );
+		function loadPois() {
+			resource.getList('pois').then(
+				function success(data){
+					$scope.pois = data;
+				}
+			)
+		}
+
+		function loadBuddies() {
+			resource.getList('buddies').then(
+				function success(data){
+					$scope.buddies = data;
+					if($scope.me!==undefined && $scope.me !== null){
+						for(var i = 0, l = $scope.buddies.length; i < l; i++){
+							if($scope.buddies[i].name === $scope.me.name){
+								$scope.imBuddy = true;
+								break;
+							}
+						}
+					}
+				}
+			)
+		}
+
+		function loadFollowers(){
+			resource.getList('followers').then(
+				function success(data){
+					$scope.followers = data;
+					if($scope.me!==undefined && $scope.me !== null){
+						for(var i = 0, l = $scope.followers.length; i < l; i++){
+							if($scope.followers[i].name === $scope.me.name){
+								$scope.imFollower = true;
+								break;
+							}
+						}
+					}
+				}
+			)
+		}
+
+		resource.get().then(
+			function success(data){
+				$scope.user = data[0];
+				$scope.me = Auth.loggedUser();
+				loadTrails();
+				loadPois();
+				loadBuddies();
+				loadFollowers();
+			}
+		)
+
+		$scope.show = function(name) {
+			$scope.showing = name;
+		};
+
+		$scope.isMe = function(){
+			return $scope.me===undefined || $scope.me===null || $scope.user.name === $scope.me.name;
+		};
+
+		$scope.follow = function(){
+			resource.post('followers').then(
+				function success(){
+					$scope.imFollower = true;
+				},
+				function error(){
+					console.log("EH");
+				}
+			);
+		};
+
+		$scope.unfollow = function(){
+			$scope.imFollower = false;
+		};
+
+		$scope.addBuddy = function(){
+			resource.post('buddies').then(
+				function success(){
+					$scope.imBuddy = true;
+				},
+				function error(){
+					console.log("EH");
+				}
+			);
+		};
+
+		$scope.removeBuddy = function(){
+			$scope.imBuddy = false;
+		}
+
+		$scope.showing = 'trails';
   });

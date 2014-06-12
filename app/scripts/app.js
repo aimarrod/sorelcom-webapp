@@ -30,13 +30,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     .state('map.editor', {
       url: '/editor?id&upload',
       templateUrl: 'partials/map/editor.html',
-      controller: 'EditorCtrl'  
+      controller: 'EditorCtrl'
     })
 
     .state('map.explore', {
       url: '/explore?id',
       templateUrl: 'partials/map/explore.html',
-      controller: 'ExploreCtrl'  
+      controller: 'ExploreCtrl'
     })
 
     $stateProvider.state('web.home', {
@@ -70,7 +70,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     .state('web.poi', {
       url: '/poi/{id}',
       templateUrl: 'partials/feature.html',
-      controller: 'POICtrl'
+      controller: 'FeatureCtrl',
+      resolve: {
+        resource: function(){ return 'pois'; }
+      }
     })
 
     .state('web.user', {
@@ -79,10 +82,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       controller: 'UserCtrl'
     })
 
-    .state('web.track', {
+    .state('web.trail', {
       url: '/track/{id}',
       templateUrl: 'partials/feature.html',
-      controller: 'TrackCtrl'
+      controller: 'FeatureCtrl',
+      resolve: {
+        resource: function(){ return 'trails'; }
+      }
     })
 
     .state('web.search', {
@@ -106,7 +112,7 @@ app.run( function ($rootScope, $location, $modal, $state, Auth) {
     var loginRequired = ['settings', 'upload'];
 
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
-        if(loginRequired.indexOf(next.name) > -1 && !Auth.isLoggedIn()){ 
+        if(loginRequired.indexOf(next.name) > -1 && !Auth.isLoggedIn()){
           event.preventDefault();
 
           var modalInstance = $modal.open({
