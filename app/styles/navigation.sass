@@ -1,0 +1,41 @@
+@import colors
+.navbar
+  background: rgba(44, 44, 44, 0.75)
+  border-radius: 0px
+  *:not(i)
+    font-family: 'Oswald', sans-serif
+    font-size: 16px
+  i
+    margin-right: 5px
+  a
+    color: rgb(180, 180, 180)
+    border-bottom: 3px solid transparent
+    &:hover
+      color: $white
+      border-bottom: 3px solid $green
+      background-color: transparent !important
+  .container
+    padding-top: 0px
+
+/* The footer */
+.sticky-footer
+  @media (max-width:767px)
+    display: none
+
+  width: 100%
+  padding: 0px 0px 50px 0px
+
+  h1, h2, h3, h4, h5, h6
+    transform: scale(1, 1.1) /* W3C */
+    -webkit-transform: scale(1, 1.1) /* Safari and Chrome */
+    -moz-transform: scale(1, 1.1) /* Firefox */
+    -ms-transform: scale(1, 1.1) /* IE 9 */
+    -o-transform: scale(1, 1.1) /* Opera */
+
+
+  .list-link
+    background: none !important
+    display: block
+    &:hover
+      background: none !important
+      text-decoration: underline

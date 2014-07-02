@@ -15,13 +15,7 @@ var app = angular.module('sorelcomApp', [
 
 app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
 
-    $stateProvider.state('web', {
-      abstract: true,
-      url: '',
-      templateUrl: 'partials/layout.html'
-    })
-
-    .state('map', {
+    $stateProvider.state('map', {
       url: '/map',
       templateUrl: 'partials/map/map.html',
       controller: 'MapCtrl'
@@ -39,7 +33,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       controller: 'ExploreCtrl'
     })
 
-    $stateProvider.state('web.home', {
+    .state('home', {
       url: '/',
       templateUrl: 'partials/home.html',
       controller: 'HomeCtrl',
@@ -55,19 +49,19 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       }
     })
 
-    .state('web.signup', {
+    .state('signup', {
       url: '/signup',
       templateUrl: 'partials/signup.html',
       controller: 'SignupCtrl'
     })
 
-    .state('web.profile', {
+    .state('profile', {
       url: '/profile',
       templateUrl: 'partials/profile.html',
       controller: 'ProfileCtrl'
     })
 
-    .state('web.poi', {
+    .state('poi', {
       url: '/poi/{id}',
       templateUrl: 'partials/feature.html',
       controller: 'FeatureCtrl',
@@ -76,13 +70,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       }
     })
 
-    .state('web.user', {
+    .state('user', {
       url: '/user/{id}',
       templateUrl: 'partials/user.html',
       controller: 'UserCtrl'
     })
 
-    .state('web.trail', {
+    .state('trail', {
       url: '/track/{id}',
       templateUrl: 'partials/feature.html',
       controller: 'FeatureCtrl',
@@ -91,7 +85,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       }
     })
 
-    .state('web.search', {
+    .state('search', {
       url: '/search',
       templateUrl: 'partials/search.html',
       controller: 'SearchCtrl',

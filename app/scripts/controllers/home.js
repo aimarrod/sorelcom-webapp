@@ -1,4 +1,4 @@
-angular.module('sorelcomApp').controller("HomeCtrl", function ($scope, $http, Modal, info, slides, leafletData) {
+angular.module('sorelcomApp').controller("HomeCtrl", function ($scope, $http, Modal, info, slides, leafletData, $location, $anchorScroll) {
 
 	$scope.defaults = {
 		zoomControl: false,
@@ -55,5 +55,10 @@ angular.module('sorelcomApp').controller("HomeCtrl", function ($scope, $http, Mo
 
 	$scope.upload = function(){
 		Modal.loadGPX();
-	}
+	};
+
+	$scope.goToMap = function(){
+		$location.hash('map');
+		$anchorScroll();
+	};
 });

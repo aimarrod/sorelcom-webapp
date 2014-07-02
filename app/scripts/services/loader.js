@@ -19,12 +19,10 @@ angular.module('sorelcomApp').service('Loader', function Loader(){
     if($.inArray(format, ['gpx', 'GPX']) > -1) {
       geojson = toGeoJSON.gpx($.parseXML(text));
     }
-
     if(!geojson){
       $scope.$emit('onNotification', 'error', 'File format is not valid');
       return null;
     }
-
     if(geojson.type === "FeatureCollection"){
       var json = [];
       for(var i = 0, len = geojson.features.length; i < len; i++){

@@ -1,39 +1,42 @@
-<div class="navbar-wrapper">
+<div class="navbar navbar-fixed-top" role="navigation" ng-controller="NavbarCtrl">
   <div class="container">
-    <div  class="navbar navbar-default navbar-static-top darker"
-        role="navigation"
-        ng-controller="NavbarCtrl">
 
     <div class="brand">
-      <h1 class="title"> SORELCOM </h1>
-      <p class="subtitle">Trails and Point of Interest of the World</p>
+     <img class="logo" src="/images/icon/logo/sorelcom.png" />
     </div>
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span ng-repeat="item in menu" class="icon-bar"></span>
       </button>
     </div>
+
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav pull-left">
-        <li ng-repeat="item in menu" ng-class="{active: state.includes(item.state)}">
-          <a ui-sref="{{item.state}}">{{item.title}}</a>
+        <li ng-class="{active: state.includes('home')}">
+          <a ui-sref="home"><i class="fa fa-home fa-lg"></i> HOME </a>
+        </li>
+        <li ng-class="{active: state.includes('home')}">
+          <a ui-sref="map.explore"><i class="fa fa-globe fa-lg"></i> WORLD MAP </a>
+        </li>
+        <li ng-class="{active: state.includes('map')}">
+          <a ui-sref="search"><i class="fa fa-search fa-lg"></i> BROWSE </a>
         </li>
       </ul>
       <ul class="nav navbar-nav pull-right">
         <li ng-hide="currentUser" ng-class="{active: isActive('/login')}">
-          <a ng-click="login()">Login</a>
+          <a ng-click="login()">SIGN IN</a>
         </li>
         <li ng-hide="currentUser" ng-class="{active: isActive('/signup')}">
-          <a ui-sref="web.signup">Sign up</a>
+          <a ui-sref="web.signup">SIGN UP</a>
         </li>
         <li ng-show="currentUser" ng-class="{active: isActive('/logout')}">
-          <a ng-click="logout()">Logout</a>
+          <a ng-click="logout()">SIGN OUT</a>
         </li>
         <li ng-show="currentUser" ng-class="{active: isActive('/profile')}">
-          <a ui-sref="web.profile">Profile</a>
+          <a ui-sref="web.profile">MY PROFILE</a>
         </li>
       </ul>
     </div>
   </div>
-</div>
 </div>

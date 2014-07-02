@@ -21,8 +21,8 @@ $grey: rgb(90, 90, 90)
 	-webkit-transform: translateZ(0)
 	transform: translateZ(0)
 	box-shadow: inset 0 0 1px rgba($color, 0)
-	&:hover, &:focus, &:active 
-		box-shadow: inset 0 0 8px rgba($color, 0.6)  	
+	&:hover, &:focus, &:active
+		box-shadow: inset 0 0 8px rgba($color, 0.6)
 
 =glow($color)
 	display: inline-block
@@ -33,40 +33,39 @@ $grey: rgb(90, 90, 90)
 	-webkit-transform: translateZ(0)
 	transform: translateZ(0)
 	box-shadow: 0 0 1px rgba($color, 0)
-	&:hover, &:focus, &:active 
-		box-shadow: 0 0 8px rgba($color, 0.6)  
+	&:hover, &:focus, &:active
+		box-shadow: 0 0 8px rgba($color, 0.6)
 
 =button($color, $text)
 	text-decoration: none
 	&:hover, &:focus, &:hover *, &:focus *
 		text-decoration: none
-		color: lighten( $text, 10% ) !important
-		background: lighten( $color, 10% ) !important
+		color: lighten( $text, 10% )
+		background: lighten( $color, 10% )
 	&:active, &.active, &.active *
 		text-decoration: none
-		color: lighten( $text, 7% ) !important
-		background: lighten( $color, 7% ) !important
+		color: lighten( $text, 7% )
+		background: lighten( $color, 7% )
 	&:disabled, &:disabled *
 		text-decoration: none
-		color: lighten( $grey, 7% ) !important
-		background: lighten(desaturate($color, 45%), 10%) !important
+		color: lighten( $grey, 7% )
+		background: lighten(desaturate($color, 45%), 10%)
 
 =link($text)
 	text-decoration: none
 	&:hover, &:focus
 		text-decoration: none
-		color: lighten( $text, 10% ) !important
+		color: lighten( $text, 10% )
 	&:active, &.active, &.active *
 		text-decoration: none
-		color: lighten( $text, 7% ) !important
+		color: lighten( $text, 7% )
 	&:disabled
 		text-decoration: none
-		color: lighten( $grey, 7% ) !important
-	
-=color($text, $color)
-	color: $text !important
-	background: $color !important
+		color: lighten( $grey, 7% )
 
+=color($text, $color)
+	color: $text
+	background: $color
 //Amethist
 
 .amethyst
@@ -80,14 +79,14 @@ $grey: rgb(90, 90, 90)
 
 a.amethyst, button.amethyst
 	@extend .amethyst
-	+button($amethyst, $light)	
+	+button($amethyst, $light)
 
 .amethyst-text
 	color: $amethyst
 	a, button, li
-		+button($amethyst, $light)	
+		+button($amethyst, $light)
 
-// Green  
+// Green
 
 .green
 	+color($white, $green)
@@ -105,7 +104,7 @@ a.green, button.green
 .green-text
 	color: $green
 	a, button, li
-		+button($green, $light)	
+		+button($green, $light)
 
 // Blue
 
@@ -115,7 +114,7 @@ a.green, button.green
 		@extend .blue
 	p, h1, h2, h3, h4, h5, h6
 		color: $white
-	a, button, li 
+	a, button, li
 		+button($blue, $light)
 
 a.blue, button.blue
@@ -125,7 +124,7 @@ a.blue, button.blue
 .blue-text
 	color: $blue
 	a, button, li
-		+button($blue, $light)	
+		+button($blue, $light)
 
 a.blue-text
 	+link($blue)
@@ -148,7 +147,7 @@ a.yellow, button.yellow
 .yellow-text
 	color: $yellow
 	a, button, li
-		+button($yellow, $dark)	
+		+button($yellow, $dark)
 
 
 //Red
@@ -169,7 +168,7 @@ a.red, button.red
 .red-text
 	color: $red
 	a, button, li
-		+button($red, $white)	
+		+button($red, $white)
 
 a.red-text
 	+link($red)
@@ -192,9 +191,9 @@ a.orange, button.orange
 .oragne-text
 	color: $orange
 	a, button, li
-		+button($orange, $white)	
+		+button($orange, $white)
 
-.light	
+.light
 	+color($darker, $light)
 	a, button, li, div
 		@extend .light
@@ -210,9 +209,9 @@ a.light, button.light
 .light-text
 	color: $light
 	a, button, li
-		+button($darker, $light)	
+		+button($darker, $light)
 
-.dark	
+.dark
 	+color($white, $dark)
 	a, button, li, div
 		@extend .dark
@@ -228,7 +227,7 @@ a.dark, button.dark
 .dark-text
 	color: $dark
 	a, button, li
-		+button($dark, $light)	
+		+button($dark, $light)
 
 .darker
 	+color($white, $darker)
@@ -243,8 +242,8 @@ a.darker, button.darker
 	@extend .darker
 	+button($darker, $light)
 
-.darker-text	
+.darker-text
 	color: $darker
 	a, button, li
 		color: $darker
-		+button($darker, $light)	
+		+button($darker, $light)

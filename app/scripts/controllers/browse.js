@@ -5,12 +5,12 @@ angular.module('sorelcomApp')
 
 		$scope.makeRef = function(item){
 			if(item.type === 'Person')
-				return 'web.user({id: item.id})'
+				return 'user({id: item.id})'
 			if(item.type === 'Trail')
-				return 'web.trail({id: item.id})'
+				return 'trail({id: item.id})'
 			if(item.type === 'PointOfInterest')
-				return 'web.poi({id: item.id})'
-			return 'web.home';
+				return 'poi({id: item.id})'
+			return 'home';
 		};
 
 		$scope.makeIconUrl = function(item){
