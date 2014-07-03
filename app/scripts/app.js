@@ -35,7 +35,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
 
     .state('home', {
       url: '/',
-      templateUrl: 'partials/home.html',
+      templateUrl: 'partials/web/home.html',
       controller: 'HomeCtrl',
       resolve: {
         info: function($http) {
@@ -51,19 +51,19 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
 
     .state('signup', {
       url: '/signup',
-      templateUrl: 'partials/signup.html',
+      templateUrl: 'partials/accounts/signup.html',
       controller: 'SignupCtrl'
     })
 
     .state('profile', {
       url: '/profile',
-      templateUrl: 'partials/profile.html',
+      templateUrl: 'partials/accounts/profile.html',
       controller: 'ProfileCtrl'
     })
 
     .state('poi', {
       url: '/poi/{id}',
-      templateUrl: 'partials/feature.html',
+      templateUrl: 'partials/web/feature.html',
       controller: 'FeatureCtrl',
       resolve: {
         resource: function(){ return 'pois'; }
@@ -72,13 +72,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
 
     .state('user', {
       url: '/user/{id}',
-      templateUrl: 'partials/user.html',
+      templateUrl: 'partials/web/user.html',
       controller: 'UserCtrl'
     })
 
     .state('trail', {
       url: '/track/{id}',
-      templateUrl: 'partials/feature.html',
+      templateUrl: 'partials/web/feature.html',
       controller: 'FeatureCtrl',
       resolve: {
         resource: function(){ return 'trails'; }
@@ -87,7 +87,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
 
     .state('search', {
       url: '/search',
-      templateUrl: 'partials/search.html',
+      templateUrl: 'partials/web/search.html',
       controller: 'SearchCtrl',
       resolve: {
         initData: function($http) {

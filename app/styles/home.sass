@@ -1,4 +1,4 @@
-
+$light-grey: #AAA
 /* Carousel styles */
 
 /* For articles on the frontpage */
@@ -9,29 +9,43 @@
   .section
     width: 100%
     height: 100%
+    min-height: 775px
     overflow: hidden
     position: relative
-    .link-next
+    .home-link
       position: absolute
       z-index: 100
-      bottom: 20px
-      right: 20px
-      color: white
-      
+      left: 20px
+      color: $light-grey
+      &.next
+        bottom: 40px
+      &.prev
+        bottom: 70px
     .background
       min-width: 100%
       height: 100%
       position: absolute
       z-index: -1
     .container
-      margin-top: 100px
+      margin-top: 75px
       color: white
       z-index: 100
       p
-        color: #AAA
+        color: $light-grey
 
   p
     font-size: 20px
+
+.map-panel
+  padding: 20px
+  margin-top: 75px
+  z-index: 100
+  background: rgb(50, 50, 50)
+  background: rgba(50, 50, 50, 0.8)
+  width: 100%
+  display: inline-block
+  *
+    color: white
 
 .promo-form
   .form-inner
@@ -61,6 +75,13 @@
   > div
     height: 100%
 
+.carousel-caption
+  width: 100%
+  left: 0
+  right: 0
+  background: rgb(44, 44, 44)
+  background: rgba(44, 44, 44, 0.75)
+
 #carousel
   height: 100%
 
@@ -75,7 +96,7 @@
   height: 300px
 
 .carousel-control
-  background: rgba(50, 50, 50, 0.7)
+  display: none
 
 @media (max-width: 992px)
   #homepage

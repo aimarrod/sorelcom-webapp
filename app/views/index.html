@@ -18,7 +18,8 @@
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet'>
   <link href='http://fonts.googleapis.com/css?family=Concert+One' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-  <link href='vendor/sorelcom.css' rel='stylesheet' type='text/css'>
+  <link href='vendor/icons/sorelcom.css' rel='stylesheet' type='text/css'>
+  <link href='vendor/icons/sorelcom-data.css' rel='stylesheet' type='text/css'>
 
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -85,49 +86,42 @@
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
     <!-- endbower -->
-    <script src="plugins/leaflet-sidebar/L.Control.Sidebar.js"></script>
-    <script src="plugins/leaflet-sidebar/L.Control.Sidebar.Button.js"></script>
-    <script src="plugins/spin/spin.min.js"></script>
-    <script src="plugins/spin/leaflet.spin.js"></script>
-    <script src="plugins/leaflet.draw/leaflet.draw-src.js"></script>
-    <script src="plugins/leaflet.draw/leaflet.draw.button.js"></script>
-    <script src="plugins/leaflet-editable-polyline/leaflet-editable-polyline.js"></script>
-    <script src="plugins/editor/leaflet.editor.panel.js"></script>
+    <script src="vendor/leaflet-editable-polyline/leaflet-editable-polyline.js"></script>
+    <script src="vendor/togeojson/togeojson.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/home.js"></script>
-    <script src="scripts/controllers/navbar.js"></script>
-    <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/controllers/signup.js"></script>
-    <script src="scripts/controllers/upload.js"></script>
-    <script src="scripts/controllers/notification.js"></script>
-    <script src="scripts/controllers/profile.js"></script>
-    <script src="scripts/controllers/browse.js"></script>
-    <script src="scripts/controllers/map.js"></script>
-    <script src="scripts/controllers/slider.js"></script>
-    <script src="scripts/controllers/modals.js"></script>
-    <script src="scripts/controllers/modal/load.js"></script>
-    <script src="scripts/controllers/modal/upload.js"></script>
-    <script src="scripts/controllers/modal/create.js"></script>
-    <script src="scripts/services/auth.js"></script>
-    <script src="scripts/services/session.js"></script>
-    <script src="scripts/services/user.js"></script>
-    <script src="scripts/services/model.js"></script>
-    <script src="scripts/services/menu.js"></script>
-    <script src="scripts/services/api.js"></script>
-    <script src="scripts/services/modal.js"></script>
-    <script src="scripts/services/loader.js"></script>
-    <script src="scripts/services/map/map.js"></script>
-    <script src="scripts/services/map/tooltip.js"></script>
-    <script src="scripts/services/map/editor.js"></script>
-    <script src="scripts/services/map/explorer.js"></script>
+    <script src="web/controllers/home.js"></script>
+    <script src="web/controllers/navbar.js"></script>
+    <script src="web/controllers/notification.js"></script>
+    <script src="web/controllers/search.js"></script>
+    <script src="web/controllers/user.js"></script>
+    <script src="web/controllers/feature.js"></script>
+    <script src="web/controllers/slider.js"></script>
+    <script src="web/services/api.js"></script>
+    <script src="map/controllers/map.js"></script>
+    <script src="map/services/map.js"></script>
+    <script src="map/services/tooltip.js"></script>
+    <script src="map/services/editor.js"></script>
+    <script src="map/services/navigator.js"></script>
+    <script src="map/controllers/editor.js"></script>
+    <script src="map/controllers/navigator.js"></script>
+    <script src="accounts/controllers/signup.js"></script>
+    <script src="accounts/controllers/profile.js"></script>
+    <script src="accounts/services/auth.js"></script>
+    <script src="accounts/services/session.js"></script>
+    <script src="modals/controllers/login.js"></script>
+    <script src="modals/controllers/modals.js"></script>
+    <script src="modals/controllers/load.js"></script>
+    <script src="modals/controllers/upload.js"></script>
+    <script src="modals/controllers/create.js"></script>
+    <script src="modals/services/modal.js"></script>
+    <script src="modals/services/loader.js"></script>
     <script src="scripts/directives/mongooseError.js"></script>
     <script src="scripts/directives/textReader.js"></script>
     <script src="scripts/directives/onFinishRender.js"></script>
     <script src="scripts/directives/setNgAnimate.js"></script>
-    <script src="scripts/utils/togeojson.js"></script>
     <!-- endbuild -->
   </body>
   </html>

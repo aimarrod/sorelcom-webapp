@@ -1,0 +1,103 @@
+<div ng-include src="'partials/layout/navbar.html'"></div>
+
+<main class="container" id="view">
+
+  <div class="data-block data-container">
+    <h2 class="data-block no-top no-bottom no-left no-right">
+      <span class="badge" ng-if="feature.properties.difficulty !== undefined"
+        ng-class="{ 'alert-success': feature.properties.difficulty < 25,
+        'alert-info': feature.properties.difficulty > 25 ,
+        'alert-warning': feature.properties.difficulty > 50 ,
+        'alert-danger': feature.properties.difficulty > 75 }"> {{feature.properties.difficulty}} </span>
+      {{feature.properties.name}}
+      <small> {{ feature.properties.type }}</small>
+    </h2>
+    <leaflet width="100%" height="300px" geojson="geojson" id="viewMap"></leaflet>
+  </div>
+
+  <div class="row voffset3 data-block data-container">
+    <section id="description" class="col-md-8 col-sm-12 col-xs-12 data-container">
+      <h4 class="data-block only-bottom"> Description </h4>
+      <p class="desc">{{feature.properties.description}}</p>
+    </section>
+    <section class="col-md-4 col-sm-12 col-xs-12 data-container">
+	     <ul class="data-list">
+         <li class="data-block no-top no-right" ng-if="feature.properties.date !== undefined">
+           <i class="fa icon-calendar fa-lg"></i> {{feature.properties.date | date: 'longDate'}}
+         </li>
+  	      <li class="data-block no-top no-right" ng-if="feature.properties.totalDistance!==undefined">
+            <i class="fa icon-distance fa-lg"></i> {{feature.properties.totalDistance}} <em>m</em>
+          </li>
+          <li class="data-block no-top no-right" ng-if="feature.properties.circular">
+            <strong>Circular: </strong> yes
+          </li>
+          <li class="data-block no-top no-right" ng-if="feature.properties.altitude !== undefined">
+            <i class="fa icon-max-altitude fa-lg"></i> {{feature.properties.altitude}} <em>m</em>
+          </li>
+          <li class="data-block no-top no-right" ng-if="feature.properties.maximumAltitude !== undefined">
+            <i class="fa icon-max-altitude fa-lg"></i> {{Math.round(feature.properties.maximumAltitude)}} <em>m</em>
+          </li>
+          <li class="data-block no-top no-right" ng-if="feature.properties.minimumAltitude !== undefined">
+            <i class="fa icon-min-altitude fa-lg"></i> {{Math.round(feature.properties.minimumAltitude)}} <em>m</em>
+          </li>
+          <li class="data-block no-top no-right" ng-if="feature.properties.ascendingDistance !== undefined">
+            <i class="fa icon-slope fa-lg"></i> {{Math.round(feature.properties.ascendingDistance)}} <em>m</em>
+          </li>
+          <li class="data-block only-left" ng-if="feature.properties.descendingDistance !== undefined">
+            <i class="fa icon-slope fa-flip-horizontal fa-lg"></i> {{Math.round(feature.properties.descendingDistance)}} <em>m</em>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+   <!--
+  <section id="media">
+    <div ng-controller="SliderCtrl" ng-init="init(resource)" class="slider">
+      <figure ng-repeat="slide in slides" ng-hide="!isCurrentSlide($index)" class="slide">
+        <img ng-src="{{slide.source}}" />
+      </figure>
+      <button class="arrow prev" ng-click="prevSlide()"></button>
+      <button class="arrow next" ng-click="nextSlide()"></button>
+      <nav>
+        <ul>
+          <li ng-repeat="slide in slides" ng-click="setSlide($index)"></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+-->
+
+  <section id="comments" class="data-block data-container">
+    <form ng-submit="post()" class="row data-block only-bottom">
+      <div class="col-md-2">
+        <p class="text-center" ng-click="upvote()">
+          <span class="fa fa-chevron-up fa-2x" ng-class="{ 'text-success': review.value===1 }" ></span>
+        </p>
+        <button type="submit" class="btn btn-default btn-block blue" ng-disabled="review.value===undefined || review.text===undefined"> Post! </button>
+        <p class="text-center" ng-click="downvote()">
+          <span class="fa fa-chevron-down fa-2x" ng-class="{ 'text-danger': review.value===-1 }"></span>
+        </p>
+      </div>
+      <div class="col-md-10">
+        <textarea class="form-control" rows="5" ng-model="review.text"></textarea>
+      </div>
+    </form>
+    <ul class="data-container">
+      <li ng-repeat="post in posts" class="data-block only-bottom">
+        <article class="media">
+          <a class="pull-left" ui-sref="web.user({id: post.author})">
+            <img class="media-object" ng-src="{{post.avatar}}" alt="User avatar">
+          </a>
+          <div class="media-body">
+            <h5 class="media-heading">{{post.name}}</h5>
+            <p>{{post.text}}</p>
+            <p><i> {{ post.date | date: 'longDate' }} </i></p>
+          </div>
+        </article>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<!-- Section for photos -->

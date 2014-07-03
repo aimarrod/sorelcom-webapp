@@ -1,0 +1,75 @@
+<div ng-include src="'partials/layout/navbar.html'"></div>
+
+<main id="homepage">
+
+  <article class="section" id="hero">
+    <img class="background" src="/images/background/promo.jpg" />
+    <a class="home-link next" ng-click="goToMap()"><i class="fa fa-chevron-circle-down fa-4x"></i></a>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <h3>Trails and POIs around the world</h3>
+          <p> A place for discovering and sharing trails and points of interest around the world.
+              Share your trail and find out what is nearby.
+          </p>
+          <p>
+            A growing community of <strong class="blue-text">{{info.users||0}}</strong> users sharing <strong class="blue-text">{{info.trails||0}}</strong> trails and
+            <strong class="blue-text">{{info.pois||0}} </strong> points of interest.
+          </p>
+        </div>
+        <div class="col-md-6 col-sm-12 promo-form" ng-controller="SignupCtrl">
+          <div class="form-inner">
+            <div class="form-header">
+              <h3 class="text-center"> Create an account free </h3>
+              <p class="text-center"> Start sharing your trails </h3>
+            </div>
+            <form class="form-body">
+              <input type="text" name="name" placeholder="Name" ng-model="user.name" />
+              <input type="email"  name="email" placeholder="Email" ng-model="user.email" />
+              <input type="password"  name="password" placeholder="Password" ng-model="user.password" />
+            </form>
+            <div class="form-footer">
+              <button type="button" class="btn green"> Sign up! </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="section" id="map">
+    <a class="home-link prev" ng-click="goToHero()"><i class="fa fa-chevron-circle-up fa-4x"></i></a>
+    <a class="home-link next" ng-click="goToHero()"><i class="fa fa-chevron-circle-down fa-4x"></i></a>
+    <carousel class="background" id="carousel" interval="5000" set-ng-animate="false">
+      <slide ng-repeat="slide in slides" active="slide.active">
+        <leaflet height="100%"
+          id="slideMap{{$index}}"
+          layers="slide.layers"
+          defaults="defaults"
+          class="map-image">
+        </leaflet>
+        <div class="carousel-caption">
+          <h4>{{slide.name}}</h4>
+          <p style="color:white">
+            {{slide.type}} added by
+            <a ui-sref="web.user({id: slide.author.id})">{{slide.author.name}}</a>
+          </p>
+        </div>
+      </slide>
+    </carousel>
+    <div class="map-panel">
+      <div class="col-md-4 col-sm-12">
+        <h2> Latest features </h2>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <p> Explore the world through a interactive map of features. Create, edit and upload trails and points of interest.
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <a type="button" ui-sref="map.explore" class="btn btn-lg btn-block green">Open Map</a>
+      </div>
+    </div>
+  </article>
+
+
+  <div ng-include src="'partials/layout/footer.html'"></div>
+</main>
