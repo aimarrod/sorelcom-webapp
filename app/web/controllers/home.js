@@ -1,12 +1,15 @@
-angular.module('sorelcomApp').controller("HomeCtrl", function ($scope, $http, Modal, info, slides, leafletData, $location, $anchorScroll) {
+angular.module('sorelcomApp').controller("HomeCtrl", function ($scope, $http, Modal, leafletData, $location, $anchorScroll) {
+
 
 	$scope.defaults = {
 		zoomControl: false,
 		attributionControl: false
 	}
 
-	makeSlides(slides);
-	$scope.info = info;
+	$http.get('/api/latest')
+		.then(function(data) {
+			makeSlides(data.data);
+		});
 
 	function makeSlides(data){
 		$scope.slides = [];

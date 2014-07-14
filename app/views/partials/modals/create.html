@@ -2,13 +2,33 @@
   <h2> Creating [2/3] </h2>
 </header>
 <div class="modal-body">
-  <div class="form-group">
+  <div class="form-group" ng-hide="isNote">
     <label for="name"> Name </label>
     <input type="text" id="name" name="name" class="form-control" ng-model="geojson.properties.name" />
   </div>
   <div class="form-group">
-    <label for="content"> Description </label>
+    <label for="content" ng-hide="isNote"> Description </label>
+    <label for="content" ng-show="isNote"> Content </label>
     <textarea rows="5" id="content" name="content" class="form-control" ng-model="geojson.properties.content" />
+  </div>
+  <div class="form-group" ng-show="isNote">
+    <label for="range"> Range </label>
+    <input type="number" name="range" class="form-control" min="50" value="50" ng-model="geojson.properties.range">
+  </div>
+  <div class="form-group checkbox" ng-show="isNote">
+    <label>
+      <input type="checkbox" ng-model="geojson.properties.public"> Public
+    </label>
+  </div>
+  <div class="form-group checkbox" ng-show="isNote && !geojson.properties.public">
+    <p><strong>buddies</strong></p>
+    <button class="btn btn-block green" ng-click="checkAll()"> Add all </button>
+    <button class="btn btn-block red" ng-click="uncheckAll()"> Clear </button>
+    <div class="btn-group-vertical btn-block">
+      <button ng-class="{ blue: selected(friend) }" class="btn btn-block btn-default" ng-repeat="friend in friends" ng-click="toggleTarget(friend)">
+        {{friend.name}}
+      </button>
+    </div>
   </div>
   <div class="form-group" ng-show="isPOI">
     <label for="amenity"> Type of Point of Interest </label>
@@ -21,8 +41,9 @@
 </div>
 <div class="modal-footer">
   <p class="pull-right">
-    <button type="button" ng-click="submit()" class="btn green" ng-disabled="!geojson.properties.name"> 
-      Save 
+    <p class="text-danger">{{err}}</p>
+    <button type="button" ng-click="submit()" class="btn green" ng-disabled="!geojson.properties.name && !isNote">
+      Save
     </button>
   </p>
 </div>

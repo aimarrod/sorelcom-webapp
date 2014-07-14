@@ -15,9 +15,10 @@ angular.module('sorelcomApp')
           password: $scope.user.password
         },
         function(user) {
-          $location.path('/');
+          $location.path('/profile');
         },
         function(err) {
+          $location.path('/signup');
           err = err.data;
           $scope.errors = {};
 

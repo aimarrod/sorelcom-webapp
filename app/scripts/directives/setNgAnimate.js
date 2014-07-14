@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('sorelcomApp').directive('setNgAnimate', ['$animate', function ($animate) {
+angular.module('sorelcomApp')
+  .directive('setNgAnimate', ['$animate', function ($animate) {
     return {
-        link: function ($scope, $element, $attrs) {
-            $scope.$watch( function() {
-                return $scope.$eval($attrs.setNgAnimate, $scope);
-            }, function(valnew, valold){
-                console.log('Directive animation Enabled: ' + valnew);
-                $animate.enabled(!!valnew, $element);
-            });
-        }
+      link: function ($scope, $element, $attrs) {
+        $scope.$watch( function() {
+          return $scope.$eval($attrs.setNgAnimate, $scope);
+        }, function(valnew){
+          $animate.enabled(!!valnew, $element);
+        });
+      }
     };
-}]);
+  }]);

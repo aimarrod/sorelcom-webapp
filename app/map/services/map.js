@@ -21,11 +21,15 @@ angular.module('sorelcomApp').service('Map', function Map(API){
 
         this.map = L.map(id, {
             layers: [baseLayers.OpenStreetMap],
-            minZoom: 3,
+            minZoom: 12,
             worldCopyJump: true
         });
-
+        L.Control.geocoder({
+          position: 'topleft',
+          showResultIcons: true
+        }).addTo(this.map);
         L.control.layers(baseLayers, null, {position: 'topleft'}).addTo(this.map);
+
 
         this.map.locate({ setView: true, maxZoom: 15 });
     };

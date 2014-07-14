@@ -1,11 +1,14 @@
 angular.module('sorelcomApp')
-  .controller('FeatureCtrl', function ($scope, $stateParams, leafletData, API, resource) {
+  .controller('FeatureCtrl', function ($scope, $stateParams, leafletData, API, MapUtil, resource, Auth) {
     $scope.Math = window.Math;
 
     var feature = API.all(resource).one($stateParams.id);
 
     $scope.resource = feature;
     $scope.review = {}
+    $scope.defaults = {
+      maxZoom: 14
+    }
 
     $scope.upvote = function(){
       $scope.review.value = 1;
@@ -15,10 +18,20 @@ angular.module('sorelcomApp')
       $scope.review.value = -1;
     };
 
+    $scope.loadRating = function(){
+      feature.getList('rating').then(
+        function success(data){
+          if(data[0].rating !== undefined)
+            $scope.rating = data[0].rating;
+        }
+      );
+    }
+
     $scope.loadPosts = function(){
       feature.getList('post').then(
         function success(data){
           $scope.posts = data;
+          $scope.loadRating();
         },
         function error(err){
           $scope.review.error = err;
@@ -27,17 +40,27 @@ angular.module('sorelcomApp')
     };
 
     $scope.post = function(){
-      if(!$scope.review.text || !$scope.review.value)
-        return
-      feature.all('post').post({ review: $scope.review }).then(
-        function success(data){
-          $scope.loadPosts();
-          $scope.review = {};
-        },
-        function error(err){
-          $scope.review.error = err;
-        }
-      );
+      Auth.requireLogin(function(){
+        if(!$scope.review.text || !$scope.review.value)
+          return;
+        feature.all('post').post({ review: $scope.review }).then(
+          function success(data){
+            $scope.review = {};
+            $scope.error = null;
+            $scope.loadPosts();
+          },
+          function error(err){
+            $scope.err = err;
+          }
+        );
+      })
+    };
+
+    $scope.nearby = function(){
+      leafletData.getMap('viewMap').then(function (map) {
+        map.addLayer($scope.nearbyData);
+        map.fitBounds($scope.nearbyData.getBounds());
+      });
     };
 
     feature.get().then(
@@ -48,12 +71,20 @@ angular.module('sorelcomApp')
         else
           data.properties.type = 'Trail';
 
+        $scope.main = L.geoJson(data);
         leafletData.getMap('viewMap').then(function (map){
-          var layer = L.geoJson(data).addTo(map);
-          map.fitBounds(layer.getBounds());
+          map.fitBounds($scope.main.getBounds());
+          $scope.main.addTo(map);
+
+          API.get('within', { bbox: map.getBounds().toBBoxString() }).then(
+            function success(data){
+              $scope.nearbyData = MapUtil.loadPois(data);
+            }
+          );
         });
       }
     );
+
 
     $scope.loadPosts();
   });

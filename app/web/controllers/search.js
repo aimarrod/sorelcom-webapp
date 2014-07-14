@@ -1,7 +1,6 @@
 angular.module('sorelcomApp')
-	.controller('SearchCtrl', function ($scope, $q, $http, initData) {
+	.controller('SearchCtrl', function ($scope, $q, $http) {
 
-    $scope.searchResults = initData;
 		$scope.filter = {
 			trails: true,
 			pois: true,

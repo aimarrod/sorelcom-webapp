@@ -11,12 +11,15 @@
     "ejs": "~0.8.4",
     "terraformer": "*",
     "terraformer-wkt-parser": "*",
-    "request":"*",
+    "request": "*",
     "gm": "*",
     "dateutil": "0.1.0",
     "step": "latest",
     "extend": "latest",
-    "xmlbuilder": "latest"
+    "xmlbuilder": "latest",
+    "socket.io": "latest",
+    "colors": "~0.6.2",
+    "cli-color": "~0.3.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

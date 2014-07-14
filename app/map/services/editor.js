@@ -11,6 +11,18 @@ angular.module('sorelcomApp').service('Editor', function Editor($rootScope, API,
     });
   };
 
+  that.markNote = function(){
+    that.stopTask();
+
+    Tooltip.setText('Click on the map to choose location');
+    Map.map.on('click', function(e){
+      that.stopTask();
+      var geojson = L.marker(e.latlng).toGeoJSON();
+      geojson.properties.public = true;
+      Modal.create(geojson);
+    });
+  };
+
   that.startDraw = function(){
     that.stopTask();
 

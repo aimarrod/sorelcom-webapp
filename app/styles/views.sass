@@ -2,7 +2,15 @@
   padding: 0px
   margin: 0px
   list-style: none
-
+  &.data-clickable
+    li
+      cursor: pointer
+      &:hover
+        background: #eee
+      a
+        display: block
+        width: 100%
+        color: rgb(70, 70, 70)
 
 p.desc
   white-space: pre
@@ -37,57 +45,45 @@ p.desc
     border-top: 0px
     border-left: 0px
     border-right: 0px
+  &.no-border
+    border: 0px
+  &.no-vertical
+    border-top: 0px
+    border-bottom: 0px
+  &.no-horizontal
+    border-left: 0px
+    border-right: 0px
 
 .data-container
   padding: 0px
 
+.nav-pills li a
+  color: rgb(79, 79, 79)
+
+.nav-pills li.active
+  a, a:hover
+    background: #2ecc71
+    .badge
+      color: #2ecc71
+
 #view
   margin-top: 75px
+  margin-bottom: 50px
+
+  button
+    margin: 0px
+    border-radius: 0
 
   .row section
     height: 100%
   .fa.fa-lg
     margin-right: 15px
 
-
-  aside
-    padding: 10px 0px 0px 10px
-
-    section
-      margin-bottom: 10px
-      &:not(:last-child)
-        border-bottom: 1px solid #BFBFBF
-      ul
-        margin-top: 20px
-        padding: 0px
-        li
-          list-style: none
-      figure
-        width: 100px
-        height: 100px
-        display: inline-block
-        float: left
-        border: 1px solid black
-        margin-left: 5px
-      img
-        max-width: 100%
-        max-height: 100%
-        display: block
-        margin: auto
-  form
-    box-sizing: border-box
-
-  #comments
+  #reviews
     margin-top: 30px
-    ul
-      margin-top: 10px
-      li
-        list-style: none
-        padding: 10px
     .media-object
       height: 32px
       width: 32px
 
-#user
-  .nav.nav-pills li
-    padding: 10px
+#developers
+  margin-top: 75px

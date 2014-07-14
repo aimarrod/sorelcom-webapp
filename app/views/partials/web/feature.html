@@ -3,7 +3,7 @@
 <main class="container" id="view">
 
   <div class="data-block data-container">
-    <h2 class="data-block no-top no-bottom no-left no-right">
+    <h2 class="data-block no-top no-bottom no-left no-right pull-left">
       <span class="badge" ng-if="feature.properties.difficulty !== undefined"
         ng-class="{ 'alert-success': feature.properties.difficulty < 25,
         'alert-info': feature.properties.difficulty > 25 ,
@@ -11,17 +11,27 @@
         'alert-danger': feature.properties.difficulty > 75 }"> {{feature.properties.difficulty}} </span>
       {{feature.properties.name}}
       <small> {{ feature.properties.type }}</small>
+      <span class="badge" ng-if="feature.properties.difficulty !== undefined"
+        ng-class="{ 'alert-success': rating > 0,
+        'alert-danger': rating < 0 }"> {{rating || 0}} </span>
     </h2>
-    <leaflet width="100%" height="300px" geojson="geojson" id="viewMap"></leaflet>
+    <div class="data-block no-border">
+      <button ng-click="nearby()" class="data-block no-border btn green pull-right">Nearby</button>
+    </div>
+    <leaflet width="100%" height="400px" geojson="geojson" defaults="defaults" id="viewMap"></leaflet>
   </div>
 
-  <div class="row voffset3 data-block data-container">
+  <div class="row voffset4 data-block data-container no-top">
     <section id="description" class="col-md-8 col-sm-12 col-xs-12 data-container">
-      <h4 class="data-block only-bottom"> Description </h4>
+      <h4 class="data-block no-left no-right"> Description </h4>
       <p class="desc">{{feature.properties.description}}</p>
+      <p class="data-block no-top no-bottom no-right no-left">
+        <span class="fa fa-user"></span>
+        <a ui-sref="user({id: feature.properties.authorId})">{{feature.properties.authorName}}</a>
+      </p>
     </section>
     <section class="col-md-4 col-sm-12 col-xs-12 data-container">
-	     <ul class="data-list">
+	     <ul class="data-list data-block only-top data-container">
          <li class="data-block no-top no-right" ng-if="feature.properties.date !== undefined">
            <i class="fa icon-calendar fa-lg"></i> {{feature.properties.date | date: 'longDate'}}
          </li>
@@ -67,7 +77,11 @@
   </section>
 -->
 
-  <section id="comments" class="data-block data-container">
+  <section id="reviews" class="data-block data-container">
+    <div class="alert-danger">
+      <p>{{ error }}</p>
+    </div>
+    <p class="text-danger text-center"> {{err}} </p>
     <form ng-submit="post()" class="row data-block only-bottom">
       <div class="col-md-2">
         <p class="text-center" ng-click="upvote()">

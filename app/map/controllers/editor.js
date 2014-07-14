@@ -4,6 +4,10 @@ angular.module('sorelcomApp').controller('EditorCtrl', function ($scope, Modal, 
     Auth.requireLogin(Editor.markPOI);
   };
 
+  $scope.markNote = function(){
+    Auth.requireLogin(Editor.markNote);
+  };
+
   $scope.startDraw = function(){
     Auth.requireLogin(Editor.startDraw);
   };
@@ -17,6 +21,10 @@ angular.module('sorelcomApp').controller('EditorCtrl', function ($scope, Modal, 
           $scope.editingId = geojson.properties.id;
       }
     );
+  };
+
+  $scope.openUpload = function(){
+    Auth.requireLogin(Modal.loadGPX());
   };
 
   $scope.$on('$destroy', function(){

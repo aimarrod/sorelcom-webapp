@@ -6,6 +6,7 @@ angular.module('sorelcomApp')
       function success(data){
         $scope.user = data[0];
         $scope.user.route = '';
+        loadRecommendations();
         loadTrails();
         loadPois();
         loadBuddies();
@@ -16,17 +17,28 @@ angular.module('sorelcomApp')
     $scope.saveChanges = function(){
       $scope.user.put().then(
         function success(){
-          console.log("EH");
+          $scope.$emit('onNotification', 'success', 'Changes saved');
+        },
+        function error(err){
+          $scope.err = err;
         }
       );
     };
+
+    function loadRecommendations(){
+      resource.one('me').getList('recommended').then(
+        function success(data){
+          $scope.recommendations = data;
+        }
+      );
+    }
 
     function loadTrails() {
       resource.one($scope.user.name).getList('trails').then(
         function success(data){
           $scope.trails = data;
         }
-      )
+      );
     }
 
     function loadPois() {
@@ -34,7 +46,7 @@ angular.module('sorelcomApp')
         function success(data){
           $scope.pois = data;
         }
-      )
+      );
     }
 
     function loadFollowers() {
@@ -42,7 +54,7 @@ angular.module('sorelcomApp')
         function success(data){
           $scope.followers = data;
         }
-      )
+      );
     }
 
     function loadBuddies() {

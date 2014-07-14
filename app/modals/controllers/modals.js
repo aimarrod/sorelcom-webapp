@@ -1,12 +1,11 @@
 angular.module('sorelcomApp').controller('SelectTrackCtrl', function ($scope, $modalInstance, API) {
 
-  API.all('tracks').getList().then(
+  API.all('trails').getList().then(
     function success(tracks){
       $scope.tracks = tracks;
     },
-    function error(){
-      console.log(err);
-      $modalInstance.dismiss();
+    function error(err){
+      $scope.err = err;
     }
   );
 
@@ -15,11 +14,10 @@ angular.module('sorelcomApp').controller('SelectTrackCtrl', function ($scope, $m
   };
 
   $scope.continue = function(){
-    API.all('tracks').one($scope.selected.id).get().then(
+    API.all('trails').one($scope.selected.id).get().then(
       function success(geojson){
         $modalInstance.close(geojson);
       }
     );
   };
-
 });

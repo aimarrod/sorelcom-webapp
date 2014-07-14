@@ -19,7 +19,9 @@
   <link href='http://fonts.googleapis.com/css?family=Concert+One' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
   <link href='vendor/icons/sorelcom.css' rel='stylesheet' type='text/css'>
-  <link href='vendor/icons/sorelcom-data.css' rel='stylesheet' type='text/css'>
+  <link href='vendor/L.geocoder/Control.Geocoder.css' rel='stylesheet' type='text/css'>
+  <link href='vendor/L.markercluster/MarkerCluster.css' rel='stylesheet' type='text/css'>
+  <link href='vendor/L.markercluster/MarkerCluster.Default.css' rel='stylesheet' type='text/css'>
 
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -29,6 +31,15 @@
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css({.tmp,app}) styles/main.css -->
+  <link rel="stylesheet" href="styles/browse.css">
+  <link rel="stylesheet" href="styles/colors.css">
+  <link rel="stylesheet" href="styles/errors.css">
+  <link rel="stylesheet" href="styles/home.css">
+  <link rel="stylesheet" href="styles/profile.css">
+  <link rel="stylesheet" href="styles/search.css">
+  <link rel="stylesheet" href="styles/views.css">
+  <link rel="stylesheet" href="styles/map.css">
+  <link rel="stylesheet" href="styles/navigation.css">
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 </head>
@@ -88,6 +99,8 @@
     <!-- endbower -->
     <script src="vendor/leaflet-editable-polyline/leaflet-editable-polyline.js"></script>
     <script src="vendor/togeojson/togeojson.js"></script>
+    <script src="vendor/L.geocoder/Control.Geocoder.js"></script>
+    <script src="vendor/L.markercluster/leaflet.markercluster.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -101,12 +114,13 @@
     <script src="web/controllers/slider.js"></script>
     <script src="web/services/api.js"></script>
     <script src="map/controllers/map.js"></script>
+    <script src="map/controllers/navigator.js"></script>
+    <script src="map/controllers/editor.js"></script>
     <script src="map/services/map.js"></script>
     <script src="map/services/tooltip.js"></script>
     <script src="map/services/editor.js"></script>
     <script src="map/services/navigator.js"></script>
-    <script src="map/controllers/editor.js"></script>
-    <script src="map/controllers/navigator.js"></script>
+    <script src="map/services/map_utils.js"></script>
     <script src="accounts/controllers/signup.js"></script>
     <script src="accounts/controllers/profile.js"></script>
     <script src="accounts/services/auth.js"></script>
@@ -118,6 +132,7 @@
     <script src="modals/controllers/create.js"></script>
     <script src="modals/services/modal.js"></script>
     <script src="modals/services/loader.js"></script>
+    <script src="developers/controllers/endpoint.js"></script>
     <script src="scripts/directives/mongooseError.js"></script>
     <script src="scripts/directives/textReader.js"></script>
     <script src="scripts/directives/onFinishRender.js"></script>

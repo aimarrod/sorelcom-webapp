@@ -75,7 +75,6 @@ angular.module('sorelcomApp')
           $scope.imFollower = true;
         },
         function error(){
-          console.log("EH");
         }
       );
     };
@@ -90,7 +89,6 @@ angular.module('sorelcomApp')
           $scope.imBuddy = true;
         },
         function error(){
-          console.log("EH");
         }
       );
     };

@@ -57,23 +57,22 @@ angular.module('sorelcomApp').service('Explorer', function Explorer($rootScope, 
       html += '<p>' + properties.description + '</p>';
     if(properties.difficulty)
       html += '<p> <strong>Difficulty:</strong> ' + properties.difficulty + '</p>';
-    html += '<button class="btn blue" ui-sref="web.'+((type==='LineString')?'trail':'poi')+'({id: \'' + properties.id + '\'})">Details</button>';
+    if(type !== "Geolocated Note")
+      html += '<button class="btn blue" ui-sref="'+((type==='LineString')?'trail':'poi')+'({id: \'' + properties.id + '\'})">Details</button>';
+    else
+      html += '<p><i class="fa fa-user"></i> ' + properties.author + '</p>';
     html += '<div>';
     return $compile(angular.element(html))($rootScope.$new());
   }
 
   function loadGeoJSON(geojson){
     that.clean();
-    that.explorerData = { layer: L.layerGroup(), data: [] };
+    that.explorerData = { layer: new L.MarkerClusterGroup(), data: [] };
     that.explorerData.layer.addTo(Map.map);
     L.geoJson(geojson, {
       onEachFeature: function(feature, layer){
-        if(feature.geometry.type === 'LineString')
-            feature.properties.type = 'Trail';
-          else
-            feature.properties.type = 'Point of Interest';
           that.explorerData.data.push(feature.properties);
-          layer.bindPopup(makePopup(feature.geometry.type, feature.properties)[0]);
+          layer.bindPopup(makePopup(feature.properties.type, feature.properties)[0]);
       },
       pointToLayer: function(feature, latlng){
           if(feature.properties.category in that.icons){

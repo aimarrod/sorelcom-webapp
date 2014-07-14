@@ -12,25 +12,23 @@
           <p> A place for discovering and sharing trails and points of interest around the world.
               Share your trail and find out what is nearby.
           </p>
-          <p>
-            A growing community of <strong class="blue-text">{{info.users||0}}</strong> users sharing <strong class="blue-text">{{info.trails||0}}</strong> trails and
-            <strong class="blue-text">{{info.pois||0}} </strong> points of interest.
-          </p>
         </div>
         <div class="col-md-6 col-sm-12 promo-form" ng-controller="SignupCtrl">
           <div class="form-inner">
+            <form class="form" name="form" ng-submit="register(form)" novalidate enctype="multipart/form-data">
             <div class="form-header">
               <h3 class="text-center"> Create an account free </h3>
               <p class="text-center"> Start sharing your trails </h3>
             </div>
-            <form class="form-body">
+            <div class="form-body" ng-submit="form">
               <input type="text" name="name" placeholder="Name" ng-model="user.name" />
               <input type="email"  name="email" placeholder="Email" ng-model="user.email" />
               <input type="password"  name="password" placeholder="Password" ng-model="user.password" />
-            </form>
-            <div class="form-footer">
-              <button type="button" class="btn green"> Sign up! </button>
             </div>
+            <div class="form-footer">
+              <button type="submit" class="btn green" ng-click=""> Sign up! </button>
+            </div>
+            <form>
           </div>
         </div>
       </div>
