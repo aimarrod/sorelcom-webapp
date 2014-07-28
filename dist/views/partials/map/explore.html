@@ -1,0 +1,58 @@
+<button class="btn btn-block" id="toggle-legend" ng-click="showLegend = !showLegend">
+  Legend
+  <span class="fa icon-down" ng-hide="showLegend"></span>
+  <span class="fa icon-right" ng-show="showLegend"></span>
+</button>
+<section id="map-legend" collapse="showLegend">
+  <section id="route-legend">
+    <header>
+      <span class="fa icon-distance fa-lg pull-left"></span><p><strong>Routes</strong></p>
+    </header>
+    <div class="row">
+      <div class="col-md-6 col-sm-12 legend-item">
+        <span class="fa icon-distance fa-lg pull-left" style="color: green"></span><p> Easy </p>
+      </div>
+      <div class="col-md-6 col-sm-12 legend-item">
+        <span class="fa icon-distance fa-lg pull-left" style="color: blue"></span><p> Regular </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12 legend-item">
+        <span class="fa icon-distance fa-lg pull-left" style="color: orange"></span><p> Difficult </p>
+      </div>
+      <div class="col-md-6 col-sm-12 legend-item">
+        <span class="fa icon-distance fa-lg pull-left" style="color: red"></span><p> Very hard </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12 legend-item">
+        <span class="fa icon-distance fa-lg pull-left" style="color: grey"></span><p> Drawn routes </p>
+      </div>
+    </div>
+  </section>
+  <section id="poi-legend">
+    <header>
+      <span class="fa icon-marker fa-lg pull-left"></span><p><strong>Points of interest</strong></p>
+    </header>
+    <section ng-repeat="group in Explorer.categories" class="row">
+      <div class="col-md-6 col-sm-12 legend-item" ng-repeat="category in group.categories">
+        <span class="fa icon-{{category.icon.name}} fa-lg pull-left" style="color: {{category.icon.color}}"></span>
+        <p> {{category.name}} </p>
+      </div>
+    </section>
+  </section>
+</section>
+
+<hr>
+<section>
+  <ul id="explore-list">
+    <li ng-repeat="item in SharedMap.visualizer.propertyList" class="darker-text">
+      <a ng-if="item.type==='Track'" ui-sref="web.track({id: item.id})">
+        <span class="fa fa-road pull-left fa-lg"></span> {{item.name}}
+      </a>
+      <a ng-if="item.type==='POI'" ui-sref="web.poi({id: item.id})">
+        <span class="fa fa-{{item.icon}} pull-left fa-lg"></span> {{item.name}}
+      </a>
+    </li>
+  </ul>
+</section>

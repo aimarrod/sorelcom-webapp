@@ -1,0 +1,89 @@
+<div id="wrapper" ng-class="{active: state.sidebarOpen}">
+
+  <div id="map-tooltip" ng-show="Tooltip.text">
+    <p class="text-center" ng-bind-html="Tooltip.text"></p>
+  </div>
+
+  <div id="editor-buttons" ng-show="state.showButtons">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <a class="btn green" role="button" ng-click="finish()">
+        <span class="fa fa-check"></span>
+      </a>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <a class="btn red" role="button" ng-click="cancel()">
+        <span class="glyphicon glyphicon-remove"></span>
+      </a>
+    </div>
+  </div>
+
+  <button id="sidebar-open" class="btn" ng-click="openSidebar()">
+    <span class="icon fa fa-bars fa-2x"></span>
+  </button>
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+
+  <!-- Header: title and close button -->
+    <div class="container">
+     <button class="close" ng-click="closeSidebar()">
+      <span class="fa fa-times"></span>
+     </button>
+      <header id="sidebar-header">
+        <h2 class="text-center"><a ui-sref="home"> SORELCOM </a></h2>
+      </header>
+
+      <nav id="sidebar-nav" class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <a class="btn green" role="button" ui-sref="map.explore">
+            <span class="icon fa fa-search"></span>
+          </a>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <a class="btn blue" role="button" ui-sref="map">
+            <span class="icon fa fa-edit"></span>
+          </a>
+        </div>
+      </nav>
+
+      <div id="sidebar-body" ui-view="">
+        <section id="editor" ng-controller="EditorCtrl">
+          <div class="action-buttons">
+            <div class="row">
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="startDraw()">
+                <img src="/images/icon/action/pencil.png" alt="Pencil icon">
+                <p>Draw a route</p>
+              </button>
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="markPOI()">
+                <img src="/images/icon/action/marker.png" alt="Marker icon">
+                <p>Mark a POI</p>
+              </button>
+            </div>
+            <hr>
+            <div class="row">
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="markNote()">
+                <img src="/images/icon/action/note.png" alt="Note icon">
+                <p>Leave a Note</p>
+              </button>
+              <button class="btn btn-default col-md-6 col-sm-12 col-xs-12" ng-click="openUpload()">
+                <img src="/images/icon/action/upload.png" alt="Upload icon">
+                <p>Upload from a GPX</p>
+              </button>
+            </div>
+            <hr>
+            <div class="row">
+              <button class="btn btn-default col-md-12 col-sm-12 col-xs-12" ng-click="startEdit()">
+                <img src="/images/icon/action/edit.png" alt="Edit icon">
+                <p>Edit a route</p>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Map -->
+  <main id="map-wrapper"></main>
+</div>

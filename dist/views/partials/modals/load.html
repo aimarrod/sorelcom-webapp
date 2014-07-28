@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h3>Load tracks</h3>
+    <p class="text-danger">{{err}}</p>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+    	<input type="file" class="btn-lg btn-primary" text-reader="load($text, $format)">
+    </div>
+    <div class="container-fluid">
+    	<p ng-show="geojson && !selected"> There is more than one track in your file, select one to import. </p>
+    	<div class="row">
+    		<div ng-repeat="feature in geojson">
+    			<div on-finish-render="makeMap(element, index)" class="minimap" ng-click="select(feature)" index="{{$index}}">
+    			</div>
+    		</div>
+    	</div>
+    </div>
+</div>
+<div class="modal-footer">
+    <p class="pull-right">
+        <button type="button" ng-click="continue()" class="btn green" ng-disabled="!selected">
+            Continue
+        </button>
+    </p>
+</div>

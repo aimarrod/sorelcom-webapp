@@ -1,0 +1,31 @@
+<div ng-include="" src="'partials/layout/navbar.html'"></div>
+
+<div id="developers">
+  <div class="container">
+    <form ng-submit="submit()">
+      <div class="form-group">
+        <pre>{{prefixes}}</pre>
+        <textarea style="font-family: monospace, monospace" rows="10" class="form-control" ng-model="query"></textarea>
+      </div>
+      <div class="form-group form-actions">
+        <p class="text-danger">{{err}}</p>
+        <button type="submit" class="btn green btn-lg"> Submit </button>
+      </div>
+    </form>
+
+    <table class="table table-striped" ng-hide="results === null">
+      <thead>
+        <tr>
+          <th ng-repeat="var in results.head.vars">{{var}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="binding in results.results.bindings">
+          <td ng-repeat="var in results.head.vars">
+            {{ binding[var].value }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h3>Upload files</h3>
+</div>
+<div class="modal-body" flow-init="flowConfig" ng-controller="UploadCtrl">
+  <button type="button" class="btn btn-block blue" flow-btn="" flow-drop="">
+    Click to load files or drag them here
+  </button>
+  <hr>
+  <p> Click on a photo to remove it from the list and click the upload button to save them </p>
+  <div class="row">
+    <div ng-repeat="file in $flow.files" class="preview" ng-click="remove($index, $flow)">
+      <img flow-img="file">
+    </div>
+  </div>
+  <hr>
+  <button type="button" ng-click="$flow.upload()" class="btn btn-block green"> Upload </button>
+</div>

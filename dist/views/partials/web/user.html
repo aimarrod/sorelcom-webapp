@@ -1,0 +1,71 @@
+<div ng-include="" src="'partials/layout/navbar.html'"></div>
+
+<div class="container" id="view">
+
+ <div class="row">
+   <div class="col-md-3 data-block">
+     <img ng-src="{{user.avatar}}" class="avatar center-block">
+     <h3 class="text-center data-block only-bottom">
+       <strong>{{user.name}}</strong>
+     </h3>
+     <p class="data-block only-bottom">{{user.givenName}} {{user.familyName}}</p>
+     <p class="data-block only-bottom"><span class="fa fa-envelope"></span> {{user.email}}</p>
+     <p class="data-block only-bottom"><span class="fa fa-external-link"></span> {{user.weblog}}</p>
+     <p class="data-block no-top no-right no-left no-bottom desc">{{user.about}}</p>
+     <button ng-hide="isMe() || imFollower" class="btn blue btn-block data-block only-top" ng-click="follow()">Follow</button>
+     <button ng-show="!isMe() && imFollower" class="btn red btn-block data-block only-top" ng-click="unfollow()">Stop Following</button>
+     <button ng-hide="isMe() || imBuddy" class="btn green btn-block data-block only-top" ng-click="addBuddy()">Add buddy</button>
+     <button ng-show="!isMe() && imBuddy" class="btn red btn-block data-block only-top" ng-click="removeBuddy()">Remove buddy</button>
+   </div>
+   <!-- Right side -->
+   <div class="col-md-9 data-block data-container">
+     <!-- Filters -->
+     <ul class="nav nav-pills data-block only-bottom data-container">
+       <li ng-class="{active:showing==='trails'}" class="data-block only-right">
+         <a ng-click="show('trails')">
+           Trails <span class="badge">{{trails.length}}</span>
+         </a>
+       </li>
+       <li ng-class="{active:showing==='pois'}" class="data-block only-right">
+         <a ng-click="show('pois')">
+           Points Of Interest <span class="badge">{{pois.length}}</span>
+         </a>
+       </li>
+       <li ng-class="{active:showing==='buddies'}" class="data-block only-right">
+         <a ng-click="show('buddies')">
+           Trail Buddies <span class="badge">{{buddies.length}}</span>
+         </a>
+       </li>
+       <li ng-class="{active:showing==='followers'}" class="data-block only-right">
+         <a ng-click="show('followers')">
+           Followers <span class="badge">{{followers.length}}</span>
+         </a>
+       </li>
+     </ul>
+
+
+     <ul class="data-list data-clickable" ng-show="showing==='trails'">
+       <li ui-sref="trail({id: trail.id})" class="data-block only-bottom" ng-repeat="trail in trails">
+         <a ui-sref="trail({id: trail.name})">{{trail.name}}</a>
+       </li>
+     </ul>
+     <ul class="data-list data-clickable" ng-show="showing==='pois'">
+       <li ui-sref="poi({id: poi.id})" class="data-block only-bottom" ng-repeat="poi in pois">
+         <a ui-sref="poi({id: poi.id})">{{poi.name}}</a>
+       </li>
+     </ul>
+     <ul class="data-list data-clickable" ng-show="showing==='buddies'">
+       <li ui-sref="user({id: buddy.name})" class="data-block only-bottom" ng-repeat="buddy in buddies">
+         <a ui-sref="user({id: buddy.name})">{{buddy.name}}</a>
+       </li>
+     </ul>
+     <ul class="data-list data-clickable" ng-show="showing==='followers'">
+       <li ui-sref="user({id: follower.name})" class="data-block only-bottom" ng-repeat="follower in followers">
+         <a ui-sref="user({id: follower.name})">{{follower.name}}</a>
+       </li>
+     </ul>
+
+   </div>
+ </div>
+
+</div>
