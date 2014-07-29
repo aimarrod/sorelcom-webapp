@@ -36,7 +36,6 @@ function TrailController(){
 
 module.exports = function(app){
   var controller = new TrailController();
-  console.log(controller);
   app.post('/api/trails', controller.new);
   app.get('/api/trails', controller.prototype.getList);
   app.get('/api/trails/:id', controller.prototype.get);

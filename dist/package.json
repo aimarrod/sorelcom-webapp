@@ -19,7 +19,9 @@
     "xmlbuilder": "latest",
     "socket.io": "latest",
     "colors": "~0.6.2",
-    "cli-color": "~0.3.2"
+    "cli-color": "~0.3.2",
+    "passport.socket.io": "0.0.0",
+    "passport.socketio": "~3.2.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

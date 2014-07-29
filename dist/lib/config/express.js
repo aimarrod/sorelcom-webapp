@@ -4,12 +4,15 @@ var express = require('express'),
     path = require('path'),
     config = require('./config'),
     passport = require('passport'),
-    mongoStore = require('connect-mongo')(express);
+    mongoStore = require('connect-mongo')(express),
+    session = require('./session');
 
 /**
  * Express configuration
  */
-module.exports = function(app) {
+
+module.exports = function(app, io) {
+
   app.configure('development', function(){
     app.use(require('connect-livereload')());
 
@@ -43,15 +46,7 @@ module.exports = function(app) {
     app.use(express.cookieParser());
 
     // Persist sessions with mongoStore
-    app.use(express.session({
-      secret: 'sorelcom secret',
-      store: new mongoStore({
-        url: config.mongo.uri,
-        collection: 'sessions'
-      }, function () {
-          console.log("db connection open");
-      })
-    }));
+    app.use(express.session(session));
 
     //use passport session
     app.use(passport.initialize());
@@ -65,4 +60,5 @@ module.exports = function(app) {
   app.configure('development', function(){
     app.use(express.errorHandler());
   });
+
 };
