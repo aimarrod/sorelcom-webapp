@@ -7,7 +7,7 @@ var util = require('util');
 var dateutil = require('dateutil');
 
 var client = new SparqlClient(
-  'http://localhost:8080/openrdf-sesame/repositories/sorelcom',
+  'http://helheim.deusto.es:8080/openrdf-sesame/repositories/sorelcom',
   'PREFIX my: <http://sorelcom.com/>' +
   'PREFIX fn: <http://www.w3.org/2005/xpath-functions#>\n' +
   'PREFIX owl: <http://www.w3.org/2002/07/owl#>\n' +

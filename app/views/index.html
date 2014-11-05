@@ -25,22 +25,15 @@
 
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="bower_components/leaflet-dist/leaflet.css" />
+  <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
   <link rel="stylesheet" href="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/material.min.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css({.tmp,app}) styles/main.css -->
-  <link rel="stylesheet" href="styles/browse.css">
-  <link rel="stylesheet" href="styles/colors.css">
-  <link rel="stylesheet" href="styles/errors.css">
-  <link rel="stylesheet" href="styles/home.css">
-  <link rel="stylesheet" href="styles/profile.css">
-  <link rel="stylesheet" href="styles/search.css">
-  <link rel="stylesheet" href="styles/views.css">
-  <link rel="stylesheet" href="styles/map.css">
-  <link rel="stylesheet" href="styles/navigation.css">
-  <link rel="stylesheet" href="styles/main.css">
+
   <!-- endbuild -->
 </head>
 <body ng-app="sorelcomApp">
@@ -88,7 +81,8 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/leaflet-dist/leaflet.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
     <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
     <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
     <script src="bower_components/flow.js/dist/flow.js"></script>
@@ -96,6 +90,8 @@
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
     <!-- endbower -->
     <script src="vendor/leaflet-editable-polyline/leaflet-editable-polyline.js"></script>
     <script src="vendor/togeojson/togeojson.js"></script>
@@ -106,37 +102,6 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="web/controllers/home.js"></script>
-    <script src="web/controllers/navbar.js"></script>
-    <script src="web/controllers/notification.js"></script>
-    <script src="web/controllers/search.js"></script>
-    <script src="web/controllers/user.js"></script>
-    <script src="web/controllers/feature.js"></script>
-    <script src="web/controllers/slider.js"></script>
-    <script src="web/services/api.js"></script>
-    <script src="map/controllers/map.js"></script>
-    <script src="map/controllers/navigator.js"></script>
-    <script src="map/controllers/editor.js"></script>
-    <script src="map/services/map.js"></script>
-    <script src="map/services/tooltip.js"></script>
-    <script src="map/services/editor.js"></script>
-    <script src="map/services/navigator.js"></script>
-    <script src="map/services/map_utils.js"></script>
-    <script src="accounts/controllers/signup.js"></script>
-    <script src="accounts/controllers/profile.js"></script>
-    <script src="accounts/services/auth.js"></script>
-    <script src="accounts/services/session.js"></script>
-    <script src="modals/controllers/login.js"></script>
-    <script src="modals/controllers/modals.js"></script>
-    <script src="modals/controllers/load.js"></script>
-    <script src="modals/controllers/upload.js"></script>
-    <script src="modals/controllers/create.js"></script>
-    <script src="modals/services/modal.js"></script>
-    <script src="modals/services/loader.js"></script>
-    <script src="developers/controllers/endpoint.js"></script>
-    <script src="scripts/directives/mongooseError.js"></script>
-    <script src="scripts/directives/textReader.js"></script>
-    <script src="scripts/directives/onFinishRender.js"></script>
-    <script src="scripts/directives/setNgAnimate.js"></script>
     <!-- endbuild -->
   </body>
   </html>

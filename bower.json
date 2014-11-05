@@ -16,18 +16,19 @@
     "angular-ui-router": "latest",
     "angular-bootstrap": "latest",
     "angular-leaflet-directive": "latest",
-    "angular-ui-utils":"latest",
-    "components-font-awesome":"latest",
+    "angular-ui-utils": "latest",
+    "components-font-awesome": "latest",
     "leaflet-plugins": "latest",
     "flow.js": "2.4.x",
     "ng-flow": "2.3.x",
     "restangular": "latest",
     "Leaflet.awesome-markers": "latest",
-    "leaflet.markercluster": "latest"
+    "leaflet.markercluster": "latest",
+    "bootstrap-material-design": "~0.1.5"
   },
   "devDependencies": {
     "angular-mocks": "1.2.11",
     "angular-scenario": "1.2.11"
   },
-  "testPath": "test/client/spec"  
+  "testPath": "test/client/spec"
 }
